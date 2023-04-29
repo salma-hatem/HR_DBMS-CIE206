@@ -3,3 +3,72 @@
 @{
 	Layout = "_LayoutEmployee";
 }
+
+
+<body>
+    <div class="row">
+
+        <div class="col-9">
+            <i style="font-size:20px;">Current Projects</i>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Goal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- for testing -->
+                        <td>
+                            <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="2">view</a>
+                        </td>
+                        <!----------------->
+                    </tr>
+                    @for (int i = 0; i < Model.currentProjects.Rows.Count; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < Model.currentProjects.Columns.Count; j++)
+                            {
+                                <td>@Model.currentProjects.Rows[i][j]</td>
+                            }
+                            <td>
+                                <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="@Model.currentProjects.Rows[i][0]">view</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-3">
+            <i style="font-size:20px;">Project Completed</i>
+        </div>
+    </div>
+    <br /> <br /><br />
+    <div>
+        <i style="font-size:20px;">Previous Projects</i>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.previousProjects.Rows.Count; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < Model.previousProjects.Columns.Count; j++)
+                        {
+                            <td>@Model.previousProjects.Rows[i][j]</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+

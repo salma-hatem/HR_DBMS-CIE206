@@ -3,3 +3,39 @@
 @{
 	Layout = "_LayoutEmployee";
 }
+
+<body>
+    <div class="row">
+
+        <div class="col-9">
+            <i style="font-size:20px;">Goal</i>
+            <p style="margin-left: 25px;">Model.project.Rows[][]</p>
+            <i style="font-size:20px;">Description</i>
+            <p style ="margin-left: 25px;">Model.project.Rows[][]</p>
+        </div>
+
+        <div class="col-3">
+            <i style="font-size:20px;">Team Members</i>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            @for (int j = 0; j < Model.team.Columns.Count; j++)
+                            {
+                                <td>@Model.team.Rows[j]</td>
+                            }
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br /><br />
+    <div>
+        <i style="font-size:20px;">Progress</i>
+    </div>
+
+</body>

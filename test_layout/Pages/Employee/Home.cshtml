@@ -29,6 +29,17 @@
                         <th>Amount</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.PenaltiesBonuses.Rows.Count; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < Model.PenaltiesBonuses.Columns.Count; j++)
+                            {
+                                <td>@Model.PenaltiesBonuses.Rows[i][j]</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
     </div>
@@ -42,8 +53,21 @@
                     <th>Status</th>
                 </tr>
             </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Requests.Rows.Count; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < Model.Requests.Columns.Count; j++)
+                        {
+                            <td>@Model.Requests.Rows[i][j]</td>
+                        }
+                    </tr>
+                }
+            </tbody>
         </table>
+        <form method="post">
         <button class="btn btn-outline-primary float-end">Add Request</button>
+        </form>
     </div>
 
 </body>

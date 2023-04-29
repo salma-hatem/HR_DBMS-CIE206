@@ -3,3 +3,62 @@
 @{
 	Layout = "_LayoutEmployee";
 }
+
+
+<body>
+    <div class="row">
+            <i style="font-size:20px;">Available Trainings</i>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.availableTrainings.Rows.Count; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < Model.availableTrainings.Columns.Count; j++)
+                            {
+                                <td>@Model.availableTrainings.Rows[i][j]</td>
+                            }
+                            <td>
+                                <!-- change btn if employee already in the training? -->
+                                <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="@Model.previousTrainings.Rows[i][0]">view</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div>
+        <i style="font-size:20px;">Previous Trainings</i>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.previousTrainings.Rows.Count; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < Model.previousTrainings.Columns.Count; j++)
+                        {
+                            <td>@Model.previousTrainings.Rows[i][j]</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
