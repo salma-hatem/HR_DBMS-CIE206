@@ -13,7 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">test_layout</a>
+				<!--<a class="navbar-brand" asp-area="" asp-page="/Index">Logout</a>-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,10 +21,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Home2</a>
+                            <a class="nav-link text-dark" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy2</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Home">Home</a>
+                        </li>
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Home">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/index">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -34,12 +40,15 @@
         
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <p>Try scrolling the rest of the page to see this option in action.</p>
-                <button>test</button>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Home">Home</a>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Home">Profile</a>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Home">Chat</a>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Projects">Project</a>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Employee/Training">Training</a>
             </div>
         </div>
     </header>
@@ -48,12 +57,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - test_layout - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
