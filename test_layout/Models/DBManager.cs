@@ -134,5 +134,36 @@ namespace test_layout.Models
             }
             return user_type;
         }
+
+        ///////////////// Get Password /////////////////
+        public string GetPassword(int id)
+        {
+            string query = "select Person_Password from Personal where id = '" + id + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            string password = "";
+            try
+            {
+                con.Open();
+                password = (string)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return password;
+        }
+        ///////////////// Get User Type /////////////////
+        public int GetUserType(int id) { return 0; }
+        // calls IsInTable and searches the tables for the given id and returns the corresponding number to the user type
+        // Employee          1
+        // Personal Mang     2
+        // Recruitment Mang  3
+        // Training Mang     4
+        // idk if we should add this to the DB or not
+        public bool IsInTable(int id) { return true; } //checks if there is a tuple in the table with given id 
     }
 }

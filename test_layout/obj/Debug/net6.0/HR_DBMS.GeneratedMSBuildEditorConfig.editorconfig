@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\Textbook\Year 2\CIE 206\Project\HR_DBMS\HR_DBMS-CIE206\test_layout
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/Textbook/Year 2/CIE 206/Project/HR_DBMS/HR_DBMS-CIE206/test_layout/Pages/Employee/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wbG95ZWVcSG9tZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Textbook/Year 2/CIE 206/Project/HR_DBMS/HR_DBMS-CIE206/test_layout/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -23,8 +27,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcaW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Textbook/Year 2/CIE 206/Project/HR_DBMS/HR_DBMS-CIE206/test_layout/Pages/PersonalMang/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVyc29uYWxNYW5nXEhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Textbook/Year 2/CIE 206/Project/HR_DBMS/HR_DBMS-CIE206/test_layout/Pages/RecruitmentMang/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjcnVpdG1lbnRNYW5nXEhvbWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Textbook/Year 2/CIE 206/Project/HR_DBMS/HR_DBMS-CIE206/test_layout/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Textbook/Year 2/CIE 206/Project/HR_DBMS/HR_DBMS-CIE206/test_layout/Pages/TrainingMang/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhaW5pbmdNYW5nXEhvbWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Textbook/Year 2/CIE 206/Project/HR_DBMS/HR_DBMS-CIE206/test_layout/Pages/_ViewImports.cshtml]

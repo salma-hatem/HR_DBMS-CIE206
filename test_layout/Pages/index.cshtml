@@ -4,7 +4,15 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<br /><br /><br /><br /><br /><br />
+<div class="text-center col-3 row align-items-center" style="margin:0 auto;">
+    <h6>Login</h6>
+    <form method="post">
+        <input type="text" class="form-control" placeholder="Enter your ID" asp-for="@Model.user_ID" /> <br />
+        <span asp-validation-for="user_ID"></span>
+        <input type="text" class="form-control" placeholder="Enter Password" asp-for="@Model.user_password" /> <br />
+        <span asp-validation-for="user_password"></span>
+        <button type="submit" class="btn btn-outline-primary">Login</button>
+    </form>
 </div>
+
