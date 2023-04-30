@@ -24,7 +24,7 @@ namespace test_layout.Pages
             _logger = logger;
             dBManager = db;
 
-            user_Type = 1;
+            user_Type = 2;
         }
 
         public void OnGet()
@@ -39,6 +39,7 @@ namespace test_layout.Pages
                 //Password = dBManager.GetPassword(user.ID);
                 //user.Type = dBManager.GetUserType(user.ID);
 
+              
                 if (true) //user_password == Password
                 {
                     if (user_Type == 1)
@@ -52,8 +53,6 @@ namespace test_layout.Pages
                     else
                         return Page();
                 }
-                else
-                    return Page();
             }
             else
                 return Page();
