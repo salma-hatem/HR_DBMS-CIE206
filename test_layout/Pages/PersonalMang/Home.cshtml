@@ -1,4 +1,78 @@
 ﻿@page
 @model HR_DBMS.Pages.PersonalMang.HomeModel
 @{
+    Layout = "_LayoutPersonalMang";
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+
+<div class="card">
+    <img class="card-img-top" src="..." alt="Profile picture">
+  <h5 class="card-header">NAME</h5>
+  <div class="card-body">
+    <h5 class="card-title">Clock in Today</h5>
+    <p class="  card-text">00:00 Sunday</p>
+    <a href="#" class="btn btn-primary">Fill Attendance</a>
+  </div>
+</div>
+<br />
+
+
+
+<h2>Time at Work</h2>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>This Week</h3>
+    </div>
+    <div class="col col-lg-2">
+      My Actions
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    </div>
+        <div class="col-4"><h6>Shortcut Actions</h6>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action active">
+                Check Chat
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">Pending Requests</a>
+              <a href="#" class="list-group-item list-group-item-action">Create new project</a>
+              <a href="#" class="list-group-item list-group-item-action">Check Employees</a>
+              <a href="#" class="list-group-item list-group-item-action disabled">Jumpt to Performance</a>
+            </div>
+        </div>
+ </div>
+
+</div>
+
+
+
+<script>
+    var xValues = ["Saturday", "Sunday", "Monday", "Tuesday", "Wendesday", "Th","Fri"];
+    var yValues = [55, 49, 87, 24, 15,0,0];
+    var barColors = "blue";
+
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "37 hr 40 min"
+            }
+        }
+    });
+</script>

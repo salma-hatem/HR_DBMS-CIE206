@@ -39,10 +39,11 @@ namespace test_layout.Pages
                 //Password = dBManager.GetPassword(user.ID);
                 //user.Type = dBManager.GetUserType(user.ID);
 
+              
                 if (true) //user_password == Password
                 {
                     if (user_Type == 1)
-                        return RedirectToPage("/Employee/Home", new { ID = user_ID });
+                        return RedirectToPage("/Employee/test", new { ID = user_ID });
                     else if (user_Type == 2)
                         return RedirectToPage("/PersonalMang/Home", new { ID = user_ID });
                     else if (user_Type == 3)
@@ -52,8 +53,6 @@ namespace test_layout.Pages
                     else
                         return Page();
                 }
-                else
-                    return Page();
             }
             else
                 return Page();
