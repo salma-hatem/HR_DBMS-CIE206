@@ -10,12 +10,12 @@ namespace test_layout.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly DBManager dBManager;
         [BindProperty]
-        public int user_Type { get; set; }
+        public int? user_Type { get; set; }
         //[BindProperty]
         //public string Password { get; set; }
         [BindProperty]
         [Required]
-        public int user_ID { get; set; }
+        public int? user_ID { get; set; }
         [BindProperty]
         [Required]
         public string user_password { get; set; }
@@ -24,7 +24,7 @@ namespace test_layout.Pages
             _logger = logger;
             dBManager = db;
 
-            user_Type = 1;
+            //user_Type = 1;
         }
 
         public void OnGet()
@@ -33,17 +33,19 @@ namespace test_layout.Pages
         }
         public IActionResult OnPost()
         {
+            user_Type = user_ID;
+            /// for testing ///
+            
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
                 //Password = dBManager.GetPassword(user.ID);
                 //user.Type = dBManager.GetUserType(user.ID);
 
-              
                 if (true) //user_password == Password
                 {
                     if (user_Type == 1)
-                        return RedirectToPage("/Employee/test", new { ID = user_ID });
+                        return RedirectToPage("/Employee/Home", new { ID = user_ID });
                     else if (user_Type == 2)
                         return RedirectToPage("/PersonalMang/Home", new { ID = user_ID });
                     else if (user_Type == 3)
