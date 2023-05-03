@@ -24,7 +24,7 @@ namespace test_layout.Pages
             _logger = logger;
             dBManager = db;
 
-            user_Type = 2;
+            user_Type = 1;
         }
 
         public void OnGet()
@@ -43,7 +43,7 @@ namespace test_layout.Pages
                 if (true) //user_password == Password
                 {
                     if (user_Type == 1)
-                        return RedirectToPage("/Employee/Home", new { ID = user_ID });
+                        return RedirectToPage("/Employee/test", new { ID = user_ID });
                     else if (user_Type == 2)
                         return RedirectToPage("/PersonalMang/Home", new { ID = user_ID });
                     else if (user_Type == 3)
