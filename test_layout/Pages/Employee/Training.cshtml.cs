@@ -15,6 +15,8 @@ namespace HR_DBMS.Pages.Employee
         public DataTable availableTrainings { get; set; }
         [BindProperty]
         public DataTable previousTrainings { get; set; }
+        [BindProperty]
+        public string search { get; set; }
         public TrainingModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
@@ -23,6 +25,10 @@ namespace HR_DBMS.Pages.Employee
         {
             availableTrainings = new DataTable();
             previousTrainings = new DataTable();
+        }
+        public void OnPost()
+        {
+            
         }
     }
 }
