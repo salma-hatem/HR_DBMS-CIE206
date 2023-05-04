@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Emplyee\" />
-    <Folder Include="Pages\RecruitmentMang\" />
-    <Folder Include="Pages\TrainingMang\" />
-    <Folder Include="Pages\PersonalMang\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
   </ItemGroup>
 
