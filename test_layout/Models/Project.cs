@@ -10,5 +10,6 @@
         public string Deadline { get; set; }
         public string Status { get; set; }
         public int ProgPercent { get; set; }
+        public string Goal { get; set; }
     }
 }

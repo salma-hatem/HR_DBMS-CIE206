@@ -14,6 +14,9 @@ namespace HR_DBMS.Pages.Employee
         public DataTable project { get; set; }
         [BindProperty]
         public DataTable team { get; set; }
+         [BindProperty]
+        public int progress { get; set; } //for testing
+       
         public ProjectDetailsModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
@@ -22,6 +25,7 @@ namespace HR_DBMS.Pages.Employee
         {
             project = new DataTable();
             team = new DataTable();
+            progress = 75;
         }
     }
 }
