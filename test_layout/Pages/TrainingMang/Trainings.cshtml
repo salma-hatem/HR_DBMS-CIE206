@@ -1,0 +1,149 @@
+﻿@page
+@model HR_DBMS.Pages.TrainingMang.TrainingsModel
+@{
+    Layout = "_LayoutTrainingMang";
+
+}
+<div class="col-lg-12">
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Avaliable Trainings</h5>
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Leadership Skills</td>
+                        <td>30th street Maadi</td>
+                        <td>2 pm</td>
+                        <td>Training about how to become a great leader</td>
+                        <td>2023-02-25</td>
+                        <td>2023-05-25</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" ><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Presentation Skills</td>
+                        <td>30th street Nasr City</td>
+                        <td>4 pm</td>
+                        <td>Training about how to become a make a great presentaion</td>
+                        <td>2022-04-25</td>
+                        <td>2023-05-03</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail"><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Finance </td>
+                        <td>October Gardens</td>
+                        <td>11 am</td>
+                        <td>Training about introduction to finance</td>
+                        <td>2023-07-11</td>
+                        <td>2023-08-25</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail"><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+        </div>
+    </div>
+
+</div>
+
+<div class="col-lg-12">
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Previous Trainings</h5>
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Leadership Skills</td>
+                        <td>30th street Maadi</td>
+                        <td>2 pm</td>
+                        <td>Training about how to become a great leader</td>
+                        <td>2023-02-25</td>
+                        <td>2023-04-25</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail"><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Presentation Skills</td>
+                        <td>30th street Nasr City</td>
+                        <td>4 pm</td>
+                        <td>Training about how to become a make a great presentaion</td>
+                        <td>2021-04-25</td>
+                        <td>2021-05-03</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail"><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Finance </td>
+                        <td>October Gardens</td>
+                        <td>11 am</td>
+                        <td>Training about introduction to finance</td>
+                        <td>2022-07-11</td>
+                        <td>2022-08-25</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail"><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Python Introduction </td>
+                        <td>Sheikh Zayed</td>
+                        <td>2 am</td>
+                        <td>Training about introduction to python</td>
+                        <td>2021-09-11</td>
+                        <td>2021-12-25</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail"><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Excel Workshop </td>
+                        <td>30th street Nasr City</td>
+                        <td>11 am</td>
+                        <td>Training about introduction to excel</td>
+                        <td>2021-06-11</td>
+                        <td>2021-08-25</td>
+                        <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail"><i class="fas fa-user"></i> View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+        </div>
+    </div>
+
+</div>
