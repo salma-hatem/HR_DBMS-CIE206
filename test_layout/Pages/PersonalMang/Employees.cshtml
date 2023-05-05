@@ -1,0 +1,179 @@
+﻿@page
+@model HR_DBMS.Pages.PersonalMang.EmployeesModel
+@{
+    Layout = "_LayoutPersonalMang";
+}
+
+<h1>Company Employees</h1>
+
+
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-4">
+
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <h2>Kevin Anderson</h2>
+                    <h3>Web Designer</h3>
+                    <div class="social-links mt-2">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered" role="tablist">
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview" aria-selected="true" role="tab">Overview</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview" role="tabpanel">
+                            <h5 class="card-title">About</h5>
+                            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+
+                            <h5 class="card-title">Profile Details</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                                <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Company</div>
+                                <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Job</div>
+                                <div class="col-lg-9 col-md-8">Web Designer</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Country</div>
+                                <div class="col-lg-9 col-md-8">USA</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Address</div>
+                                <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Phone</div>
+                                <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit" role="tabpanel">
+
+                    </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="row align-items-top">
+        <h2>(2) Records Found</h2>
+        <div class="card">
+            <div class="card-header">Employees Record</div>
+            <div class="card-body">
+
+                <!--Data-->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                            <label>
+                                <select class="datatable-selector">
+                                    <option value="5">5</option>
+                                    <option value="10" selected="">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                entries per page
+                            </label>
+                        </div>
+                        <div class="datatable-search">
+                            <input class="datatable-input"
+                                   placeholder="Search..."
+                                   type="search"
+                                   title="Search within table" />
+                        </div>
+                    </div>
+                    <div class="datatable-container">
+                        <table class="table datatable datatable-table">
+                            <thead>
+                                <tr>
+                                    <th data-sortable="true" style="width: 9.25925925925926%">
+                                        <a href="#" class="datatable-sorter">#</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 26.234567901234566%">
+                                        <a href="#" class="datatable-sorter">Name</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 29.938271604938272%">
+                                        <a href="#" class="datatable-sorter">Status</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 15.432098765432098%">
+                                        <a href="#" class="datatable-sorter">Worked Hours</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 19.1358024691358%">
+                                        <a href="#" class="datatable-sorter">Actions</a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-index="0">
+                                    <td>1</td>
+                                    <td>Brandon Jacob</td>
+                                    <td>Designer</td>
+                                    <td>28hr</td>
+                                    <td><a href="#">View</a></td>
+                                </tr>
+                                <tr data-index="1">
+                                    <td>2</td>
+                                    <td>Bridie Kessler</td>
+                                    <td>Developer</td>
+                                    <td>35 hrs</td>
+                                    <td><a href="#">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+             </div>
+             </div>
+             </div>
+
+
+
+</section>
+
+
+
+
