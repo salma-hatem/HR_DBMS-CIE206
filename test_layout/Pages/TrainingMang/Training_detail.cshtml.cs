@@ -3,12 +3,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HR_DBMS.Pages.TrainingMang
 {
-    public class HomeModel : PageModel
+    public class Training_detailModel : PageModel
     {
-        public int ID { get; set; }
-        public void OnGet(int id)
+        public void OnGet()
         {
-            ID = id;
         }
     }
 }
