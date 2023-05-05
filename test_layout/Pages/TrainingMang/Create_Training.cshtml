@@ -3,3 +3,77 @@
 @{
     Layout = "_LayoutTrainingMang";
 }
+
+<section class="section">
+    <div class="row">
+        <div class="col-xxl-14">
+<div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create a New Training</h5>
+
+              <!-- Custom Styled Validation -->
+              <form class="row g-3 needs-validation" novalidate>
+                <div class="col-xxl-12">
+                  <label for="validationCustom01" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="validationCustom01"  required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                      Please Provide a Name
+                  </div>
+                </div>
+                <br />
+                <div class="col-xxl-12">
+                  <label for="validationCustomUsername" class="form-label">Description</label>
+                  <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                    <div class="invalid-feedback">
+                      Please Provide a Description
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="col-lg-6">
+                  <label for="validationCustom03" class="form-label">Location</label>
+                  <input type="text" class="form-control" id="validationCustom03" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid Location.
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <label for="validationCustom05" class="form-label">Time</label>
+                  <input type="time" class="form-control" id="validationCustom05" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid time.
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <label for="validationCustom03" class="form-label">Start Date</label>
+                  <input type="date" class="form-control" id="validationCustom03" required>
+                  <div class="invalid-feedback">
+                    Please provide a valid Date.
+                  </div>
+                </div>
+
+                        <div class="col-lg-6">
+                            <label for="validationCustom03" class="form-label">End Date</label>
+                            <input type="date" class="form-control" id="validationCustom03" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid Date.
+                            </div>
+                        </div>
+               
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Create</button>
+                
+                            <button class="btn btn-danger" type="submit">Cancel</button>
+                        </div>
+              </form><!-- End Custom Styled Validation -->
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+</section>
