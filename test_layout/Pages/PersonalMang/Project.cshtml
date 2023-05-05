@@ -1,4 +1,190 @@
 ﻿@page
 @model HR_DBMS.Pages.PersonalMang.ProjectModel
 @{
+    Layout = "_LayoutPersonalMang";
 }
+
+
+<section class="section">
+    <div class="row align-items-top">
+        <div class="card-body">
+              <h5 class="card-title">Create Project</h5>
+
+              <!-- Browser Default Validation -->
+              <form class="row g-3">
+                <div class="col-md-12">
+                  <label for="validationDefault01" class="form-label">Project Name</label>
+                  <input type="text" class="form-control" id="validationDefault01" value="X" required="">
+                </div>
+                <div class="col-md-6">
+                  <label  class="form-label">Start Date</label>
+                  <div class="input-group">
+                    <span class="input-group-text">dd-mm-yyyy</span>
+                    <input type="datetime" class="form-control" required="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">End Date</label>
+                    <div class="input-group">
+                        <span class="input-group-text">dd-mm-yyyy</span>
+                        <input type="datetime" class="form-control" required="">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                  <label for="validationDefault04" class="form-label">Add Employees</label>
+                  <i class="ri-add-line"></i>
+                  <select class="form-select" id="validationDefault04" required="">
+                        
+                    <option selected="" disabled="" value="">Add...</option>
+                    <!--Add code here-->
+                    <option>Omar</option>
+                    <option>Ahmed</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Add New Project</button>
+                </div>
+              </form>
+              <!-- End Browser Default Validation -->
+
+            </div>
+            </div>
+
+
+        <div class="col-lg-12">
+            <!-- Default Card -->
+            <div class="card">
+                <div class="card-body">
+                    <h3>Projects Status</h3>
+                </div>
+            </div>
+        </div>
+        <!-- End Default Card -->
+        <!-- Card with header and footer -->
+        <div class="card">
+            <div class="card-header">Records</div>
+            <div class="card-body">
+
+                <!--Data-->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                            <label>
+                                <select class="datatable-selector">
+                                    <option value="5">5</option>
+                                    <option value="10" selected="">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select>
+                                entries per page
+                            </label>
+                        </div>
+                        <div class="datatable-search">
+                            <input class="datatable-input"
+                                   placeholder="Search..."
+                                   type="search"
+                                   title="Search within table" />
+                        </div>
+                    </div>
+                    <div class="datatable-container">
+                        <table class="table datatable datatable-table">
+                            <thead>
+                                <tr>
+                                    <th data-sortable="true" style="width: 9.25925925925926%">
+                                        <a href="#" class="datatable-sorter">#</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 26.234567901234566%">
+                                        <a href="#" class="datatable-sorter">Name</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 29.938271604938272%">
+                                        <a href="#" class="datatable-sorter">Status</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 15.432098765432098%">
+                                        <a href="#" class="datatable-sorter">Worked Hours</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 19.1358024691358%">
+                                        <a href="#" class="datatable-sorter">Actions</a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-index="0">
+                                    <td>1</td>
+                                    <td>Brandon Jacob</td>
+                                    <td>Designer</td>
+                                    <td>28hr</td>
+                                    <td><a href="#">View</a></td>
+                                </tr>
+                                <tr data-index="1">
+                                    <td>2</td>
+                                    <td>Bridie Kessler</td>
+                                    <td>Developer</td>
+                                    <td>35 hrs</td>
+                                    <td><a href="#">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+             </div>
+    </div>
+        <div class="row align-items-top" id="1">
+        <div class="card-body">
+            
+<form class="row g-3">
+    <div class="col-md-12">
+        <h3>Update Project</h3>
+        <label for="validationDefault01" class="form-label">Project Name</label>
+        <input type="text" class="form-control" id="validationDefault01" value="X" required="">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Start Date</label>
+        <div class="input-group">
+            <span class="input-group-text">dd-mm-yyyy</span>
+            <input type="datetime" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">End Date</label>
+        <div class="input-group">
+            <span class="input-group-text">dd-mm-yyyy</span>
+            <input type="datetime" class="form-control" required="">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <label for="validationDefault04" class="form-label">Add Employees</label>
+        <i class="ri-add-line"></i>
+        <select class="form-select" id="validationDefault04" required="">
+
+            <option selected="" disabled="" value="">Add...</option>
+            <!--Add code here-->
+            <option>Omar</option>
+            <option>Ahmed</option>
+        </select>
+    </div>
+    <div class="col-md-12">
+        <label for="validationDefault04" class="form-label">Status</label>
+        <i class="ri-add-line"></i>
+        <select class="form-select" id="validationDefault04" required="">
+
+            <option selected="" disabled="" value="">Add...</option>
+            <!--Add code here-->
+            <option>Working</option>
+            <option>Habitus</option>
+            <option>Cancel</option>
+            <option>Done</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-success" type="submit">Update Project</button>
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </div>
+</form>
+            </div>
+            </div>
+</section>
+
+
+
+
