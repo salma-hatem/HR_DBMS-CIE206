@@ -3,7 +3,8 @@
 @{
 	Layout = "_LayoutEmployee";
 }
-
+<div>
+@*
 <body>
     <div class="row">
 
@@ -38,4 +39,93 @@
         <i style="font-size:20px;">Progress</i>
     </div>
 
-</body>
+</body>*@
+</div>
+
+
+<section class="section dashboard">
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="col-xxl-4">
+                <div class="card info-card customers-card">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Project Goal</h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-star"></i>
+                            </div>
+                            <div class="ps-3">
+                                <!-- <h6>place goal sample</h6> -->
+                                <span class="text-muted small pt-2 ps-1">Model.project.Rows[][]</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- End Absent Card -->
+
+            <div class="col-xxl-4">
+                <div class="card info-card sales-card">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Project Description</h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-stickies"></i>
+                            </div>
+                            <div class="ps-3">
+                                <span class="text-muted small pt-2 ps-1">Model.project.Rows[][]</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- End Revenue Card -->
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Team Members</h5>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.team.Rows.Count; i++)
+                            {
+                                <tr>
+                                    @for (int j = 0; j < Model.team.Columns.Count; j++)
+                                    {
+                                        <td>@Model.team.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="card">
+            <h5 class="card-title">Progress</h5>
+            <div class="progress m-3">
+                <div class="progress-bar bg-info" role="progressbar" style="width: @Model.progress%" aria-valuenow="@Model.progress" aria-valuemin="0" aria-valuemax="100">@Model.progress%</div>
+            </div>
+        </div>
+    </div>
+
+</section>
