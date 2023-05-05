@@ -4,4 +4,332 @@
     Layout = "_LayoutPersonalMang";
 }
 
-<h1>Not done yet</h1>
+<h1>Employees Performance</h1>
+<section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Month Statistics Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card ">
+
+                <div class="card-body">
+                  <h5 class="card-title">Total Employees</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>145</h6>
+                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Employee Count Card -->
+
+            <!-- Absents Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Absents <span>| This Month</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>36</h6>
+                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Absents Card -->
+
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">All Salary</h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>$130,244</h6>
+                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Employees <span>| This year</span></h5>
+
+                  <!-- Line Chart -->
+                                     <canvas
+                              id="lineChart"
+                              style="
+                                max-height: 400px;
+                                display: block;
+                                box-sizing: border-box;
+                                height: 400px;
+                                width: 842px;
+                              "
+                              width="842"
+                              height="400">
+                          </canvas>
+
+
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
+
+            <!-- Projects status -->
+            <div class="col-12">
+              <div class="card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Project Status</h5>
+
+                  <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns"><div class="datatable-top">
+</div>
+<div class="datatable-container">
+                                    <table class="table table-borderless datatable datatable-table">
+                                        <thead>
+                                            <tr>
+                                                <th data-sortable="true" style="width: 15.601023017902813%">
+                                                    <a href="#" class="datatable-sorter">#</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 22.506393861892583%">
+                                                    <a href="#" class="datatable-sorter">Project Name</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 26.342710997442452%">
+                                                    <a href="#" class="datatable-sorter">Start Date</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 14.066496163682865%">
+                                                    <a href="#" class="datatable-sorter">Employees in Project</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 21.483375959079286%">
+                                                    <a href="#" class="datatable-sorter">Status</a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr data-index="0">
+                                                <td><a href="#">#2457</a></td>
+                                                <td>Sell The Fraud</td>
+                                                <td><a href="#" class="text-primary">12-3-2020</a></td>
+                                                <td>64</td>
+                                                <td><span class="badge bg-success">Working</span></td>
+                                            </tr>
+                                            <tr data-index="1">
+                                                <td><a href="#">#2147</a></td>
+                                                <td>Do Not Buy</td>
+                                                <td>
+                                                    <a href="#" class="text-primary">12-3-2021</a>
+                                                </td>
+                                                <td>47</td>
+                                                <td><span class="badge bg-warning">Pending</span></td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                    </table>
+
+</div>
+<div class="datatable-bottom">
+
+</div></div>
+
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+          <!-- Statistics Activity -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Activity</h5>
+
+              <div class="activity">
+
+                <div class="activity-item d-flex">
+                  <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
+                  <div class="activity-content">
+                     Total requests : 12<a href="#" class="fw-bold text-dark"> requests</a>
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class="bi bi-circle-fill activity-badge text-danger align-self-start"></i>
+                  <div class="activity-content">
+                    Penalties: 13
+                  </div>
+                </div><!-- End activity item-->
+
+                <div class="activity-item d-flex">
+                  <i class="bi bi-circle-fill activity-badge text-primary align-self-start"></i>
+                  <div class="activity-content">
+                    Bonuses : 0
+                  </div>
+                </div><!-- End activity item-->
+
+              </div>
+
+            </div>
+          </div><!-- End Recent Activity -->
+
+          <div class="card">
+
+            <div class="card-body pb-0">
+              <h5 class="card-title">Employee Disribution <span>| by location</span></h5>
+
+              <div id="budgetChart" style="min-height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class="echart" _echarts_instance_="ec_1683298445144"><div style="position: relative; width: 593px; height: 400px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="593" height="400" style="position: absolute; left: 0px; top: 0px; width: 593px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+
+
+
+            </div>
+          </div>
+
+            </div>
+                        <!-- Projects Statistics Card -->
+            <div class="col-xxl-12">
+              <div class="card info-card ">
+
+                <div class="card-body">
+                  <h5 class="card-title">Total Projects <span>| this year</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-people"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>145</h6>
+                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Project Count Card -->
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
+                    legend: {
+                     
+                    },
+                    radar: {
+                      // shape: 'circle',
+                      indicator: [{
+                          name: 'city',
+                          max: 25000
+                        },
+                        {
+                          name: 'cit2',
+                                        max: 25000
+                        },
+                        {
+                          name: 'city3',
+                                        max: 25000
+                        },
+                        {
+                          name: 'city 4',
+                                        max: 25000
+                        },
+                        {
+                          name: 'city5',
+                                        max: 25000
+                        },
+                        {
+                          name: 'others',
+                          max: 25000
+                        }
+                      ]
+                    },
+                    series: [{
+                      name: 'Employees vs Locations',
+                      type: 'radar',
+                      data: [{
+                          value: [4200, 3000, 20000, 17000, 20000, 18000],
+                        }
+
+                      ]
+                    }]
+                  });
+                });
+              </script>
+
+
+
+
+                          
+<script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new Chart(document.querySelector('#lineChart'), {
+                    type: 'line',
+                    data: {
+                      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                      datasets: [{
+                        label: 'Employees',
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+                });
+              </script>
