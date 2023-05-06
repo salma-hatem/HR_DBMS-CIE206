@@ -1,7 +1,7 @@
 ﻿@page
 @model HR_DBMS.Pages.RecruitmentMang.Add_EmployeeModel
 @{
-	Layout = "_LayoutRecruitmentMang";
+    Layout = "_LayoutRecruitmentMang";
 
 }
 <h1>New Employee/ Applicant</h1>
@@ -9,135 +9,221 @@
     <div class="card-body">
         <h5 class="card-title">Add an Employee</h5>
 
-            
-        <form class="row g-3">
-          <div class="col-md-12">
-        <img src="~/img/profile-img.jpg" alt="profile" class="rounded-circle" />
-        </div>
-        <div class="col-md-4">  
-            <class="form-label">Name</>
-            <input type="text" class="form-control"  >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">ID</>
-            <div class="input-group">
-            <input type="number" class="form-control" >
-            </div>
-        </div>
-        <div class="col-md-4">
-        <class="form-label">email</>
-        <input type="email" class="form-control" >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">Status</>
-            <input type="text" class="form-control" >
-        </div>
-    
-        <div class="col-md-4">
-            <class="form-label">Team</>
-            <input type="text" class="form-control" >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">Address</>
-            <input type="text" class="form-control" >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">Salaray</>
-            <input type="number" class="form-control" >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">SSN</>
-            <input type="number" class="form-control" >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">Role</>
-            <input type="text" class="form-control" >
-        </div>
-       <div class="col-md-4">
-            <class="form-label">Contact</>
-            <input type="number" class="form-control" >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">Age</>
-            <input type="number" class="form-control" >
-        </div>
-        <div class="col-md-4">
-            <class="form-label">Sex</>
-            <select class="form-select">
-                <option selected>Open this select menu</option>
-                <option value="1">Male</option>
-                <option value="2">Female</option>
-            </select>
-            
-        </div>
-        </form>
-             
-        <br />
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Documents</h5>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Type</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Path</th>
-                        <td>Action</td>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        
-                        <td>Birth Certificate</td>
-                        <td>12345</td>
-                        <td><div class="col-sm-10">
-                            <input type="date" class="form-control" />
-                        </div></td>
-                        <td><div class="col-sm-10">
-                            <input class="form-control" type="file" id="formFile" >
-                        </div></td>
-                        <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
 
-                        
-                    </tr>
-                    <tr>
-                        <td>College Certificate</td>
-                        <td>12345</td>
-                        <td><div class="col-sm-10">
-                            <input type="date" class="form-control" />
-                        </div></td>
-                        <td><div class="col-sm-10">
-                            <input class="form-control" type="file" id="formFile" >
-                        </div></td>
-                        <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-            <div class="col-2">
-                <button class="btn btn-primary" type="submit">Submit</button>
+        <form class="row g-3">
+            <div class="col-md-12">
+                <img src="~/img/profile-img.jpg" alt="profile" class="rounded-circle" />
             </div>
-        </div>
-    </div>
- </div>
- <br />
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Name</label>
+                <input type="text" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Provide a Name
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">ID</label>
+                <input type="number" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Provide an ID
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">email</label>
+                <input type="email" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Provide an email
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Status</label>
+                <input type="text" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Add a Status
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Team</label>
+                <input type="text" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter a team name
+                </div>
+            </div>
+            <div class="col-md-4">
+                <<label for="validationCustom01" class="form-label">Address</label>
+                <input type="text" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide your address
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Salary</label>
+                <input type="number" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Provide a Salary
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">SSN</label>
+                <input type="number" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter the SSN
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Role</label>
+                <input type="text" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Provide a Role
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Contact</label>
+                <input type="number" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Provide a Contact
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Age</label>
+                <input type="number" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter your age
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Sex</label>
+
+                <select class="form-select" required>
+                    <option selected>Open this select menu</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter your age
+                    </div>
+                </select>
+
+            </div>
+
+
+
+
+            <br />
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Documents</h5>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Path</th>
+                                    <td>Action</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td>Birth Certificate</td>
+                                    <td>12345</td>
+                                    <td>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                    </td>
+                                    <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>College Certificate</td>
+                                    <td>12345</td>
+                                    <td>
+                                        <div class="col-sm-10">
+                                            <input type="date" class="form-control" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                    </td>
+                                    <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="col-2">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <br />
             <form class="row g-3">
 
-        <div class="col-1">
-            <button class="btn btn-primary" type="button">Save</button>
-        </div>
-       
-        <div class="col-1">
-            <button class="btn btn-primary" type="reset">Reset</button>
-        </div>
+                <div class="col-1">
+                    <button class="btn btn-primary" type="button">Save</button>
+                </div>
+
+                <div class="col-1">
+                    <button class="btn btn-primary" type="reset">Reset</button>
+                </div>
+            </form>
         </form>
 
- </div>
+    </div>
 
-
+</div>
 
 
 
