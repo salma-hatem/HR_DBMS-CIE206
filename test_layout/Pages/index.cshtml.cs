@@ -34,8 +34,9 @@ namespace test_layout.Pages
         public IActionResult OnPost()
         {
             user_Type = user_ID;
+
             /// for testing ///
-            
+
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {

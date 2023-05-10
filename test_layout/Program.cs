@@ -1,3 +1,4 @@
+using HR_DBMS.Models;
 using test_layout.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<DBManager>();
+builder.Services.AddSingleton<current_user>();
 
 var app = builder.Build();
 
