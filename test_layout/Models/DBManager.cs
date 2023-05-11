@@ -4,7 +4,9 @@ using Microsoft.Data.SqlClient;
 namespace test_layout.Models
 {
     public class DBManager
+
     {
+        public int CurrentUserID { get; set; } 
         static string constring = "";
         SqlConnection con = new SqlConnection(constring);
         ///////////////// Read Tables /////////////////

@@ -10,12 +10,12 @@ namespace test_layout.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly DBManager dBManager;
         [BindProperty]
-        public int? user_Type { get; set; }
+        public int user_Type { get; set; }
         //[BindProperty]
         //public string Password { get; set; }
         [BindProperty]
         [Required]
-        public int? user_ID { get; set; }
+        public int user_ID { get; set; }
         [BindProperty]
         [Required]
         public string user_password { get; set; }
@@ -46,6 +46,7 @@ namespace test_layout.Pages
                 if (true) //user_password == Password
                 {
                     if (user_Type == 1)
+                     //   dBManager.CurrentUserID = user_ID;
                         return RedirectToPage("/Employee/Home", new { ID = user_ID });
                     else if (user_Type == 2)
                         return RedirectToPage("/PersonalMang/Home", new { ID = user_ID });

@@ -11,6 +11,7 @@ namespace HR_DBMS.Pages.Emplyee
         public DataTable Requests { get; set; }
         public DataTable PenaltiesBonuses { get; set; }
         [BindProperty (SupportsGet =true)]
+        [ViewData]
         public int ID  { get; set; }
         public HomeModel(DBManager dBManager)
         {
@@ -21,6 +22,7 @@ namespace HR_DBMS.Pages.Emplyee
         public void OnGet(int id)
         {
             ID = id;
+           dBManager.CurrentUserID = ID;    
             //Requests = dBManager.ReadTableCondition("Requests", "EmployeeID", Convert.ToString(ID));
         }
         public IActionResult OnPost()
