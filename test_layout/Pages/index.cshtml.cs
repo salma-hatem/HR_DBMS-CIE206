@@ -43,6 +43,7 @@ namespace test_layout.Pages
                 //Password = dBManager.GetPassword(user.ID);
                 //user.Type = dBManager.GetUserType(user.ID);
 
+              
                 if (true) //user_password == Password
                 {
                     if (user_Type == 1)
