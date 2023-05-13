@@ -5,8 +5,9 @@ namespace test_layout.Models
 {
     public class DBManager
     {
-        static string constring = "";
+        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
         SqlConnection con = new SqlConnection(constring);
+        
         ///////////////// Read Tables /////////////////
         public DataTable ReadTables(string tablename)
         {
@@ -113,16 +114,18 @@ namespace test_layout.Models
                 con.Close();
             }
         }
-        ///////////////// Get User ID /////////////////
-        public int GetUserID(string Username)
+        //////////////////////////////////////////
+        
+        ///////////////// Login /////////////////
+        public void Login(int id)
         {
-            string query = "select ID from Users where Username = '" + Username + "'";
+            string query = "update CurrentUser set ID = @ID";
             SqlCommand cmd = new SqlCommand(query, con);
-            int user_type = 0;
+            cmd.Parameters.AddWithValue("@ID", id);
             try
             {
                 con.Open();
-                user_type = (int)cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
@@ -132,13 +135,35 @@ namespace test_layout.Models
             {
                 con.Close();
             }
-            return user_type;
         }
+
+        ///////////////// Get User ID /////////////////
+        public int GetUserID(string Email)
+        {
+            string query = "select id from Personal where Work_Email = '" + Email + "'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int ID = 0;
+            try
+            {
+                con.Open();
+                ID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return ID;
+        }
+
 
         ///////////////// Get Password /////////////////
         public string GetPassword(int id)
         {
-            string query = "select Person_Password from Personal where id = '" + id + "'";
+            string query = "select Person_Password from Personal where id = " + id;
             SqlCommand cmd = new SqlCommand(query, con);
             string password = "";
             try
@@ -157,13 +182,79 @@ namespace test_layout.Models
             return password;
         }
         ///////////////// Get User Type /////////////////
-        public int GetUserType(int id) { return 0; }
+        public int GetUserType(int id) 
+        {
+            if (IsInTable(id, "Employee"))
+                return 1;
+            if (IsInTable(id, "Personal_Manager"))
+                return 2;
+            if (IsInTable(id, "Recruitment_Manager"))
+                return 3;
+            if (IsInTable(id, "Training_Manager"))
+                return 4;
+            else
+                return 0;
+        }
         // calls IsInTable and searches the tables for the given id and returns the corresponding number to the user type
         // Employee          1
         // Personal Mang     2
         // Recruitment Mang  3
         // Training Mang     4
-        // idk if we should add this to the DB or not
-        public bool IsInTable(int id) { return true; } //checks if there is a tuple in the table with given id 
+
+        public bool IsInTable(int id, string Table) 
+        {
+            return true;
+            /*int ID = -1;
+            string query = "";
+            if (Table == "Employee")
+                query = "select EmployeeID from Employee where EmployeeID = " + id;
+            else if (Table == "Recruitment_Manager")
+                query = "select Recruitment_Mang_ID from Recruitment_Manager where Recruitment_Mang_ID = " + id;
+            else if (Table == "Training_Manager")
+                query = "select Training_Mang_ID from Training_Manager where Training_Mang_ID = " + id;
+            else if (Table == "Personal_Manager")
+                query = "select Personal_Mang_ID from Personal_Manager where Personal_Mang_ID = " + id;
+            SqlCommand cmd = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                ID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            if(ID == -1)
+                return false;       
+            return true;*/
+        }
+        //checks if there is a tuple in the table with given id 
+
+
+        ///////////////// Read Table colunm with condition /////////////////
+        public DataTable ReadTablesWithConditon(string tablename, string column, string conditionLHS, string conditionRHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename+ " where " + conditionLHS + " = " + conditionRHS;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
     }
 }
