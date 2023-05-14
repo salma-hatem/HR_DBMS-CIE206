@@ -203,8 +203,8 @@ namespace test_layout.Models
 
         public bool IsInTable(int id, string Table) 
         {
-            return true;
-            /*int ID = -1;
+            //return true;
+            DataTable table = new DataTable();
             string query = "";
             if (Table == "Employee")
                 query = "select EmployeeID from Employee where EmployeeID = " + id;
@@ -218,7 +218,7 @@ namespace test_layout.Models
             try
             {
                 con.Open();
-                ID = (int)cmd.ExecuteScalar();
+                table.Load(cmd.ExecuteReader());
             }
             catch (SqlException ex)
             {
@@ -228,9 +228,9 @@ namespace test_layout.Models
             {
                 con.Close();
             }
-            if(ID == -1)
+            if(table.Rows.Count == 0)
                 return false;       
-            return true;*/
+            return true;
         }
         //checks if there is a tuple in the table with given id 
 
