@@ -12,16 +12,19 @@ namespace HR_DBMS.Pages.Emplyee
         public DataTable PenaltiesBonuses { get; set; }
         [BindProperty (SupportsGet =true)]
         public int ID  { get; set; }
+        [BindProperty]
+        public DataTable Holidays { get; set; }
         public HomeModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
             Requests = new DataTable();
             PenaltiesBonuses = new DataTable();
         }
-        public void OnGet(int id)
+        public void OnGet()
         {
-            ID = id;
-            //Requests = dBManager.ReadTableCondition("Requests", "EmployeeID", Convert.ToString(ID));
+            Holidays = dBManager.ReadTablesWithConditon("Personal", "Holidays", "id", Convert.ToString(ID));
+            PenaltiesBonuses = dBManager.ReadTablesWithConditon("PenaltiesBonuses", "Type_, Percentage_Change", "EmployeeID", Convert.ToString(ID));
+            Requests = dBManager.ReadTablesWithConditon("Requests", "R_Type, R_Description, R_Status", "EmployeeID", Convert.ToString(ID));
         }
         public IActionResult OnPost()
         {

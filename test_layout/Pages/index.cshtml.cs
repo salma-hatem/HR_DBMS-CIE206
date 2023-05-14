@@ -14,8 +14,10 @@ namespace test_layout.Pages
         //[BindProperty]
         //public string Password { get; set; }
         [BindProperty]
+        public int user_ID { get; set; }
+        [BindProperty]
         [Required]
-        public int? user_ID { get; set; }
+        public string user_email { get; set; }
         [BindProperty]
         [Required]
         public string user_password { get; set; }
@@ -29,22 +31,25 @@ namespace test_layout.Pages
 
         public void OnGet()
         {
-            user_password = "123456";
+            //user_password = "123456";
         }
         public IActionResult OnPost()
         {
-            user_Type = user_ID;
+            //user_Type = user_ID;
             /// for testing ///
             
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
-                //Password = dBManager.GetPassword(user.ID);
-                //user.Type = dBManager.GetUserType(user.ID);
-
+                user_ID = dBManager.GetUserID(user_email);
+                string Password = dBManager.GetPassword(user_ID);
+                user_Type = dBManager.GetUserType(user_ID);
+                Password = Password.Trim();
+                user_password = user_password.Trim();
               
-                if (true) //user_password == Password
+                if (user_password == Password) 
                 {
+                    dBManager.Login(user_ID);
                     if (user_Type == 1)
                         return RedirectToPage("/Employee/Home", new { ID = user_ID });
                     else if (user_Type == 2)
@@ -56,6 +61,8 @@ namespace test_layout.Pages
                     else
                         return Page();
                 }
+                else
+                    return Page();
             }
             else
                 return Page();
