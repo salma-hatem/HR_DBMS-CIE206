@@ -4,20 +4,6 @@
     ViewData["Title"] = "Home page";
     ViewData["ID"] = Model.user_ID;
 }
-
-@*<br /><br /><br /><br /><br /><br />
-<div class="text-center col-3 row align-items-center" style="margin:0 auto;">
-    <h6>Login</h6>
-    <form method="post">
-        <input type="text" class="form-control" placeholder="Enter your ID" asp-for="@Model.user_ID" /> <br />
-        <span asp-validation-for="user_ID"></span>
-        <input type="text" class="form-control" placeholder="Enter Password" asp-for="@Model.user_password" /> <br />
-        <span asp-validation-for="user_password"></span>
-        <button type="submit" class="btn btn-outline-primary">Login</button>
-    </form>
-</div>*@
-
-
 <main>
     <div class="container">
 
@@ -39,19 +25,19 @@
 
                                 <div class="pt-4 pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                                    <p class="text-center small">Enter your ID & password to login</p>
+                                    <p class="text-center small">Enter your work email & password</p>
                                 </div>
 
                                 <form class="row g-3 needs-validation" novalidate method="post">
 
                                     <div class="col-12">
-                                        <label for="yourUsername" class="form-label">UserID</label> <span class="text-danger"> *</span>
+                                        <label for="yourUsername" class="form-label">Email</label> <span class="text-danger"> *</span>
 
                                             @*<span class="input-group-text" id="inputGroupPrepend">@Model.user_ID</span>
                                             <input type="text" name="UserID" class="form-control" id="yourUserID" required>
                                             <div class="invalid-feedback">Please enter your ID.</div>*@
-                                            <input type="text" class="form-control" placeholder="Enter your ID" asp-for="@Model.user_ID" /> <br />
-                                            <span asp-validation-for="user_ID" class="text-danger"></span>
+                                            <input type="text" class="form-control" placeholder="Enter your Email" asp-for="@Model.user_email" /> <br />
+                                            <span asp-validation-for="user_email" class="text-danger"></span>
                                     </div>
 
                                     <div class="col-12">

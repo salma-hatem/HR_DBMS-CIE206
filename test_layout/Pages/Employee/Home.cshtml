@@ -3,76 +3,6 @@
 @{
 	Layout = "_LayoutEmployee";
 }
-<div>
-@*
-<body>
-    <div class="row">
-
-        <div class="col-3 ms-3">
-            <i style="font-size:20px;">Attendence</i>
-            
-        </div>
-
-        <div class="col-3 ms-3">
-            <br /><br /><br />
-            <i style="font-size:20px;">Absent Days</i>
-            <p>6</p>
-            <i style="font-size:20px;">Holidayes Taken</i>
-            <p>5</p>
-        </div>
-
-        <div class="col-5 ms-5">
-            <i style="font-size:20px;">Penalties and Bonuses</i>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.PenaltiesBonuses.Rows.Count; i++)
-                    {
-                        <tr>
-                            @for (int j = 0; j < Model.PenaltiesBonuses.Columns.Count; j++)
-                            {
-                                <td>@Model.PenaltiesBonuses.Rows[i][j]</td>
-                            }
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div>
-        <i style="font-size:20px;">Requests</i>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < Model.Requests.Rows.Count; i++)
-                {
-                    <tr>
-                        @for (int j = 0; j < Model.Requests.Columns.Count; j++)
-                        {
-                            <td>@Model.Requests.Rows[i][j]</td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <form method="post">
-        <button class="btn btn-outline-primary float-end">Add Request</button>
-        </form>
-    </div>
-
-</body>*@
-</div>
 
 <section class="section dashboard">
     <div class="row">
@@ -160,7 +90,7 @@
                                 <i class="bi bi-cloud-sun"></i>
                             </div>
                             <div class="ps-3">
-                                <h6>5 </h6>
+                                <h6>@Model.Holidays.Rows[0][0] </h6>
                                 <span class="text-muted small pt-2 ps-1">Days</span>
                             </div>
                         </div>
@@ -179,8 +109,8 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Description</th>
-                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Amount (%)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -210,6 +140,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Type</th>
                             <th>Description</th>
                             <th>Status</th>
                         </tr>
