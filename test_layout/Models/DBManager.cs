@@ -158,7 +158,27 @@ namespace test_layout.Models
             }
             return ID;
         }
-
+        ///////////////// Get Current User /////////////////
+        public int GetCurrentUserID()
+        {
+            string query = "select * from CurrentUser";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int ID = 0;
+            try
+            {
+                con.Open();
+                ID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return ID;
+        }
 
         ///////////////// Get Password /////////////////
         public string GetPassword(int id)
@@ -255,6 +275,74 @@ namespace test_layout.Models
                 con.Close();
             }
             return table;
+        }
+
+        ///////////////// Reads value with condition /////////////////
+        public int ExcuteScalarINT(string tablename, string column, string conditionLHS, string conditionRHS)
+        {
+            string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
+            SqlCommand cmd = new SqlCommand(query, con);
+            int value =-1;
+            try
+            {
+                con.Open();
+                value = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return value;
+        }
+        ///////////////// Get Max ID /////////////////
+        public int GetMaxID(string tablename)
+        {
+            int maxID = 0;
+            string query = "select Max(ID) from " + tablename;
+            SqlCommand cmd = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                maxID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return maxID;
+        }
+        ///////////////// insert into Requests /////////////////
+        public void AddRecordRequest(int id, string type, string status, string description, int EID, int PID)
+        {
+            string query = "INSERT INTO Requests VALUES (@ID,@R_Type,@R_Status,@R_Description,@EmployeeID,@Approved_by)";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@R_Type", type);
+            cmd.Parameters.AddWithValue("@R_Status", status);
+            cmd.Parameters.AddWithValue("@R_Description", description);
+            cmd.Parameters.AddWithValue("@EmployeeID", EID);
+            cmd.Parameters.AddWithValue("@Approved_by", PID);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

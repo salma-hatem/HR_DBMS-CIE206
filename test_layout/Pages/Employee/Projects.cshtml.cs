@@ -18,6 +18,7 @@ namespace HR_DBMS.Pages.Employee
         public ProjectModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
+            ID = dBManager.GetCurrentUserID();
         }
         public void OnGet()
         {
