@@ -5,10 +5,6 @@
 }
 
 
-
-   
-
-
     <section class="section">
         <div class="row">
 
@@ -47,7 +43,8 @@
                                                     label: 'Total',
                                                     formatter: function (w) {
                                                         // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                                                        return 70
+                                                  
+                                                       return 70;
                                                     }
                                                 }
                                             }
@@ -91,7 +88,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Trainings</h5>
+                <h5 class="card-title">Week's Trainings</h5>
 
                 <!-- Table with stripped rows -->
                 <table class="table datatable">
@@ -103,34 +100,28 @@
                             <th scope="col">Time</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">End Date</th>
+                            <th scope="col">Actions</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Leadership Skills</td>
-                            <td>30th street Maadi</td>
-                            <td>2 pm</td>
-                            <td>2023-02-25</td>
-                            <td>2023-05-25</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Presentation Skills</td>
-                            <td>30th street Nasr City</td>
-                            <td>4 pm</td>
-                            <td>2022-04-25</td>
-                            <td>2023-05-03</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Finance </td>
-                            <td>October Gardens</td>
-                            <td>11 am</td>
-                            <td>2023-07-11</td>
-                            <td>2023-08-25</td>
-                        </tr>
+                        @for (int i = 0; i < Model.Trainings.Rows.Count; i++)
+                        {
+                            <tr>
+
+                                @for (int j = 0; j < 4; j++)
+                                {
+                                    <td>@Model.Trainings.Rows[i][j]</td>
+
+                                }
+                                <td>
+                                    <a asp-page="/TraingingMang/Training_detail" asp-route-id="@Model.Trainings.Rows[i][0]" /> 
+                                    
+                               
+
+                                </td>
+                            </tr>
+                        }
                         
                     </tbody>
                 </table>

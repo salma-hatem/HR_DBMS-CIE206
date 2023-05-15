@@ -7,13 +7,13 @@ namespace test_layout.Models
 
     {
         public int CurrentUserID { get; set; } 
-        static string constring = "";
+        static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True; TrustServerCertificate=True";
         SqlConnection con = new SqlConnection(constring);
         ///////////////// Read Tables /////////////////
         public DataTable ReadTables(string tablename)
         {
             DataTable table = new DataTable();
-            string query = "select * from " + tablename;
+            string query = "select * from " +tablename ;
             try
             {
                 con.Open();
