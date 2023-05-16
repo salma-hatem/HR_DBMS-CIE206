@@ -136,8 +136,8 @@ CREATE TABLE Attend_Training(
 CREATE TABLE Training_Date(
 	ID int,
 	Training_Time Time NOT NULL,
-	Training_StartDate DATE NOT NULL,
-	Training_EndDate DATE NOT NULL ,
+	Training_StartDate DATETIME NOT NULL,
+	Training_EndDate DATETIME NOT NULL ,
 	FOREIGN KEY (ID) REFERENCES Training,
 	PRIMARY KEY (ID, Training_StartDate,Training_EndDate),
 	constraint check_dates check (Training_StartDate < Training_EndDate)
