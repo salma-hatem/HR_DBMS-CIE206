@@ -5,8 +5,14 @@ namespace HR_DBMS.Pages.TrainingMang
 {
     public class TrainingsModel : PageModel
     {
-        public void OnGet()
+        public int ID { get; set; }
+        public TrainingsModel()
         {
+            
+        }
+        public void OnGet(int id)
+        {
+            ID = id;
         }
     }
 }
