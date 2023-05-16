@@ -115,8 +115,8 @@ CREATE TABLE Works_On (
 
 CREATE TABLE Training(
 	ID INT PRIMARY KEY,
-	Training_Name VARCHAR(20) NOT NULL,
-	Training_Location VARCHAR(20) NOT NULL,
+	Training_Name VARCHAR(100) NOT NULL,
+	Training_Location VARCHAR(100) NOT NULL,
 	Created_by INT,
 	Training_Description VARCHAR(300),
 	Training_Status INT DEFAULT 0,
