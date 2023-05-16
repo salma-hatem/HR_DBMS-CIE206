@@ -402,7 +402,14 @@ VALUES
 (2, '2008 -09 -05', 2),
 (3, '2008 -09 -05', 3);
 
-
+INSERT INTO Attendance
+(
+    id ,
+    Atendance_Date,
+    Person_id 
+)
+VALUES
+(4,'2008 -09 -05',5)
 
 -- Employees Documents
 
@@ -590,4 +597,7 @@ select concat(FName, ' ', LName) as fullname from Works_On inner join Personal o
 select * from Project where Status_ != 'Complete'
 
 --update Project set Status_ = 'Half-Way' where ID = 1
+select sum(Progress_Percentage) from Project inner join Works_On on ID = PID where EID = 5
 
+--delete from Attend_Training where TrainingID = 456
+select * from Attendance where Person_ID = 5
