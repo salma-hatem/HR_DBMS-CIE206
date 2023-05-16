@@ -569,3 +569,11 @@ select Training_Time, (CONVERT(date, Training_StartDate)), (CONVERT(date, Traini
 SELECT CONVERT(date, Training_StartDate) from Training_Date
 
 select FName,LName from Personal as P join Attend_Training as A on P.id=A.E_ID where A.TrainingID=123
+
+select * from Attend_Training inner join Training on ID = TrainingID
+where E_ID = 5 And Training_Status = 0
+
+select ID, Training_Name, Training_Location, Training_Description from Training except (select ID, Training_Name, Training_Location, Training_Description from Attend_Training inner join Training on ID = TrainingID
+where E_ID = 5)
+
+select count(*) 

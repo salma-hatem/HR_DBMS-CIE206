@@ -6,7 +6,7 @@ namespace test_layout.Models
     public class DBManager
 
     {
-        static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
         SqlConnection con = new SqlConnection(constring);
         
         ///////////////// Read Tables /////////////////
@@ -299,6 +299,26 @@ namespace test_layout.Models
             }
             return value;
         }
+        ///////////////// Read Table with given query /////////////////
+        public DataTable ReadTablesQuery(string query)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
         ///////////////// Get Max ID /////////////////
         public int GetMaxID(string tablename)
         {
@@ -346,6 +366,29 @@ namespace test_layout.Models
             }
         }
 
+        ///////////////// insert into Attend Training /////////////////
+        public void AddRecordAttend_Training(int id, int EID, int time)
+        {
+            string query = "INSERT INTO Attend_Training VALUES (@TrainingID,@E_ID,@Time_Spent)";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@TrainingID", id);
+            cmd.Parameters.AddWithValue("@E_ID", EID);
+            cmd.Parameters.AddWithValue("@Time_Spent", time);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        ///////////////// ///////////////// /////////////////
         public DataTable ReadTablesfrom(string tablename, string columns)
         {
             DataTable table = new DataTable();
