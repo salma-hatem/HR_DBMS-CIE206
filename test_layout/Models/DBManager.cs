@@ -1,11 +1,12 @@
 ﻿using System.Data;
+using System.Data.Common;
 using Microsoft.Data.SqlClient;
 
 namespace test_layout.Models
 {
     public class DBManager
     {
-        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;Encrypt=False";
         SqlConnection con = new SqlConnection(constring);
         
         ///////////////// Read Tables /////////////////
@@ -255,6 +256,48 @@ namespace test_layout.Models
                 con.Close();
             }
             return table;
+        }
+
+
+
+        ////////////////////// Custom Execute Reader Queries /////////////////
+        public DataTable CustomQuery(string query) {
+            DataTable table = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+        /////////////////////////// Custom Scalar Query//////////////////
+        public string CustomScalarQuery(string query)
+        {
+            string result = "";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                result =  cmd.ExecuteScalar().ToString();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
         }
     }
 }
