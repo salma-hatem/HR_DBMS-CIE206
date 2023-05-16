@@ -28,8 +28,8 @@ namespace HR_DBMS.Pages.Employee
         {
             string q = "select ID, Training_Name, Training_Location, Training_Description from Training where Training_Status = 0 except (select ID, Training_Name, Training_Location, Training_Description from Attend_Training inner join Training on ID = TrainingID\r\nwhere E_ID = " + ID + " )";
             availableTrainings =dBManager.ReadTablesQuery(q);
-            currentTrainings = dBManager.ReadTablesWithConditon("Attend_Training inner join Training on ID = TrainingID", "ID, Training_Name, Training_Location", "E_ID =" + ID + "And Training_Status", "0");
-            previousTrainings = dBManager.ReadTablesWithConditon("Attend_Training inner join Training on ID = TrainingID", "ID, Training_Name, Training_Location", "E_ID =" + ID + "And Training_Status", "1");
+            currentTrainings = dBManager.ReadTablesWithConditon("Attend_Training inner join Training on ID = TrainingID", "ID, Training_Name, Training_Location", "E_ID = " + ID + " And Training_Status", "0");
+            previousTrainings = dBManager.ReadTablesWithConditon("Attend_Training inner join Training on ID = TrainingID", "ID, Training_Name, Training_Location", "E_ID = " + ID + " And Training_Status", "1");
         }
         public void OnPost()
         {

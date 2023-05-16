@@ -3,45 +3,6 @@
 @{
 	Layout = "_LayoutEmployee";
 }
-<div>
-@*
-<body>
-    <div class="row">
-
-        <div class="col-9">
-            <i style="font-size:20px;">Goal</i>
-            <p style="margin-left: 25px;">Model.project.Rows[][]</p>
-            <i style="font-size:20px;">Description</i>
-            <p style ="margin-left: 25px;">Model.project.Rows[][]</p>
-        </div>
-
-        <div class="col-3">
-            <i style="font-size:20px;">Team Members</i>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <tr>
-                            @for (int j = 0; j < Model.team.Columns.Count; j++)
-                            {
-                                <td>@Model.team.Rows[j]</td>
-                            }
-                        </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <br /><br />
-    <div>
-        <i style="font-size:20px;">Progress</i>
-    </div>
-
-</body>*@
-</div>
-
 
 <section class="section dashboard">
     <div class="row">
@@ -59,7 +20,7 @@
                             </div>
                             <div class="ps-3">
                                 <!-- <h6>place goal sample</h6> -->
-                                <span class="text-muted small pt-2 ps-1">Model.project.Rows[][]</span>
+                                <span class="text-muted small pt-2 ps-1">@Model.project.Rows[0][3]</span>
                             </div>
                         </div>
                     </div>
@@ -78,7 +39,7 @@
                                 <i class="bi bi-stickies"></i>
                             </div>
                             <div class="ps-3">
-                                <span class="text-muted small pt-2 ps-1">Model.project.Rows[][]</span>
+                                <span class="text-muted small pt-2 ps-1">@Model.project.Rows[0][2]</span>
                             </div>
                         </div>
                     </div>
