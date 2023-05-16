@@ -6,7 +6,7 @@ namespace test_layout.Models
     {
         public int ID { get; set; }
         public int EmployeeID { get; set; }
-        public int? ApprovedBy { get; set; }
+        public int ApprovedBy { get; set; }
         public string Status { get; set; }
         public string Type { get; set; }
         [Required]
