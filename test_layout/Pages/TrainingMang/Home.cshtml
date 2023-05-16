@@ -107,19 +107,31 @@
                     <tbody>
                         @for (int i = 0; i < Model.Trainings.Rows.Count; i++)
                         {
+
                             <tr>
 
-                                @for (int j = 0; j < 4; j++)
+                                @for (int j = 0; j < 3; j++)
                                 {
                                     <td>@Model.Trainings.Rows[i][j]</td>
 
                                 }
-                                <td>
-                                    <a asp-page="/TraingingMang/Training_detail" asp-route-id="@Model.Trainings.Rows[i][0]" /> 
-                                    
-                               
+                                @for (int j = 0; j < 3; j++)
+                                {
+                                    <td>@Model.Training_times.Rows[i][j]</td>
 
-                                </td>
+                                }
+                               
+                                
+
+
+
+                               @* <td>
+                                    <a asp-page="/TraingingMang/Training_detail" asp-route-id="@Model.Trainings.Rows[i][0]" /> 
+                               
+                                </td>*@
+
+                                <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" asp-route-id="@Model.Trainings.Rows[i][0]"><i class="fas fa-user"></i> View</a></td>
+
                             </tr>
                         }
                         

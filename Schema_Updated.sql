@@ -2,11 +2,6 @@
 --CREATE SCHEMA DataBasePROj ;
 --CREATE DATABASE HR_DBMS
 USE HR_DBMS 
-CREATE TABLE DEPARTMENT (
-Dname VARCHAR(15) NOT NULL,
-Dnumber INT NOT NULL,
-Mgr_ssn CHAR(9),
-Mgr_start_date DATE );
 
 CREATE TABLE Personal (
 	id INT PRIMARY KEY,
@@ -140,9 +135,13 @@ CREATE TABLE Attend_Training(
 
 CREATE TABLE Training_Date(
 	ID int,
-	Training_DayTime DATETIME NOT NULL,
+	Training_Time Time NOT NULL,
+	Training_StartDate DATE NOT NULL,
+	Training_EndDate DATE NOT NULL ,
 	FOREIGN KEY (ID) REFERENCES Training,
-	PRIMARY KEY (ID, Training_DayTime)
+	PRIMARY KEY (ID, Training_StartDate,Training_EndDate),
+	constraint check_dates check (Training_StartDate < Training_EndDate)
+	
 );
 
 CREATE TABLE PenaltiesBonuses (

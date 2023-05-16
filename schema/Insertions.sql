@@ -465,15 +465,15 @@ INSERT INTO Attend_Training(TrainingID,E_ID,Time_Spent)
 VALUES(789,6,9)
 
 
-INSERT INTO Training_Date(ID,Training_DayTime)
-VALUES(123,'2021-06-22 05:12:00');
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate  )
+VALUES(123,'05:12:00','06-22-2021','08-18-2022');
 --how to initialize datetime??
 
-INSERT INTO Training_Date(ID,Training_DayTime)
-VALUES(456,'2021-06-22 05:12:00');
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(456,'08:30:00','12-22-2020','06-12-2021');
 
-INSERT INTO Training_Date(ID,Training_DayTime)
-VALUES(789,'2021-06-22 05:12:00');
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(789,'12:30:00','07-15-2023','09-12-2023');
 
 INSERT INTO Works_on(PMID,EID,Time_spent)
 VALUES (1,4,12);
@@ -527,3 +527,11 @@ SELECT DEP_Name, D.Age, Education , P.FName, P.EMAIL  FROM [dbo].[DEPENDENCIES] 
 SELECT * FROM [dbo].[PERSONAL]
 
 select* from Training
+
+select * from Training_Manager
+
+select * from Personal where ID=3;
+
+select * from Training_Date
+select Training_Time, (CONVERT(date, Training_StartDate)), (CONVERT(date, Training_EndDate)) from Training_Date
+SELECT CONVERT(date, Training_StartDate) from Training_Date

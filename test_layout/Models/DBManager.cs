@@ -6,7 +6,7 @@ namespace test_layout.Models
     public class DBManager
 
     {
-        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
         SqlConnection con = new SqlConnection(constring);
         
         ///////////////// Read Tables /////////////////
@@ -241,6 +241,48 @@ namespace test_layout.Models
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename+ " where " + conditionLHS + " = " + conditionRHS;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
+        public DataTable ReadTablesfrom(string tablename, string columns)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + columns + " from " + tablename ;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
+        public DataTable ReadTablesWithConditon(string tablename, string column, string conditionLHS, int conditionRHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
             try
             {
                 con.Open();

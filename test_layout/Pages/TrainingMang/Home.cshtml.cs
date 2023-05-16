@@ -16,17 +16,23 @@ namespace HR_DBMS.Pages.TrainingMang
         public readonly DBManager DB;
         public DataTable Trainings { get; set; }
 
+        public DataTable Training_times { get; set; }
+
+
         public HomeModel(DBManager dB)
         {
 
-            DB = dB;    
+            DB = dB;  
+            
 
         }
         public void OnGet(int id)
         {
             ID = id;
-            Trainings = (DataTable)DB.ReadTables("Training");
-            
+            Trainings = (DataTable)DB.ReadTablesWithConditon("Training","ID,Training_Name,Training_Location", "Training_Status", "0");
+            //Train_id = (DataTable)DB.ReadTablesfrom("Training", "ID");
+            Training_times = (DataTable)DB.ReadTablesfrom("Training_Date", "Training_Time, (CONVERT(date, Training_StartDate)), (CONVERT(date, Training_EndDate)) ");
+           
         }
     }
 }
