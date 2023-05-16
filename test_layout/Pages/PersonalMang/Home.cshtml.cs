@@ -45,9 +45,10 @@ namespace HR_DBMS.Pages.PersonalMang
             this.dBManager = dBManager;
             
         }
-        public void OnGet(int id)
+        public void OnGet()
         {
-            ID = id;
+            ID = dBManager.getCurrentUser();
+            int id = ID;
             AttendanceToday = dBManager.CustomQuery($"SELECT Clock_in FROM Attendance, Personal AS P WHERE Atendance_Date = CAST( GETDATE() AS Date ) AND P.id ={id}");
 
             
@@ -70,8 +71,8 @@ namespace HR_DBMS.Pages.PersonalMang
 
             //EAttendanceToday = 
 
-            Console.WriteLine("ID is = ", id);
-            Console.WriteLine("Attendance = ", AttendanceCount);
+            Console.WriteLine("ID is = "+ ID);
+            Console.WriteLine("Attendance = "+ AttendanceCount);
 
         }
         public IActionResult OnPost()

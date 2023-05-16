@@ -9,6 +9,30 @@ namespace test_layout.Models
         static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;Encrypt=False";
         SqlConnection con = new SqlConnection(constring);
         
+        /////////////////////////////// GET CURRENT USER ////////////////////
+        public int getCurrentUser()
+        {
+            string result = "";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CurrentUser", con);
+                result = cmd.ExecuteScalar().ToString();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return Int32.Parse(result);
+        }
+
+
+
+
         ///////////////// Read Tables /////////////////
         public DataTable ReadTables(string tablename)
         {
