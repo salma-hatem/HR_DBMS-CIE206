@@ -387,5 +387,28 @@ namespace test_layout.Models
             }
             return table;
         }
+
+        ///////////////// Join 2 Tables /////////////////
+        public DataTable JoinTablesWithCondition(string tablename1, string tablename2, string column, string OnConditionLHS,string OnConditionRHS,string WhereConditionLHS,String WhereConditionRHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
+                + " Where " + WhereConditionLHS+ " = " + WhereConditionRHS;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
     }
 }

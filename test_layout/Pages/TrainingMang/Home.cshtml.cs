@@ -8,7 +8,6 @@ namespace HR_DBMS.Pages.TrainingMang
 {
     public class HomeModel : PageModel
     {
-        public int ID { get; set; }
         //   public int Attendance { get; set; }
 
         //  public readonly  Training TR;
@@ -24,25 +23,28 @@ namespace HR_DBMS.Pages.TrainingMang
         [BindProperty]
         public int CurrTrainings { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public int ID { get; set; }
+
         [BindProperty]
         public int Attendance { get; set; }
         public HomeModel(DBManager dB  )
         {
 
-            DB = dB;  
-          //  TR = tr;
-            
+            DB = dB;
+            ID = DB.GetCurrentUserID();
+            //  TR = tr;
+
 
         }
-        public void OnGet(int id)
+        public void OnGet()
         {
-            ID = id;
+          //  ID = id;
             CurrTrainings = DB.ExcuteScalarINT("Training", "COUNT(*)", "Training_Status", "0");
             PrevTrainings = DB.ExcuteScalarINT("Training", "COUNT(*)", "Training_Status", "1");
             Attendance = DB.ExcuteScalarINT("Attendance", "COUNT(*)", "ID", ID.ToString());
             Trainings = (DataTable)DB.ReadTablesWithConditon("Training","ID,Training_Name,Training_Location", "Training_Status", "0");
-            //Train_id = (DataTable)DB.ReadTablesfrom("Training", "ID");
-            Training_times = (DataTable)DB.ReadTablesfrom("Training_Date", "Training_Time, (CONVERT(date, Training_StartDate)), (CONVERT(date, Training_EndDate)) ");
+            Training_times = (DataTable)DB.ReadTablesfrom("Training_Date", "Training_Time,  Training_StartDate,  Training_EndDate ");
            
         }
     }

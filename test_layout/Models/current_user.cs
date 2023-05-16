@@ -3,5 +3,10 @@
     public class current_user
     {
         public int ID { get; set; }
+
+        public current_user()
+        {
+            
+        }
     }
 }
