@@ -6,7 +6,7 @@
 }
 
 <div class="pagetitle">
-    <h1>Training Detail </h1>
+    <h1>@Model.Training_Details.Rows[0][0] </h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/TrainingMang/Trainings">Home</a></li>
@@ -19,10 +19,10 @@
         <div class="col-xxl-12">
             <!-- Card with header and footer -->
             <div class="card">
-                <div class="card-header">Training Name</div>
+                <div class="card-header">@Model.Training_Details.Rows[0][0]</div>
                 <div class="card-body">
                     <h5 class="card-title">Description</h5>
-                    The training will contain 5 main topic including a weekly discussion and a final presentaion to ensure employees make the bedt of the training
+                    @Model.Training_Details.Rows[0][1]
                 </div>
                 
             </div><!-- End Card with header and footer -->
@@ -30,14 +30,13 @@
         <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Team Members</h5>
+                <h5 class="card-title">Employees Attending</h5>
 
                 <!-- List group Numbered -->
                 <ol class="list-group list-group-numbered">
-                    <li class="list-group-item">Omar Ahmed</li>
-                    <li class="list-group-item">Ali Ahmed</li>
-                    <li class="list-group-item">Nada Khaled</li>
-                    <li class="list-group-item">Malk Mostafa</li>
+                    @for(int i=0;i<Model.Attendees.Rows.Count;i++){
+                        
+                    <li class="list-group-item">@Model.Attendees.Rows[i][0] @Model.Attendees.Rows[i][1] </li>}
                 </ol><!-- End List group Numbered -->
                 </div>
             </div>
@@ -46,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Start Date</h3>
-                    <p>2023-02-25</p>
+                    <p>@Model.Training_times.Rows[0][0]</p>
                 </div>
             </div>
             
@@ -55,7 +54,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">End Date</h3>
-                    <p>2023-05-25</p>
+                    <p>@Model.Training_times.Rows[0][1]</p>
                 </div>
             </div>
 

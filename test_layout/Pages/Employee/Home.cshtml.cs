@@ -19,6 +19,7 @@ namespace HR_DBMS.Pages.Emplyee
             this.dBManager = dBManager;
             Requests = new DataTable();
             PenaltiesBonuses = new DataTable();
+            ID = dBManager.GetCurrentUserID();
         }
         public void OnGet()
         {
