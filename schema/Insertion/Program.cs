@@ -31,7 +31,7 @@ namespace HelloWorld
             // Creating 100 Persons //
             for (int i = 0; i < 100; i++)
             {
-                int MaleORFemale = rnd.Next(1);
+                int MaleORFemale = rnd.Next(2);
                 int age = rnd.Next(20, 40);
                 string fname;
                 string gender;
@@ -48,7 +48,7 @@ namespace HelloWorld
                 
                 string lname = MaleNames[(i + 2) % ml];
 
-                string email = fname+ "@gmail.com";
+                string email = id[i] +fname+ "@gmail.com";
 
                 string work_email = "w-" + email;
 

@@ -16,27 +16,39 @@ namespace HR_DBMS.Pages.PersonalMang
         // Variables //
 
         // Widget #1 Attendance time //
+        [BindProperty(SupportsGet = true)]
         public DataTable AttendanceToday { get; set; }
 
         // Requests Widget #2 //
+        [BindProperty(SupportsGet = true)]
         public DataTable Requests { get; set; }
 
+
         // Week Attendance Widget #3 //
+        [BindProperty(SupportsGet = true)]
         public DataTable ThisWeekAttendance { get; set; }
 
         // Employee Report Chart # 1 right //
+        [BindProperty(SupportsGet = true)]
         public int ProjectCount { get; set; }
+        [BindProperty(SupportsGet = true)]
         public int RequestsCount { get; set; }
+        [BindProperty(SupportsGet = true)]
         public int BonusCount { get; set; }
+        [BindProperty(SupportsGet = true)]
         public int TrainingsCount { get; set; }
+        [BindProperty(SupportsGet = true)]
 
         public int AttendanceCount { get; set; }
+        [BindProperty(SupportsGet = true)]
 
         public int Salaries { get; set; }
 
 
         // Employees Absents Today Chart #2 //
+        [BindProperty(SupportsGet = true)]
         public int EAttendanceToday { set;get; }
+        [BindProperty(SupportsGet = true)]
         public int ELeaveBreak { set; get; }
 
 
@@ -52,7 +64,7 @@ namespace HR_DBMS.Pages.PersonalMang
             AttendanceToday = dBManager.CustomQuery($"SELECT Clock_in FROM Attendance, Personal AS P WHERE Atendance_Date = CAST( GETDATE() AS Date ) AND P.id ={id}");
 
             
-            Requests = dBManager.CustomQuery($"SELECT R.* FROM Requests AS R, Employee, Personal_Manager WHERE [Personal_Mang_ID]=[PMID] AND PMID = {id};");
+            Requests = dBManager.CustomQuery($"SELECT R.ID,P.FName,R_type,R_Status,R.R_Description FROM Requests AS R,Employee AS E, Personal AS P WHERE E.PMID={id} AND R.EmployeeID=E.EmployeeID AND P.id=E.EmployeeID ;\r\n");
 
             ThisWeekAttendance = dBManager.CustomQuery($"SELECT A.* FROM Attendance AS A, Personal AS P WHERE A.Person_ID =P.id AND P.id = {id} AND A.Atendance_Date>(SELECT  DATEADD(DAY, 2 - DATEPART(WEEKDAY, GETDATE()), CAST(GETDATE() AS DATE)) [Week_Start_Date])");
 
@@ -67,7 +79,7 @@ namespace HR_DBMS.Pages.PersonalMang
             AttendanceCount = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM [dbo].[Attendance] AS A, [dbo].[Employee] AS E WHERE A.Person_ID=E.EmployeeID AND PMID = {id};"));
 
             // Need to Calculate Bonuses And Penalties here//
-            Salaries = Int32.Parse(dBManager.CustomScalarQuery($"SELECT SUM([Salary]) FROM [dbo].[Personal] AS P,[dbo].[Employee] AS E WHERE P.id= E.EmployeeID AND E.PMID ={id};"));
+            //Salaries = Int32.Parse(dBManager.CustomScalarQuery($"SELECT SUM([Salary]) FROM [dbo].[Personal] AS P,[dbo].[Employee] AS E WHERE P.id= E.EmployeeID AND E.PMID ={id};"));
 
             //EAttendanceToday = 
 

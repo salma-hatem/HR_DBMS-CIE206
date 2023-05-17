@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Data;
 @model HR_DBMS.Pages.PersonalMang.ProjectModel
 @{
     Layout = "_LayoutPersonalMang";
@@ -122,20 +123,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-index="0">
-                                    <td>1</td>
-                                    <td>Brandon Jacob</td>
-                                    <td>Designer</td>
-                                    <td>28hr</td>
-                                    <td><a href="#">View</a></td>
-                                </tr>
-                                <tr data-index="1">
-                                    <td>2</td>
-                                    <td>Bridie Kessler</td>
-                                    <td>Developer</td>
-                                    <td>35 hrs</td>
-                                    <td><a href="#">View</a></td>
-                                </tr>
+                                @{
+                                    foreach(DataRow dr in Model.Projects.Rows)
+                                    {
+                                        <tr>
+                                            <td>@dr[0]</td>
+                                            <td>@dr[1]</td>
+                                            <td>@dr[2]</td>
+                                            <td>@dr[3]</td>
+                                            <td><a href="#">View</a></td>
+                                        </tr>
+                                    }
+                                }
                             </tbody>
                         </table>
 
@@ -148,7 +147,8 @@
                     <form class="row g-3">
                         <div class="col-md-12">
                             <label for="validationDefault01" class="form-label">Project Name</label>
-                            <input type="text" class="form-control" id="validationDefault01" value="X" required="">
+                            <input type="text" class="form-control" asp-for="@Model.Project.Name" required="">
+                            <span asp-validation-for="@Model.Project.Name"></span>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Start Date</label>
