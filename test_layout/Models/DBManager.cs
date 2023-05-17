@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.Common;
 using Microsoft.Data.SqlClient;
 
 namespace test_layout.Models
@@ -7,9 +6,10 @@ namespace test_layout.Models
     public class DBManager
 
     {
-        static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;Encrypt=False";
+        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
         SqlConnection con = new SqlConnection(constring);
-        
+
+
         /////////////////////////////// GET CURRENT USER ////////////////////
         public int getCurrentUser()
         {
@@ -31,14 +31,11 @@ namespace test_layout.Models
             return Int32.Parse(result);
         }
 
-
-
-
         ///////////////// Read Tables /////////////////
         public DataTable ReadTables(string tablename)
         {
             DataTable table = new DataTable();
-            string query = "select * from " +tablename ;
+            string query = "select * from " + tablename;
             try
             {
                 con.Open();
@@ -141,7 +138,7 @@ namespace test_layout.Models
             }
         }
         //////////////////////////////////////////
-        
+
         ///////////////// Login /////////////////
         public void Login(int id)
         {
@@ -228,7 +225,7 @@ namespace test_layout.Models
             return password;
         }
         ///////////////// Get User Type /////////////////
-        public int GetUserType(int id) 
+        public int GetUserType(int id)
         {
             if (IsInTable(id, "Employee"))
                 return 1;
@@ -247,7 +244,7 @@ namespace test_layout.Models
         // Recruitment Mang  3
         // Training Mang     4
 
-        public bool IsInTable(int id, string Table) 
+        public bool IsInTable(int id, string Table)
         {
             //return true;
             DataTable table = new DataTable();
@@ -274,8 +271,8 @@ namespace test_layout.Models
             {
                 con.Close();
             }
-            if(table.Rows.Count == 0)
-                return false;       
+            if (table.Rows.Count == 0)
+                return false;
             return true;
         }
         //checks if there is a tuple in the table with given id 
@@ -285,7 +282,7 @@ namespace test_layout.Models
         public DataTable ReadTablesWithConditon(string tablename, string column, string conditionLHS, string conditionRHS)
         {
             DataTable table = new DataTable();
-            string query = "select " + column + " from " + tablename+ " where " + conditionLHS + " = " + conditionRHS;
+            string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
             try
             {
                 con.Open();
@@ -303,17 +300,12 @@ namespace test_layout.Models
             return table;
         }
 
-
-
-
-
-
         ///////////////// Reads value with condition /////////////////
         public int ExcuteScalarINT(string tablename, string column, string conditionLHS, string conditionRHS)
         {
             string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
             SqlCommand cmd = new SqlCommand(query, con);
-            int value =-1;
+            int value = -1;
             try
             {
                 con.Open();
@@ -422,7 +414,7 @@ namespace test_layout.Models
         public DataTable ReadTablesfrom(string tablename, string columns)
         {
             DataTable table = new DataTable();
-            string query = "select " + columns + " from " + tablename ;
+            string query = "select " + columns + " from " + tablename;
             try
             {
                 con.Open();
@@ -444,10 +436,6 @@ namespace test_layout.Models
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
-
-          ////////////////////// Custom Execute Reader Queries /////////////////
-        public DataTable CustomQuery(string query) {
-            DataTable table = new DataTable();
             try
             {
                 con.Open();
@@ -466,18 +454,15 @@ namespace test_layout.Models
         }
 
         ///////////////// Join 2 Tables /////////////////
-        public DataTable JoinTablesWithCondition(string tablename1, string tablename2, string column, string OnConditionLHS,string OnConditionRHS,string WhereConditionLHS,String WhereConditionRHS)
+        public DataTable JoinTablesWithCondition(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS, string WhereConditionLHS, String WhereConditionRHS)
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
-                + " Where " + WhereConditionLHS+ " = " + WhereConditionRHS;
-
+                + " Where " + WhereConditionLHS + " = " + WhereConditionRHS;
             try
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                result =  cmd.ExecuteScalar().ToString();
-
                 table.Load(cmd.ExecuteReader());
             }
             catch (SqlException ex)
@@ -489,11 +474,30 @@ namespace test_layout.Models
                 con.Close();
             }
             return table;
-
         }
-  
-  
-          /////////////////////////// Custom Scalar Query//////////////////
+
+        ////////////////////// Custom Execute Reader Queries /////////////////
+        public DataTable CustomQuery(string query)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
+        /////////////////////////// Custom Scalar Query//////////////////
         public string CustomScalarQuery(string query)
         {
             string result = "";
@@ -501,7 +505,7 @@ namespace test_layout.Models
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                result =  cmd.ExecuteScalar().ToString();
+                result = cmd.ExecuteScalar().ToString();
             }
             catch (SqlException ex)
             {
@@ -515,3 +519,4 @@ namespace test_layout.Models
         }
     }
 }
+
