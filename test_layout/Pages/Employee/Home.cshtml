@@ -19,7 +19,7 @@
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
                                 new ApexCharts(document.querySelector("#radialBarChart"), {
-                                    series: [88],
+                                    series: [@Model.attendancePercent],
                                     chart: {
                                         height: 350,
                                         type: 'radialBar',
@@ -41,7 +41,7 @@
                                                     label: 'Total',
                                                     formatter: function (w) {
                                                         // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                                                        return 88
+                                                        return @Model.attendancePercent
                                                     }
                                                 }
                                             }
@@ -70,7 +70,7 @@
                                 <i class="bi bi-person-dash"></i>
                             </div>
                             <div class="ps-3">
-                                <h6>6</h6>
+                                <h6>@Model.absent</h6>
                                 <span class="text-muted small pt-2 ps-1">Days</span>
                             </div>
                         </div>

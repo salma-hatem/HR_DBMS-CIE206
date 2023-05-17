@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.Common;
 using Microsoft.Data.SqlClient;
 
 namespace test_layout.Models
@@ -10,6 +11,30 @@ namespace test_layout.Models
      
         SqlConnection con = new SqlConnection(constring);
         
+        /////////////////////////////// GET CURRENT USER ////////////////////
+        public int getCurrentUser()
+        {
+            string result = "";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM CurrentUser", con);
+                result = cmd.ExecuteScalar().ToString();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return Int32.Parse(result);
+        }
+
+
+
+
         ///////////////// Read Tables /////////////////
         public DataTable ReadTables(string tablename)
         {
@@ -350,6 +375,11 @@ namespace test_layout.Models
             return table;
         }
 
+
+
+
+
+
         ///////////////// Reads value with condition /////////////////
         public int ExcuteScalarINT(string tablename, string column, string conditionLHS, string conditionRHS)
         {
@@ -370,6 +400,26 @@ namespace test_layout.Models
                 con.Close();
             }
             return value;
+        }
+        ///////////////// Read Table with given query /////////////////
+        public DataTable ReadTablesQuery(string query)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
         }
         ///////////////// Get Max ID /////////////////
         public int GetMaxID(string tablename)
@@ -418,6 +468,29 @@ namespace test_layout.Models
             }
         }
 
+        ///////////////// insert into Attend Training /////////////////
+        public void AddRecordAttend_Training(int id, int EID, int time)
+        {
+            string query = "INSERT INTO Attend_Training VALUES (@TrainingID,@E_ID,@Time_Spent)";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@TrainingID", id);
+            cmd.Parameters.AddWithValue("@E_ID", EID);
+            cmd.Parameters.AddWithValue("@Time_Spent", time);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        ///////////////// ///////////////// /////////////////
         public DataTable ReadTablesfrom(string tablename, string columns)
         {
             DataTable table = new DataTable();
@@ -443,6 +516,10 @@ namespace test_layout.Models
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
+
+          ////////////////////// Custom Execute Reader Queries /////////////////
+        public DataTable CustomQuery(string query) {
+            DataTable table = new DataTable();
             try
             {
                 con.Open();
@@ -466,10 +543,13 @@ namespace test_layout.Models
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
                 + " Where " + WhereConditionLHS+ " = " + WhereConditionRHS;
+
             try
             {
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
+                result =  cmd.ExecuteScalar().ToString();
+
                 table.Load(cmd.ExecuteReader());
             }
             catch (SqlException ex)
@@ -481,6 +561,29 @@ namespace test_layout.Models
                 con.Close();
             }
             return table;
+
+        }
+  
+  
+          /////////////////////////// Custom Scalar Query//////////////////
+        public string CustomScalarQuery(string query)
+        {
+            string result = "";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                result =  cmd.ExecuteScalar().ToString();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return result;
         }
 
         public DataTable getCurrTraining(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS, 

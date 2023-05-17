@@ -4,65 +4,6 @@
 	Layout = "_LayoutEmployee";
 }
 
-<div>
-@*<body>
-    <div class="row">
-            <i style="font-size:20px;">Available Trainings</i>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.availableTrainings.Rows.Count; i++)
-                    {
-                        <tr>
-                            @for (int j = 0; j < Model.availableTrainings.Columns.Count; j++)
-                            {
-                                <td>@Model.availableTrainings.Rows[i][j]</td>
-                            }
-                            <td>
-                                <!-- change btn if employee already in the training? -->
-                                <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="@Model.previousTrainings.Rows[i][0]">view</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-    </div>
-    <br />
-    <br />
-    <br />
-    <div>
-        <i style="font-size:20px;">Previous Trainings</i>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < Model.previousTrainings.Rows.Count; i++)
-                {
-                    <tr>
-                        @for (int j = 0; j < Model.previousTrainings.Columns.Count; j++)
-                        {
-                            <td>@Model.previousTrainings.Rows[i][j]</td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
-</body>*@
-</div>
-
 <section class="section">
       <div class="row">
         <div class="col-lg-12">
@@ -83,7 +24,9 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Location</th>
                                 <th>Description</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -101,19 +44,18 @@
                                 @for (int i = 0; i < Model.availableTrainings.Rows.Count; i++)
                                 {
                                     <tr>
-                                        @for (int j = 0; j < Model.availableTrainings.Columns.Count; j++)
+                                        @for (int j = 1; j < Model.availableTrainings.Columns.Count; j++)
                                         {
+                                            
                                             <td>@Model.availableTrainings.Rows[i][j]</td>
                                         }
                                         <td>
-                                            <!-- change btn if employee already in the training? -->
-                                            @*<a class="btn btn-outline-secondary" asp-route-id="@Model.availableTrainings.Rows[i][0]">Join</a>*@
-                                            <!-- how to join training without redirecting to another page?-->
+                                            <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.availableTrainings.Rows[i][0]">View</a>
                                         </td>
                                     </tr>
                                 }
                             }
-                            <button class="btn btn-outline-info" asp-for>Join</button>
+                            @*<button class="btn btn-outline-info" asp-for>Join</button>*@
                         </tbody>
               </table>
               
@@ -121,44 +63,99 @@
           </div>
         </div>
 
-        <div class="col-lg-12">
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Previous Trainings</h5>
-                    
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>End Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model.previousTrainings.Rows.Count == 0)
-                            {
-                                <tr>
-                                    <td class="datatable-empty" colspan="5">
-                                        No Enteries Found
-                                    </td>
-                                </tr>
-                            }
-                            else
-                            {
-                                @for (int i = 0; i < Model.previousTrainings.Rows.Count; i++)
-                                {
-                                    <tr>
-                                        @for (int j = 0; j < Model.previousTrainings.Columns.Count; j++)
+        <div class="col-lg-12">
+            
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Current Trainings</h5>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Location</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.currentTrainings.Rows.Count == 0)
                                         {
-                                            <td>@Model.previousTrainings.Rows[i][j]</td>
+                                            <tr>
+                                                <td class="datatable-empty" colspan="5">
+                                                    No Enteries Found
+                                                </td>
+                                            </tr>
                                         }
+                                        else
+                                        {
+                                            @for (int i = 0; i < Model.currentTrainings.Rows.Count; i++)
+                                            {
+                                                <tr>
+                                                    @for (int j = 1; j < Model.currentTrainings.Columns.Count; j++)
+                                                    {
+                                                        <td>@Model.currentTrainings.Rows[i][j]</td>
+                                                    }
+                                                    <td>
+                                                        <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.currentTrainings.Rows[i][0]">View</a>
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Previous Trainings</h5>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Location</th>
+                                        <th></th>
                                     </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    @if (Model.previousTrainings.Rows.Count == 0)
+                                    {
+                                        <tr>
+                                            <td class="datatable-empty" colspan="5">
+                                                No Enteries Found
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        @for (int i = 0; i < Model.previousTrainings.Rows.Count; i++)
+                                        {
+                                            <tr>
+                                                @for (int j = 1; j < Model.previousTrainings.Columns.Count; j++)
+                                                {
+                                                    <td>@Model.previousTrainings.Rows[i][j]</td>
+                                                }
+                                                <td>
+                                                    <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.previousTrainings.Rows[i][0]">View</a>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }
+                                </tbody>
+                            </table>
                     
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
