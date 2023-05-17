@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 namespace test_layout.Models
 {
     public class DBManager
+
     {
         static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;Encrypt=False";
         SqlConnection con = new SqlConnection(constring);
@@ -37,7 +38,7 @@ namespace test_layout.Models
         public DataTable ReadTables(string tablename)
         {
             DataTable table = new DataTable();
-            string query = "select * from " + tablename;
+            string query = "select * from " +tablename ;
             try
             {
                 con.Open();
@@ -183,7 +184,27 @@ namespace test_layout.Models
             }
             return ID;
         }
-
+        ///////////////// Get Current User /////////////////
+        public int GetCurrentUserID()
+        {
+            string query = "select * from CurrentUser";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int ID = 0;
+            try
+            {
+                con.Open();
+                ID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return ID;
+        }
 
         ///////////////// Get Password /////////////////
         public string GetPassword(int id)
@@ -284,7 +305,147 @@ namespace test_layout.Models
 
 
 
-        ////////////////////// Custom Execute Reader Queries /////////////////
+
+
+
+        ///////////////// Reads value with condition /////////////////
+        public int ExcuteScalarINT(string tablename, string column, string conditionLHS, string conditionRHS)
+        {
+            string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
+            SqlCommand cmd = new SqlCommand(query, con);
+            int value =-1;
+            try
+            {
+                con.Open();
+                value = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return value;
+        }
+        ///////////////// Read Table with given query /////////////////
+        public DataTable ReadTablesQuery(string query)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+        ///////////////// Get Max ID /////////////////
+        public int GetMaxID(string tablename)
+        {
+            int maxID = 0;
+            string query = "select Max(ID) from " + tablename;
+            SqlCommand cmd = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                maxID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return maxID;
+        }
+        ///////////////// insert into Requests /////////////////
+        public void AddRecordRequest(int id, string type, string status, string description, int EID, int PID)
+        {
+            string query = "INSERT INTO Requests VALUES (@ID,@R_Type,@R_Status,@R_Description,@EmployeeID,@Approved_by)";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@R_Type", type);
+            cmd.Parameters.AddWithValue("@R_Status", status);
+            cmd.Parameters.AddWithValue("@R_Description", description);
+            cmd.Parameters.AddWithValue("@EmployeeID", EID);
+            cmd.Parameters.AddWithValue("@Approved_by", PID);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        ///////////////// insert into Attend Training /////////////////
+        public void AddRecordAttend_Training(int id, int EID, int time)
+        {
+            string query = "INSERT INTO Attend_Training VALUES (@TrainingID,@E_ID,@Time_Spent)";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@TrainingID", id);
+            cmd.Parameters.AddWithValue("@E_ID", EID);
+            cmd.Parameters.AddWithValue("@Time_Spent", time);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        ///////////////// ///////////////// /////////////////
+        public DataTable ReadTablesfrom(string tablename, string columns)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + columns + " from " + tablename ;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
+        public DataTable ReadTablesWithConditon(string tablename, string column, string conditionLHS, int conditionRHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
+
+          ////////////////////// Custom Execute Reader Queries /////////////////
         public DataTable CustomQuery(string query) {
             DataTable table = new DataTable();
             try
@@ -303,7 +464,36 @@ namespace test_layout.Models
             }
             return table;
         }
-        /////////////////////////// Custom Scalar Query//////////////////
+
+        ///////////////// Join 2 Tables /////////////////
+        public DataTable JoinTablesWithCondition(string tablename1, string tablename2, string column, string OnConditionLHS,string OnConditionRHS,string WhereConditionLHS,String WhereConditionRHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
+                + " Where " + WhereConditionLHS+ " = " + WhereConditionRHS;
+
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                result =  cmd.ExecuteScalar().ToString();
+
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+
+        }
+  
+  
+          /////////////////////////// Custom Scalar Query//////////////////
         public string CustomScalarQuery(string query)
         {
             string result = "";

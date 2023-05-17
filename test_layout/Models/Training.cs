@@ -1,4 +1,7 @@
-﻿namespace HR_DBMS.Models
+﻿using System.Data;
+using test_layout.Models;
+
+namespace HR_DBMS.Models
 {
     public class Training
     {
@@ -6,15 +9,24 @@
         public string Name { get; set; }
 
         public string Description { get; set; }
-        public string Locartion { get; set; }
+        public string Location { get; set; }
 
-        public TimeOnly Time { get; set; }
+     //   public TimeOnly Time { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
 
+        public int Created_BY { get; set; }
 
-        public Training() { }   
+        public int Status { get; set; }
+
+        public readonly DBManager DB;
+        public DataTable TrainingTable { get; set; }
+        public Training(DBManager db) { 
+        
+            DB = db;
+            TrainingTable = DB.ReadTables("Training");
+        }   
     }
 }

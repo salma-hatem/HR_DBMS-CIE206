@@ -402,7 +402,14 @@ VALUES
 (2, '2008 -09 -05', 2),
 (3, '2008 -09 -05', 3);
 
-
+INSERT INTO Attendance
+(
+    id ,
+    Atendance_Date,
+    Person_id 
+)
+VALUES
+(4,'2008 -09 -05',5)
 
 -- Employees Documents
 
@@ -454,7 +461,31 @@ INSERT INTO Training(ID ,
 	Created_by ,
 	Training_Description 
 )
-VALUES (789,'Finance Workshop','Maadi',3,'Workshop to explain the introduction for finance');
+VALUES (789,'Finance Workshop','October Gardens',3,'Workshop to explain the introduction for finance');
+
+INSERT INTO Training(ID ,
+	Training_Name ,
+	Training_Location ,
+	Created_by ,
+	Training_Description ,Training_Status
+)
+VALUES (147,'Python Workshop','Sheikh Zayed',3,'Intro to Python',1);
+
+INSERT INTO Training(ID ,
+	Training_Name ,
+	Training_Location ,
+	Created_by ,
+	Training_Description ,Training_Status
+)
+VALUES (258,'Writing Workshop','Giza',3,'How to Write Professionally',1);
+
+INSERT INTO Training(ID ,
+	Training_Name ,
+	Training_Location ,
+	Created_by ,
+	Training_Description ,Training_Status
+)
+VALUES (369,'Networking Workshop','Nasr City',3,'Networking Event',1);
 
 INSERT INTO Attend_Training(TrainingID,E_ID,Time_Spent)
 VALUES(123,4,2)
@@ -465,21 +496,32 @@ INSERT INTO Attend_Training(TrainingID,E_ID,Time_Spent)
 VALUES(789,6,9)
 
 
-INSERT INTO Training_Date(ID,Training_DayTime)
-VALUES(123,'2021-06-22 05:12:00');
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate  )
+VALUES(123,'05:12:00','06-22-2021 05:12:00','08-18-2023 08:12:00');
 --how to initialize datetime??
 
-INSERT INTO Training_Date(ID,Training_DayTime)
-VALUES(456,'2021-06-22 05:12:00');
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(456,'08:30:00','12-22-2020 08:30:00','06-12-2023 11:30:00');
 
-INSERT INTO Training_Date(ID,Training_DayTime)
-VALUES(789,'2021-06-22 05:12:00');
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(789,'12:30:00','07-15-2023 12:30:00','09-12-2023 12:30:00');
 
-INSERT INTO Works_on(PMID,EID,Time_spent)
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(147,'09:30:00','08-22-2021 09:30:00','11-12-2021 12:30:00');
+
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(789,'07:30:00','02-15-2022 07:30:00','05-10-2022 11:30:00');
+
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(789,'09:30:00','03-30-2020 09:30:00','07-25-2020 01:30:00');
+INSERT INTO Works_on(PID,EID,Time_spent)
 VALUES (1,4,12);
 
-INSERT INTO Works_on(PMID,EID,Time_spent)
+INSERT INTO Works_on(PID,EID,Time_spent)
 VALUES (1, 6, 8);
+
+INSERT INTO Works_on(PID,EID,Time_spent)
+VALUES (1, 5, 8);
 
 INSERT INTO Requests(ID ,
 	R_Type ,
@@ -516,7 +558,10 @@ VALUES(3,'Late', 2.5,6,1);
 
 INSERT INTO CurrentUser VALUES (1);
 
-UPDATE CurrentUser set ID = 2
+
+--- TESTS ---
+
+--UPDATE CurrentUser set ID = 2
 
 select * from CurrentUser
 
@@ -527,3 +572,32 @@ SELECT DEP_Name, D.Age, Education , P.FName, P.EMAIL  FROM [dbo].[DEPENDENCIES] 
 SELECT * FROM [dbo].[PERSONAL]
 
 select* from Training
+
+select * from Training_Manager
+
+select * from Personal where ID=3;
+
+select * from Training_Date
+select Training_Time, (CONVERT(date, Training_StartDate)), (CONVERT(date, Training_EndDate)) from Training_Date
+SELECT CONVERT(date, Training_StartDate) from Training_Date
+
+select FName,LName from Personal as P join Attend_Training as A on P.id=A.E_ID where A.TrainingID=123
+
+select * from Attend_Training inner join Training on ID = TrainingID
+where E_ID = 5 And Training_Status = 1
+
+select ID, Training_Name, Training_Location, Training_Description from Training except (select ID, Training_Name, Training_Location, Training_Description from Attend_Training inner join Training on ID = TrainingID
+where E_ID = 5)
+
+select ID, PName, Status_ from Project inner join Works_On on ID = PID where EID = 5
+
+select concat(FName, ' ', LName) as fullname from Works_On inner join Personal on id = EID where PID = 1
+
+--update Training set Training_Status = 0 where ID = 123
+select * from Project where Status_ != 'Complete'
+
+--update Project set Status_ = 'Half-Way' where ID = 1
+select sum(Progress_Percentage) from Project inner join Works_On on ID = PID where EID = 5
+
+--delete from Attend_Training where TrainingID = 456
+select * from Attendance where Person_ID = 5

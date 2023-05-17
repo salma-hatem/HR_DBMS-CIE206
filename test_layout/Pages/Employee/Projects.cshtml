@@ -3,76 +3,6 @@
 @{
 	Layout = "_LayoutEmployee";
 }
-<div>
-@*
-<body>
-    <div class="row">
-
-        <div class="col-9">
-            <i style="font-size:20px;">Current Projects</i>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Goal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <!-- for testing -->
-                        <td>
-                            <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="2">view</a>
-                        </td>
-                        <!----------------->
-                    </tr>
-                    @for (int i = 0; i < Model.currentProjects.Rows.Count; i++)
-                    {
-                        <tr>
-                            @for (int j = 0; j < Model.currentProjects.Columns.Count; j++)
-                            {
-                                <td>@Model.currentProjects.Rows[i][j]</td>
-                            }
-                            <td>
-                                <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="@Model.currentProjects.Rows[i][0]">view</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="col-3">
-            <i style="font-size:20px;">Project Completed</i>
-        </div>
-    </div>
-    <br /> <br /><br />
-    <div>
-        <i style="font-size:20px;">Previous Projects</i>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < Model.previousProjects.Rows.Count; i++)
-                {
-                    <tr>
-                        @for (int j = 0; j < Model.previousProjects.Columns.Count; j++)
-                        {
-                            <td>@Model.previousProjects.Rows[i][j]</td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
-</body>*@
-</div>
-
 
 <section class="section">
     <div class="row">
@@ -88,18 +18,12 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Goal</th>
+                                        <th>Status</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <!-- for testing -->
-                                        <td>
-                                            <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="2">view</a>
-                                        </td>
-                                        <!----------------->
-                                    </tr>
+                                    
                                     @if (Model.currentProjects.Rows.Count == 0)
                                     {
                                         <tr>
@@ -113,7 +37,7 @@
                                         @for (int i = 0; i < Model.currentProjects.Rows.Count; i++)
                                         {
                                             <tr>
-                                                @for (int j = 0; j < Model.currentProjects.Columns.Count; j++)
+                                                @for (int j = 1; j < Model.currentProjects.Columns.Count; j++)
                                                 {
                                                     <td>@Model.currentProjects.Rows[i][j]</td>
                                                 }
@@ -163,7 +87,7 @@
                                                         label: 'Total',
                                                         formatter: function (w) {
                                                             // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                                                            return 55
+                                                            return @Model.TotalProgress
                                                         }
                                                     }
                                                 }
@@ -184,18 +108,19 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Previous Projects</h5>
+                        <h5 class="card-title">Completed Projects</h5>
 
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Description</th>
-                                    <th>Date</th>
+                                    <th>Goal</th>
+                                    <th>End Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.previousProjects.Rows.Count == 0)
+                                @if (Model.compeletedProjects.Rows.Count == 0)
                                 {
                                     <tr>
                                         <td class="datatable-empty" colspan="5">
@@ -205,12 +130,12 @@
                                 }
                                 else
                                 {
-                                    @for (int i = 0; i < Model.previousProjects.Rows.Count; i++)
+                                    @for (int i = 0; i < Model.compeletedProjects.Rows.Count; i++)
                                     {
                                         <tr>
-                                            @for (int j = 0; j < Model.previousProjects.Columns.Count; j++)
+                                            @for (int j = 1; j < Model.compeletedProjects.Columns.Count; j++)
                                             {
-                                                <td>@Model.previousProjects.Rows[i][j]</td>
+                                                <td>@Model.compeletedProjects.Rows[i][j]</td>
                                             }
                                         </tr>
                                     }
