@@ -37,7 +37,7 @@ namespace test_layout.Pages
         {
             //user_Type = user_ID;
             /// for testing ///
-            
+
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid)
             {
@@ -51,6 +51,7 @@ namespace test_layout.Pages
                 {
                     dBManager.Login(user_ID);
                     if (user_Type == 1)
+                     //   dBManager.CurrentUserID = user_ID;
                         return RedirectToPage("/Employee/Home", new { ID = user_ID });
                     else if (user_Type == 2)
                         return RedirectToPage("/PersonalMang/Home", new { ID = user_ID });

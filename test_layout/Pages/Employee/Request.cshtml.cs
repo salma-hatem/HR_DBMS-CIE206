@@ -22,8 +22,16 @@ namespace HR_DBMS.Pages.Employee
         }
         public IActionResult OnPostSubmit()
         {
-            if (ModelState.IsValid)
+            request.EmployeeID = ID;
+            request.ApprovedBy = dBManager.ExcuteScalarINT("Employee", "PMID", "EmployeeID", Convert.ToString(ID));
+            request.Status = "Pending";
+            request.ID = dBManager.GetMaxID("Requests") + 1;
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            if (ModelState.IsValid) 
+            {
+                dBManager.AddRecordRequest(request.ID, request.Type,request.Status, request.Description, request.EmployeeID, request.ApprovedBy);
                 return RedirectToPage("/Employee/Home", new { ID = this.ID });
+            }
             else
                 return Page();
         }

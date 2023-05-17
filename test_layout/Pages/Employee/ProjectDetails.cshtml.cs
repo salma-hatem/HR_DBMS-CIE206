@@ -9,7 +9,7 @@ namespace HR_DBMS.Pages.Employee
     {
         private readonly DBManager dBManager;
         [BindProperty(SupportsGet = true)]
-        public int ID { get; set; }
+        public int pID { get; set; }
         [BindProperty]
         public DataTable project { get; set; }
         [BindProperty]
@@ -21,11 +21,12 @@ namespace HR_DBMS.Pages.Employee
         {
             this.dBManager = dBManager;
         }
-        public void OnGet()
+        public void OnGet(int id)
         {
-            project = new DataTable();
-            team = new DataTable();
-            progress = 75;
+            pID = id; 
+            project = dBManager.ReadTablesWithConditon("Project","*","ID", pID.ToString());
+            team = dBManager.ReadTablesWithConditon("Works_On inner join Personal on id = EID", "concat(FName, ' ', LName) as fullname, Work_Email", "PID", pID);
+            progress = dBManager.ExcuteScalarINT("Project", "Progress_Percentage","ID", pID.ToString());
         }
     }
 }
