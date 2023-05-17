@@ -6,7 +6,11 @@ namespace test_layout.Models
 {
     public class DBManager
     {
+<<<<<<< Updated upstream
         static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;Encrypt=False";
+=======
+        static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+>>>>>>> Stashed changes
         SqlConnection con = new SqlConnection(constring);
         
         /////////////////////////////// GET CURRENT USER ////////////////////
