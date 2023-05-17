@@ -507,6 +507,13 @@ VALUES(789,'07:30:00','02-15-2022 07:30:00','05-10-2022 11:30:00');
 
 INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
 VALUES(789,'09:30:00','03-30-2020 09:30:00','07-25-2020 01:30:00');
+
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(258,'09:30:00','04-12-2020 09:30:00','07-25-2020 01:30:00');
+
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(369,'09:30:00','12-30-2020 09:30:00','03-25-2021 01:30:00');
+
 INSERT INTO Works_on(PMID,EID,Time_spent)
 VALUES (1,4,12);
 
@@ -569,3 +576,12 @@ select Training_Time, (CONVERT(date, Training_StartDate)), (CONVERT(date, Traini
 SELECT CONVERT(date, Training_StartDate) from Training_Date
 
 select FName,LName from Personal as P join Attend_Training as A on P.id=A.E_ID where A.TrainingID=123
+
+select T.ID, Training_Name,Training_Location,Training_Description, Training_Time,Training_StartDate, Training_EndDate 
+from Training_Date as TD join Training as T 
+on TD.ID=T.ID
+
+
+
+
+select max(Training_EndDate) , from Training_Date

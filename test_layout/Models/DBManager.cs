@@ -76,6 +76,77 @@ namespace test_layout.Models
                 con.Close();
             }
         }
+
+        public void AddTraining(string tablename, int id, string name, string location, int created_by, string description)
+        {
+            string query = "INSERT INTO " + tablename + " VALUES (@ID,@Training_Name,@Training_Location ,@Created_by ,@Training_Description,@Training_Status )";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Training_Name", name);
+            cmd.Parameters.AddWithValue("@Training_Location", location);
+            cmd.Parameters.AddWithValue("@Created_by", created_by);
+            cmd.Parameters.AddWithValue("@Training_Description", description);
+            cmd.Parameters.AddWithValue("@Training_Status", 0);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void AddTrainingDate(string tablename, int id, DateTime time, DateTime startdate, DateTime enddate)
+        {
+            string query = "INSERT INTO " + tablename + " VALUES (@ID,@Training_Time,@Training_StartDate ,@Training_EndDate )";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Training_Time", time);
+            cmd.Parameters.AddWithValue("@Training_StartDate", startdate);
+            cmd.Parameters.AddWithValue("@Training_EndDate", enddate);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public int getTrainingID()
+        {
+            string query = "select MAX(ID) from Training";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int ID = 0;
+            try
+            {
+                con.Open();
+                ID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return ID+1;
+        }
         public void DeleteRecord(string tablename, int id)
         {
             int maxID = 0;
@@ -394,6 +465,52 @@ namespace test_layout.Models
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
                 + " Where " + WhereConditionLHS+ " = " + WhereConditionRHS;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
+        public DataTable getCurrTraining(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS, 
+            string WhereConditionLHS, String WhereConditionRHS, string WhereCondition2LHS,string WhereCondition2RHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
+                + " Where " + WhereConditionLHS + " = " + WhereConditionRHS + " and " + WhereCondition2LHS + " " +WhereCondition2RHS + "GetDate()";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
+        public DataTable getPrevTraining(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS,
+            string WhereCondition2LHS, string WhereCondition2RHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
+                + " Where " +  WhereCondition2LHS + " " + WhereCondition2RHS + "GetDate()";
             try
             {
                 con.Open();
