@@ -44,7 +44,7 @@ namespace HR_DBMS.Pages.TrainingMang
             PrevTrainings = DB.ExcuteScalarINT("Training", "COUNT(*)", "Training_Status", "1");
             Attendance = DB.ExcuteScalarINT("Attendance", "COUNT(*)", "ID", ID.ToString());
             Trainings = (DataTable)DB.ReadTablesWithConditon("Training","ID,Training_Name,Training_Location", "Training_Status", "0");
-            Training_times = (DataTable)DB.ReadTablesfrom("Training_Date", "Training_Time,  Training_StartDate,  Training_EndDate ");
+            Training_times = (DataTable)DB.ReadTablesfrom("Training_Date", "  Training_StartDate,  Training_EndDate ");
            
         }
     }
