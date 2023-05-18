@@ -44,6 +44,17 @@ namespace HR_DBMS.Pages.PersonalMang
 
         public int Salaries { get; set; }
 
+        // Genral Data For Graph Widget #2 to the right //
+        [BindProperty(SupportsGet = true)]
+
+        public int TotalProjects { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int TotalTrainings { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int TotalAttendance { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int TotalRequests { get; set; }
 
         // Employees Absents Today Chart #2 //
         [BindProperty(SupportsGet = true)]
@@ -79,7 +90,14 @@ namespace HR_DBMS.Pages.PersonalMang
             AttendanceCount = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM [dbo].[Attendance] AS A, [dbo].[Employee] AS E WHERE A.Person_ID=E.EmployeeID AND PMID = {id};"));
 
             // Need to Calculate Bonuses And Penalties here//
-            //Salaries = Int32.Parse(dBManager.CustomScalarQuery($"SELECT SUM([Salary]) FROM [dbo].[Personal] AS P,[dbo].[Employee] AS E WHERE P.id= E.EmployeeID AND E.PMID ={id};"));
+            Salaries = 30*Int32.Parse(dBManager.CustomScalarQuery($"SELECT SUM([Salary]) FROM [dbo].[Personal] AS P,[dbo].[Employee] AS E WHERE P.id= E.EmployeeID AND E.PMID ={id};"));
+
+
+            // Genral Data //
+            TotalProjects = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(ID) FROM Project;"));
+            TotalTrainings = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(ID) FROM Training;"));
+            TotalAttendance = 30*Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(EmployeeID) FROM Employee"));
+            TotalRequests = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(ID) FROM Requests"));
 
             //EAttendanceToday = 
 

@@ -303,8 +303,8 @@ namespace HelloWorld
             {
                 int eid = rnd.Next(19,99);
                 int time = rnd.Next(50);
-                int pid = rnd.Next(9);
-                query = $"INSERT INTO Works_on(PMID,EID,Time_spent) VALUES ({pid},{eid},{time})";
+                int pid = rnd.Next(50);
+                query = $"INSERT INTO Works_on(PID,EID,Time_spent) VALUES ({pid},{eid},{time})";
 
                 try
                 {

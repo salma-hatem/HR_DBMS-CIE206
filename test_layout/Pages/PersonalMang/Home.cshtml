@@ -41,7 +41,7 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Requests</h5>
+                            <h5 class="card-title">Requests <a href="/PersonalMang/Requests" class="small"> View All</a></h5>
 
                             <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
                                 <div class="datatable-container">
@@ -271,15 +271,15 @@
                 shape: 'circle',
                 indicator: [{
                     name: 'Projects',
-                    max: 6500
+                    max: @Model.TotalProjects
                 },
                 {
                     name: 'Attendance',
-                    max: 16000
+                    max: @Model.TotalAttendance
                 },
                 {
                     name: 'Trainings',
-                    max: 30000
+                    max: @Model.TotalTrainings
                 },
                 {
                     name: 'Requests',

@@ -170,3 +170,5 @@ CREATE TABLE Announcements (
 );
 
 CREATE TABLE CurrentUser (ID INT PRIMARY KEY);
+
+INSERT INTO CurrentUser VALUES (-1);

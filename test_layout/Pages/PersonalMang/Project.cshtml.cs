@@ -11,6 +11,8 @@ namespace HR_DBMS.Pages.PersonalMang
 
         [BindProperty(SupportsGet = true)]
         public int ID { get; set; }
+
+
         public ProjectModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
