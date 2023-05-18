@@ -1,3 +1,4 @@
+using HR_DBMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
@@ -19,7 +20,7 @@ namespace HR_DBMS.Pages.PersonalMang
         }
 
         [BindProperty]
-        public Models.Project Project { get; set; }
+        public ModelProject Project { get; set; }
 
         // QUERIES VARIABLES//
         //  #1  Projects //

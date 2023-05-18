@@ -6,37 +6,40 @@
     DataRow dr = Model.Project.Rows[0];
 }
 
-<h1>Hello There</h1>
 <div class="row align-items-top">
     <div class="card-body">
 
-                <form class="row g-3">
+                <form class="row g-3" method="post">
             <div class="col-md-12">
                 <h3>Update Project</h3>
                 <label for="validationDefault01" class="form-label">Project Name</label>
-                <input type="text" class="form-control" id="validationDefault01" value="@dr[1].ToString()" required="">
+                <input type="text" class="form-control" asp-for=p.Name id="validationDefault01" value="@dr[1].ToString()" required="">
             </div>
                   <div class="col-md-12">
                 
                 <label for="validationDefault01" class="form-label">Project Goal</label>
-                        <input type="text" class="form-control" id="validationDefault01" value="@dr[2].ToString()" required="">
+                <input type="text" class="form-control" asp-for=p.Goal id="validationDefault01" value="@dr[2].ToString()" required="">
             </div>
                              <div class="col-md-12">
 
                 <label for="validationDefault01" class="form-label">Project Description</label>
-                        <input type="text" class="form-control" id="validationDefault01" value="@dr[3].ToString()" required="">
+                <input type="text" class="form-control" asp-for=p.Description id="validationDefault01" value="@dr[3].ToString()" required="">
             </div>
-            <div class="col-md-6">
-                <label class="form-label">End Date</label>
+            <div class="col-md-12">
+                <label class="form-label">Deadlin Date</label>
                 <div class="input-group">
                     <span class="input-group-text">dd-mm-yyyy</span>
-                    <input type="datetime" class="form-control" required="">
+                    <input type="datetime" asp-for=p.Deadline class ="form-control" required="">
                 </div>
+            </div>
+            <div class="col-md-12">
+                <label for="customRange3" class="form-label">Progress range</label>
+                <input type="range" class="form-range" asp-for=p.ProgPercent min="0" max="100" step="1" id="ProgressRange">
             </div>
             <div class="col-md-12">
                 <label for="validationDefault04" class="form-label">Status</label>
                 <i class="ri-add-line"></i>
-                <select class="form-select" id="validationDefault04" required="">
+                <select class="form-select" id="validationDefault04" required="" asp-for=p.Status>
 
                     <option selected="" disabled="" value="">Add...</option>
                     <!--Add code here-->
@@ -47,30 +50,31 @@
                 </select>
             </div>
             <div class="col-12">
-                <button class="btn btn-success" type="submit">Update Project</button>
-                <button class="btn btn-danger" type="submit">Delete</button>
+                
+                <button class="btn btn-success" asp-page-handler="Edit">Update Project</button>
+             
             </div>
         </form>
         <br />
         <br />
-        <form method="post" asp-page-handler="Add">
+        <form method="post" >
         <i class="ri-add-line lx">Add Employees To Project</i>
                     <div class="col-md-12">
   
-                <select class="form-select" id="validationDefault04" required="">
+                <select class="form-select" id="validationDefault04" asp-for=@Model.EID required ="">
 
-                    <option selected="" disabled="" value="">Add...</option>
+                    <option selected="" disabled="" value="" >Add...</option>
                     <!--Add code here-->
                 @{
                     foreach(DataRow ndr in Model.AddEmployeesOptions.Rows)
                     {
-                        <option>@ndr[0].ToString()</option>
+                        <option value=@ndr[1]>@ndr[0].ToString()</option>
                     }
                 }
                 </select>
             </div>
             <br />
-            <button class="btn btn-success ri-add-line lx" type="submit"></button>
+            <button class="btn btn-success ri-add-line lx" asp-page-handler="Add"></button>
         </form>
         <br />
         <br />

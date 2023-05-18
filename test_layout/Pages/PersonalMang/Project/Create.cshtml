@@ -11,7 +11,8 @@
     <form class="row g-3" asp-page-handler="create">
         <div class="col-md-12">
             <label for="validationDefault01" class="form-label">Project Name</label>
-            <input type="text" class="form-control" required="">
+            <input type="text" class="form-control" asp-for="@Model.P.Name" required="">
+            <span asp-validation-for="@Model.P.Name" ></span>
            
         </div>
 
@@ -19,40 +20,29 @@
             <label class="form-label">Project Goal</label>
             <div class="input-group">
 
-                <input type="text" class="form-control" required="">
+                <input type="text" class="form-control" required="" asp-for="@Model.P.Goal">
             </div>
         </div>
         <div class="col-md-12">
             <label class="form-label">Project Description</label>
             <div class="input-group">
 
-                <input type="text" class="form-control" required="">
+                <input type="text" class="form-control"  asp-for="@Model.P.Description"required="">
             </div>
         </div>
         <div class="col-md-6">
             <label class="form-label">Start Date</label>
             <div class="input-group">
-                <span class="input-group-text">dd-mm-yyyy</span>
-                <input type="datetime" class="form-control" required="">
+                <span class="input-group-text">yyyy-mm-dd</span>
+                <input type="datetime" class="form-control" asp-for="@Model.P.StartDate" required="">
             </div>
         </div>
         <div class="col-md-6">
             <label class="form-label">Dead Line</label>
             <div class="input-group">
-                <span class="input-group-text">dd-mm-yyyy</span>
-                <input type="datetime" class="form-control" required="">
+                <span class="input-group-text">yyyy-mm-dd</span>
+                <input type="datetime" class="form-control" asp-for="@Model.P.EndDate" required="">
             </div>
-        </div>
-        <div class="col-md-12">
-            <label for="validationDefault04" class="form-label">Add Employees</label>
-            <i class="ri-add-line"></i>
-            <select class="form-select" id="validationDefault04" required="">
-
-                <option selected="" disabled="" value="">Add...</option>
-                <!--Add code here-->
-                <option>Omar</option>
-                <option>Ahmed</option>
-            </select>
         </div>
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Add New Project</button>
