@@ -8,7 +8,55 @@
       <div class="row">
         <div class="col-lg-12">
 
-          <div class="card">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Avaliable Trainings</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Start Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.availableTrainings.Rows.Count == 0)
+                            {
+                                <tr>
+                                    <td class="datatable-empty" colspan="5">
+                                        No Enteries Found
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @for (int i = 0; i < Model.availableTrainings.Rows.Count; i++)
+                                {
+                                    <tr>
+                                        @for (int j = 0; j < Model.availableTrainings.Columns.Count; j++)
+                                        {
+
+                                            <td>@Model.availableTrainings.Rows[i][j]</td>
+                                        }
+                                        <td>
+                                            <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.availableTrainings.Rows[i][0]">View</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @*<button class="btn btn-outline-info" asp-for>Join</button>*@
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+
+         @* <div class="card">
             <div class="card-body">
               <h5 class="card-title">Available Trainings</h5>
               <div class="header float-end col-5">
@@ -55,13 +103,13 @@
                                     </tr>
                                 }
                             }
-                            @*<button class="btn btn-outline-info" asp-for>Join</button>*@
+                            @*<button class="btn btn-outline-info" asp-for>Join</button>
                         </tbody>
               </table>
               
             </div>
           </div>
-        </div>
+        </div>*@
 
 
         <div class="col-lg-12">
@@ -160,4 +208,6 @@
             </div>
         </div>
       </div>
+
+    
 </section>
