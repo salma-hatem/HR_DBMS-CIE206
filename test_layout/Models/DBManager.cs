@@ -6,7 +6,9 @@ namespace test_layout.Models
     public class DBManager
 
     {
+
         static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+
         SqlConnection con = new SqlConnection(constring);
 
 
@@ -516,6 +518,25 @@ namespace test_layout.Models
                 con.Close();
             }
             return result;
+        }
+
+        ////////////////// CUSTOM NON QUERY ////////////////
+        public void CustomNonQuery(string query)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }
