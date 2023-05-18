@@ -25,7 +25,7 @@
 
                                 <div class="pt-4 pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                                    <p class="text-center small">Enter your work email & password</p>
+                                    <p class="text-center small">Enter your organisation email & password</p>
                                 </div>
 
                                 <form class="row g-3 needs-validation" novalidate method="post">
@@ -36,8 +36,11 @@
                                             @*<span class="input-group-text" id="inputGroupPrepend">@Model.user_ID</span>
                                             <input type="text" name="UserID" class="form-control" id="yourUserID" required>
                                             <div class="invalid-feedback">Please enter your ID.</div>*@
-                                            <input type="text" class="form-control" placeholder="Enter your Email" asp-for="@Model.user_email" /> <br />
-                                            <span asp-validation-for="user_email" class="text-danger"></span>
+                                        <input type="text" class="form-control" id="yourUsername" aria-describedby="inputGroupPrepend" required placeholder="Enter your Email" asp-for="@Model.user_email" /> <br />
+                                        <span asp-validation-for="user_email" class="text-danger"></span>
+                                        <div class="invalid-feedback">
+                                            <h6>Please Enter your Email</h6>
+                                        </div>
                                     </div>
 
                                     <div class="col-12">
@@ -46,8 +49,11 @@
                                         @*<label for="yourPassword" class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control" id="yourPassword" required>
                                         <div class="invalid-feedback">Please enter your password!</div>*@
-                                        <input type="password" class="form-control" placeholder="Enter your Password" asp-for="@Model.user_password" /> <br />
+                                        <input type="password" class="form-control" aria-describedby="inputGroupPrepend" required placeholder="Enter your Password" asp-for="@Model.user_password" /> <br />
                                         <span asp-validation-for="user_password" class="text-danger"></span>
+                                        <div class="invalid-feedback">
+                                            <h6>Please Enter your Password</h6>
+                                        </div>
                                     </div>
 
                                     @*<div class="col-12">

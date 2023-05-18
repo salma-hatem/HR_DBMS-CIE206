@@ -24,10 +24,10 @@ namespace HR_DBMS.Pages.Emplyee
             this.dBManager = dBManager;
             Requests = new DataTable();
             PenaltiesBonuses = new DataTable();
-            ID = dBManager.GetCurrentUserID();
         }
         public void OnGet()
         {
+            ID = dBManager.GetCurrentUserID();
             Holidays = dBManager.ReadTablesWithConditon("Personal", "Holidays", "id", Convert.ToString(ID));
             PenaltiesBonuses = dBManager.ReadTablesWithConditon("PenaltiesBonuses", "Type_, Percentage_Change", "EmployeeID", Convert.ToString(ID));
             Requests = dBManager.ReadTablesWithConditon("Requests", "R_Type, R_Description, R_Status", "EmployeeID", Convert.ToString(ID));
