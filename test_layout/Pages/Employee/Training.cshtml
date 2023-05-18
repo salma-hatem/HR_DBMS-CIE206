@@ -61,15 +61,16 @@
             <div class="card-body">
               <h5 class="card-title">Available Trainings</h5>
               <div class="header float-end col-5">
-              <div class="search-bar">
+                  <div class="datatable-top">
+              <div class=" datatable-search">
                 <form class="search-form d-flex align-items-center" method="POST" action="#">
-                    <input type="text" name="query" placeholder="Search" title="Enter search keyword" asp-for="@Model.search">
+                    <input type="search" class="datatable-input" name="query" placeholder="Search" title="Enter search keyword">
                     <button type="submit" title="Search"><i class="bi bi-search"></i></button>
                 </form>
+              </div></div>
               </div>
-              </div>
-              
-              <table class="table">
+
+              <table class="table datatable">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -209,6 +210,5 @@
             </div>
         </div>
       </div>
-
-    
 </section>
+
