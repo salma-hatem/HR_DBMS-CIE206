@@ -569,3 +569,7 @@ select Training_Time, (CONVERT(date, Training_StartDate)), (CONVERT(date, Traini
 SELECT CONVERT(date, Training_StartDate) from Training_Date
 
 select FName,LName from Personal as P join Attend_Training as A on P.id=A.E_ID where A.TrainingID=123
+
+select P.id,FName, Email, Team, Person_status
+from Personal as P, Employee
+where P.id = EmployeeID and Person_Role='Employee'

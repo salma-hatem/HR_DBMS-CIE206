@@ -6,7 +6,7 @@ namespace test_layout.Models
     public class DBManager
 
     {
-        static string constring = "Data Source=DESKTOP-GKT48AV;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=DESKTOP-GKT48AV;Initial Catalog=HR_DBMS;Integrated Security=True; TrustServerCertificate=True";
      
         SqlConnection con = new SqlConnection(constring);
         
@@ -411,5 +411,30 @@ namespace test_layout.Models
             }
             return table;
         }
+        public void AddRecordEmployee(string Name, int id,string email, string status,string team, string Add, int salary, int ssn, string role, string contact, int age,string sex)
+        {
+            string query = "INSERT INTO Personal VALUES (@ID,@Name,@Email,@UserName,@Password,@Type)";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Name", name);
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@UserName", username);
+            cmd.Parameters.AddWithValue("@Password", password);
+            cmd.Parameters.AddWithValue("@Type", type);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        
     }
 }
