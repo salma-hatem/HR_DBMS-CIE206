@@ -7,7 +7,7 @@ namespace test_layout.Models
 
     {
         static string constring = "Data Source=DESKTOP-GKT48AV;Initial Catalog=HR_DBMS;Integrated Security=True; TrustServerCertificate=True";
-     
+
         SqlConnection con = new SqlConnection(constring);
 
 
@@ -168,7 +168,7 @@ namespace test_layout.Models
             {
                 con.Close();
             }
-            return ID+1;
+            return ID + 1;
         }
         public void DeleteRecord(string tablename, int id)
         {
@@ -590,12 +590,12 @@ namespace test_layout.Models
             return result;
         }
 
-        public DataTable getCurrTraining(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS, 
-            string WhereConditionLHS, String WhereConditionRHS, string WhereCondition2LHS,string WhereCondition2RHS)
+        public DataTable getCurrTraining(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS,
+            string WhereConditionLHS, String WhereConditionRHS, string WhereCondition2LHS, string WhereCondition2RHS)
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
-                + " Where " + WhereConditionLHS + " = " + WhereConditionRHS + " and " + WhereCondition2LHS + " " +WhereCondition2RHS + "GetDate()";
+                + " Where " + WhereConditionLHS + " = " + WhereConditionRHS + " and " + WhereCondition2LHS + " " + WhereCondition2RHS + "GetDate()";
             try
             {
                 con.Open();
@@ -618,7 +618,7 @@ namespace test_layout.Models
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
-                + " Where " +  WhereCondition2LHS + " " + WhereCondition2RHS + "GetDate()";
+                + " Where " + WhereCondition2LHS + " " + WhereCondition2RHS + "GetDate()";
             try
             {
                 con.Open();
@@ -654,31 +654,32 @@ namespace test_layout.Models
                 con.Close();
             }
         }
-        public void AddRecordEmployee(string Name, int id,string email, string status,string team, string Add, int salary, int ssn, string role, string contact, int age,string sex)
+        public void AddRecordEmployee(string Name, int id, string email, string status, string team, string Add, int salary, int ssn, string role, string contact, int age, string sex)
         {
-            string query = "INSERT INTO Personal VALUES (@ID,@Name,@Email,@UserName,@Password,@Type)";
-            SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@ID", id);
-            cmd.Parameters.AddWithValue("@Name", name);
-            cmd.Parameters.AddWithValue("@Email", email);
-            cmd.Parameters.AddWithValue("@UserName", username);
-            cmd.Parameters.AddWithValue("@Password", password);
-            cmd.Parameters.AddWithValue("@Type", type);
-            try
-            {
-                con.Open();
-                cmd.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-        
-    }
-}
+            //    string query = "INSERT INTO Personal VALUES (@ID,@Name,@Email,@UserName,@Password,@Type)";
+            //    SqlCommand cmd = new SqlCommand(query, con);
+            //    cmd.Parameters.AddWithValue("@ID", id);
+            //    cmd.Parameters.AddWithValue("@Name", Name);
+            //    cmd.Parameters.AddWithValue("@Email", email);
+            //    cmd.Parameters.AddWithValue("@UserName", username);
+            //    cmd.Parameters.AddWithValue("@Password", password);
+            //    cmd.Parameters.AddWithValue("@Type", type);
+            //    try
+            //    {
+            //        con.Open();
+            //        cmd.ExecuteNonQuery();
+            //    }
+            //    catch (SqlException ex)
+            //    {
+            //        Console.WriteLine(ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        con.Close();
+            //    }
+            //}
 
+        }
+    }
+
+}
