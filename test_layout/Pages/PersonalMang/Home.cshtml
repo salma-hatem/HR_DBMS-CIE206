@@ -1,7 +1,9 @@
 ﻿@page
 @model HR_DBMS.Pages.PersonalMang.HomeModel
+@using System.Data;
 @{
     Layout = "_LayoutPersonalMang";
+
 }
 
 
@@ -39,7 +41,7 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Recent Requests</h5>
+                            <h5 class="card-title">Requests <a href="/PersonalMang/Requests" class="small"> View All</a></h5>
 
                             <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
                                 <div class="datatable-container">
@@ -52,10 +54,10 @@
                                                 <th data-sortable="true" style="width: 23.946037099494095%">
                                                     <a href="#" class="datatable-sorter">Employee</a>
                                                 </th>
-                                                <th data-sortable="true" style="width: 40.13490725126476%">
+                                                <th data-sortable="true" style="width: 9.780775716694773%">
                                                     <a href="#" class="datatable-sorter">Type</a>
                                                 </th>
-                                                <th data-sortable="true" style="width: 9.780775716694773%">
+                                                <th data-sortable="true" style="width: 40.13490725126476%">
                                                     <a href="#" class="datatable-sorter">Date</a>
                                                 </th>
                                                 <th data-sortable="true" style="width: 15.177065767284992%">
@@ -64,23 +66,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-index="0">
-                                                <td><a href="#">#2457</a></td>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">Leave</a></td>
-                                                <td>12/3</td>
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr data-index="1">
-                                                <td><a href="#">#2147</a></td>
-                                                <td>Bridie Kessler</td>
-                                                <td>
-                                                    <a href="#" class="text-primary">Bonus</a>
-                                                </td>
-                                                <td>14/6</td>
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-    
+                                            @{
+                                                foreach(DataRow dr in Model.Requests.Rows)
+                                                {
+                                                    <tr>
+                                                        <td><a href="#">#@dr[0]</a></td>
+                                                        <td>@dr[1]</td>
+                                                        <td><a href="#" class="text-primary">@dr[2]</a></td>
+                                                        <td>@dr[4]</td>
+                                                        <td><span class="badge bg-success">@dr[3]</span></td>
+                                                    </tr>
+                                                }
+                                            }
+                          
                                         </tbody>
                                     </table>
                                 </div>
@@ -273,15 +271,15 @@
                 shape: 'circle',
                 indicator: [{
                     name: 'Projects',
-                    max: 6500
+                    max: @Model.TotalProjects
                 },
                 {
                     name: 'Attendance',
-                    max: 16000
+                    max: @Model.TotalAttendance
                 },
                 {
                     name: 'Trainings',
-                    max: 30000
+                    max: @Model.TotalTrainings
                 },
                 {
                     name: 'Requests',
@@ -301,7 +299,7 @@
                 name: 'This Month vs Last Month',
                 type: 'radar',
                 data: [{
-                    value: [4200, 3000, 20000, 35000, 50000, 18000],
+                    value: [@Model.ProjectCount, @Model.AttendanceCount, @Model.TrainingsCount, @Model.RequestsCount, @Model.Salaries, 18000],
                     name: 'This Month'
                 },
                 {
