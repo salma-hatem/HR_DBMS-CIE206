@@ -14,17 +14,25 @@ namespace HR_DBMS.Pages.Employee
         [BindProperty]
         public DataTable availableTrainings { get; set; }
         [BindProperty]
+        public DataTable currentTrainings { get; set; }
+        [BindProperty]
         public DataTable previousTrainings { get; set; }
         [BindProperty]
         public string search { get; set; }
         public TrainingModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
+            ID = dBManager.GetCurrentUserID();
         }
         public void OnGet()
         {
-            availableTrainings = new DataTable();
-            previousTrainings = new DataTable();
+           // string q = "select ID, Training_Name, Training_Location, Training_Description from Training where Training_Status = 0 except (select ID, Training_Name, Training_Location, Training_Description from Attend_Training inner join Training on ID = TrainingID\r\nwhere E_ID = " + ID + " )";
+            availableTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
+                "TD.ID", "T.ID", "Training_EndDate", "<");
+            currentTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
+                "TD.ID", "T.ID", "Training_EndDate", "<");
+            previousTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
+                "TD.ID", "T.ID", "Training_EndDate", "<");
         }
         public void OnPost()
         {

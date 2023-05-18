@@ -1,9 +1,9 @@
 ﻿@page
-@model HR_DBMS.Pages.TrainingMang.Training_detailModel
+@model HR_DBMS.Pages.Employee.Training_detailModel
 @{
-    Layout = "_LayoutTrainingMang";
-
+	Layout = "_LayoutEmployee";
 }
+
 
 <div class="pagetitle">
     <h1>@Model.Training_Details.Rows[0][0] </h1>
@@ -27,7 +27,7 @@
                 
             </div><!-- End Card with header and footer -->
         </div>
-       @* <div class="col-lg-6">
+        <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Employees Attending</h5>
@@ -40,14 +40,21 @@
                 </ol><!-- End List group Numbered -->
                 </div>
             </div>
-        </div>*@
-        
+        </div>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Start Date</h3>
-                    @for(int i=0;i<Model.Training_times.Rows.Count;i++){
-                    <p>@Model.Training_times.Rows[i][0]</p>}
+                    @{
+                        if (Model.Training_times.Rows.Count == 0)
+                        {
+                            <p> ---- ----</p>
+                        }
+                        else
+                        {
+                            <p>@Model.Training_times.Rows[0][0]</p>
+                        }
+                    }
                 </div>
             </div>
             
@@ -56,15 +63,36 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">End Date</h3>
-                    @for (int i = 0; i < Model.Training_times.Rows.Count; i++)
-                    {
-                        <p>@Model.Training_times.Rows[i][1]</p>
+                    @{
+                        if(Model.Training_times.Rows.Count ==0)
+                        {
+                            <p> ---- ----</p>
+                        }
+                        else
+                        {
+                            <p>@Model.Training_times.Rows[0][1]</p>
+                        }
                     }
                 </div>
             </div>
 
         </div>
-
+        <form method="post">
+        @{
+            if(Model.status == 0 && Model.current == 0)
+            {
+                
+                    <button class="btn btn-outline-secondary float-end m-3 col-1" asp-page-handler="Back">back</button>
+                    <button class="btn btn-primary float-end m-3 col-1" asp-page-handler="Join">Join</button>
+                
+            }
+            else
+            {
+                    <button class="btn btn-outline-secondary float-end m-3 col-1" asp-page-handler="Back">back</button>
+            }
+        }
+        <input hidden asp-for="@Model.Train_id"/>
+        </form>
     </div>
     
 

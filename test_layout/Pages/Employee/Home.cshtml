@@ -19,7 +19,7 @@
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
                                 new ApexCharts(document.querySelector("#radialBarChart"), {
-                                    series: [88],
+                                    series: [@Model.attendancePercent],
                                     chart: {
                                         height: 350,
                                         type: 'radialBar',
@@ -41,7 +41,7 @@
                                                     label: 'Total',
                                                     formatter: function (w) {
                                                         // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-                                                        return 88
+                                                        return @Model.attendancePercent
                                                     }
                                                 }
                                             }
@@ -58,19 +58,19 @@
             </div>
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="col-xxl-12">
                 <div class="card info-card sales-card">
 
                     <div class="card-body">
-                        <h5 class="card-title">Absent Days <span>| This Year</span></h5>
+                        <h5 class="card-title">Absent Days <span>| This Month</span></h5>
 
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                 <i class="bi bi-person-dash"></i>
                             </div>
                             <div class="ps-3">
-                                <h6>6</h6>
+                                <h6>@Model.absent</h6>
                                 <span class="text-muted small pt-2 ps-1">Days</span>
                             </div>
                         </div>
@@ -79,11 +79,11 @@
                 </div>
             </div><!-- End Absent Card -->
 
-            <div class="col-xxl-4">
+            <div class="col-xxl-12">
                 <div class="card info-card revenue-card">
 
                     <div class="card-body">
-                        <h5 class="card-title">Holidays Taken <span>| This Year</span></h5>
+                        <h5 class="card-title">Holidays Taken <span>| This Month</span></h5>
 
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -100,7 +100,7 @@
             </div><!-- End Revenue Card -->
         </div>
 
-        <div class="col-lg-5">
+        <div class="col-lg-4 col-xxl-4">
 
             <div class="card">
                 <div class="card-body">
@@ -164,4 +164,7 @@
             </form>
         </div>
     </div>
+
+    
+
 </section>

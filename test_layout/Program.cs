@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddMvc();
 builder.Services.AddSingleton<DBManager>();
 builder.Services.AddSingleton<current_user>();
 

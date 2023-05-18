@@ -1,7 +1,9 @@
 ﻿@page
 @model HR_DBMS.Pages.PersonalMang.HomeModel
+@using System.Data;
 @{
     Layout = "_LayoutPersonalMang";
+
 }
 
 
@@ -39,7 +41,7 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title">Recent Requests</h5>
+                            <h5 class="card-title">Requests <a href="/PersonalMang/Requests" class="small"> View All</a></h5>
 
                             <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
                                 <div class="datatable-container">
@@ -52,10 +54,10 @@
                                                 <th data-sortable="true" style="width: 23.946037099494095%">
                                                     <a href="#" class="datatable-sorter">Employee</a>
                                                 </th>
-                                                <th data-sortable="true" style="width: 40.13490725126476%">
+                                                <th data-sortable="true" style="width: 9.780775716694773%">
                                                     <a href="#" class="datatable-sorter">Type</a>
                                                 </th>
-                                                <th data-sortable="true" style="width: 9.780775716694773%">
+                                                <th data-sortable="true" style="width: 40.13490725126476%">
                                                     <a href="#" class="datatable-sorter">Date</a>
                                                 </th>
                                                 <th data-sortable="true" style="width: 15.177065767284992%">
@@ -64,23 +66,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-index="0">
-                                                <td><a href="#">#2457</a></td>
-                                                <td>Brandon Jacob</td>
-                                                <td><a href="#" class="text-primary">Leave</a></td>
-                                                <td>12/3</td>
-                                                <td><span class="badge bg-success">Approved</span></td>
-                                            </tr>
-                                            <tr data-index="1">
-                                                <td><a href="#">#2147</a></td>
-                                                <td>Bridie Kessler</td>
-                                                <td>
-                                                    <a href="#" class="text-primary">Bonus</a>
-                                                </td>
-                                                <td>14/6</td>
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
-    
+                                            @{
+                                                foreach(DataRow dr in Model.Requests.Rows)
+                                                {
+                                                    <tr>
+                                                        <td><a href="#">#@dr[0]</a></td>
+                                                        <td>@dr[1]</td>
+                                                        <td><a href="#" class="text-primary">@dr[2]</a></td>
+                                                        <td>@dr[4]</td>
+                                                        <td><span class="badge bg-success">@dr[3]</span></td>
+                                                    </tr>
+                                                }
+                                            }
+                          
                                         </tbody>
                                     </table>
                                 </div>
@@ -153,11 +151,18 @@
             <div class="card">
 
                 <div class="card-body pb-0">
+                    
                     <h5 class="card-title">Employee Report <span>| This Month</span></h5>
-
-                    <div id="budgetChart" style="min-height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class="echart" _echarts_instance_="ec_1683290360459"><div style="position: relative; width: 593px; height: 400px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="593" height="400" style="position: absolute; left: 0px; top: 0px; width: 593px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
-
-
+                    <!--Right Chart #1-->
+                <div id="budgetChart" style="min-height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class="echart" _echarts_instance_="ec_1684188699587">
+                   <div style="position: relative; width: 760px; height: 400px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">
+                      <canvas data-zr-dom-id="zr_0" width="760" height="400" style="position: absolute; left: 0px; top: 0px; width: 760px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: 0px auto auto 0px !important;"></div>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: 0px 0px auto auto !important;"></div>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: auto auto 0px 0px !important;"></div>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: auto 0px 0px auto !important;"></div>
+                   </div>
+                </div>
                 </div>
             </div><!-- End Employee Report -->
             <!-- Website Traffic -->
@@ -253,28 +258,35 @@
     document.addEventListener("DOMContentLoaded", () => {
         var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
             legend: {
-                data: ['Current Employees', 'Work Time']
+                data: ["This Month", "Last Month"]
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '11',
+                    fontWeight: 'bold'
+                }
             },
             radar: {
-                // shape: 'circle',
+                shape: 'circle',
                 indicator: [{
                     name: 'Projects',
-                    max: 6500
+                    max: @Model.TotalProjects
                 },
                 {
                     name: 'Attendance',
-                    max: 16000
+                    max: @Model.TotalAttendance
                 },
                 {
                     name: 'Trainings',
-                    max: 30000
+                    max: @Model.TotalTrainings
                 },
                 {
                     name: 'Requests',
                     max: 38000
                 },
                 {
-                    name: 'Penalties',
+                    name: 'Salaries',
                     max: 52000
                 },
                 {
@@ -287,7 +299,7 @@
                 name: 'This Month vs Last Month',
                 type: 'radar',
                 data: [{
-                    value: [4200, 3000, 20000, 35000, 50000, 18000],
+                    value: [@Model.ProjectCount, @Model.AttendanceCount, @Model.TrainingsCount, @Model.RequestsCount, @Model.Salaries, 18000],
                     name: 'This Month'
                 },
                 {
@@ -351,3 +363,20 @@
         });
     });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
