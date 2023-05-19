@@ -6,7 +6,7 @@ namespace test_layout.Models
     public class DBManager
 
     {
-        static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
 
         SqlConnection con = new SqlConnection(constring);
 
@@ -274,7 +274,27 @@ namespace test_layout.Models
             }
             return ID;
         }
-
+        ///////////////// Get Current User Name /////////////////
+        public string GetCurrentUserName(int id)
+        {
+            string query = "select concat(Fname, ' ', Lname) from Personal where ID = " + id;
+            SqlCommand cmd = new SqlCommand(query, con);
+            string name = " ";
+            try
+            {
+                con.Open();
+                name = (string)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return name;
+        }
         ///////////////// Get Password /////////////////
         public string GetPassword(int id)
         {
