@@ -46,7 +46,8 @@ namespace HR_DBMS.Pages.RecruitmentMang
         public int RMangID { get; set; }
         [BindProperty]
         public int Holidays { get; set; }
-
+        [BindProperty]
+        public DataTable EmployeeRecord { get; set; }
 
         public EditEmployeeModel(DBManager db)
         {
@@ -55,9 +56,10 @@ namespace HR_DBMS.Pages.RecruitmentMang
             EmployeeID = Db.getEmployeeID();
             FName = Db.getItemEmployee(2, FName);
         }
-        public void OnGet()
+        public void OnGet(int id)
         {
-           
+            EmployeeID = id;
+            EmployeeRecord = Db.ReadTablesWithConditon("Personal as P join Employee as E on E.EmployeeID = P.id", " P.FName, P.Lname, P.id, P.Work_Email, P.Team, P.Person_Status", "id", EmployeeID.ToString());
         }
         //public IActionResult OnPostSubmit()
         //{

@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="validationCustom01" value="@Model.FName" required asp-for="@Model.FName">
+                <input type="text" class="form-control" id="validationCustom01" value="@Model.EmployeeRecord.Rows[0][0]" required asp-for="@Model.EmployeeRecord.Rows[0][0]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.LName">
+                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][1]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">email</label>
-                <input type="email" class="form-control" id="validationCustom01" required asp-for="@Model.email">
+                <input type="email" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][3]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Status</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Status">
+                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][5]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -57,7 +57,7 @@
 
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Team</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Team">
+                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][4]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <<label for="validationCustom01" class="form-label"> Address</label>
+                <label for="validationCustom01" class="form-label"> Address</label>
                 <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Address">
                 <div class="valid-feedback">
                     Looks good!
@@ -138,8 +138,7 @@
                 <label for="validationCustom01" class="form-label">Sex</label>
 
                 <select class="form-select" required asp-for="@Model.Sex">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Male</option>
+                    <option value="1" selected>Male</option>
                     <option value="2">Female</option>
 
                     <div class="valid-feedback">

@@ -807,7 +807,7 @@ namespace test_layout.Models
         public string getItemEmployee(int id, string itemname)
         {
             string var ="";
-            string query = "select "+ itemname+ "from personal where id=" +id ;
+            string query = "select "+ itemname+ " from personal where id=" +id ;
             SqlCommand cmd= new SqlCommand(query, con);
             try
             {
