@@ -10,33 +10,33 @@
         <h5 class="card-title">Add an Employee</h5>
 
 
-        <form class="row g-3">
+        <form class="row g-3" novalidate method="post">
             <div class="col-md-12">
                 <img src="~/img/profile-img.jpg" alt="profile" class="rounded-circle" />
             </div>
             <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Name</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
+                <label for="validationCustom01" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.FName">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
-                    Please Provide a Name
+                    Please Provide a First Name
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">ID</label>
-                <input type="number" class="form-control" id="validationCustom01" required>
+                <label for="validationCustom01" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.LName">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
-                    Please Provide an ID
+                    Please Provide a Last Name
                 </div>
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">email</label>
-                <input type="email" class="form-control" id="validationCustom01" required>
+                    <input type="email" class="form-control" id="validationCustom01" required asp-for="@Model.email">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Status</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Status">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -57,7 +57,7 @@
 
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Team</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
+                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Team">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -66,8 +66,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <<label for="validationCustom01" class="form-label">Address</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
+                <<label for="validationCustom01" class="form-label"> Address</label>
+                    <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Address">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -77,7 +77,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Salary</label>
-                <input type="number" class="form-control" id="validationCustom01" required>
+                    <input type="number" class="form-control" id="validationCustom01" required asp-for="@Model.Salary">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">SSN</label>
-                <input type="number" class="form-control" id="validationCustom01" required>
+                <input type="number" class="form-control" id="validationCustom01" required asp-for="@Model.SSN">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -97,7 +97,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Role</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
+                    <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Role">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -107,7 +107,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Contact</label>
-                <input type="number" class="form-control" id="validationCustom01" required>
+                    <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Contact">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -117,7 +117,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Age</label>
-                <input type="number" class="form-control" id="validationCustom01" required>
+                    <input type="number" class="form-control" id="validationCustom01" required asp-for="@Model.Age">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -125,10 +125,19 @@
                     Please Enter your age
                 </div>
             </div>
+                <div class="col-md-4">
+                    <td>Profile Photo</td>     
+                    <td>
+
+                        <input class="form-control" type="file" id="formFile" asp-for="@Model.img">
+                    
+                    </td>
+                </div>
+            
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Sex</label>
 
-                <select class="form-select" required>
+                    <select class="form-select" required asp-for="@Model.Sex">
                     <option selected>Open this select menu</option>
                     <option value="1">Male</option>
                     <option value="2">Female</option>
@@ -200,7 +209,7 @@
                             </tbody>
                         </table>
                         <div class="col-2">
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary" type="submit" asp-page-handler="Submit">Submit</button>
                         </div>
 
                     </div>
@@ -209,21 +218,14 @@
 
             </div>
             <br />
-            <form class="row g-3">
+            <form class="row g-3" novalidate method="post">
 
                 <div class="col-1">
-                    <button class="btn btn-primary" type="button">Save</button>
-                </div>
-
-                <div class="col-1">
-                    <button class="btn btn-primary" type="reset">Reset</button>
+                    <button class="btn btn-primary" type="reset" >Reset</button>
                 </div>
             </form>
         </form>
 
     </div>
-
 </div>
-
-
 

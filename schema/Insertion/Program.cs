@@ -631,7 +631,7 @@ namespace HelloWorld
 
             // Add your own connection string //
 
-            it.populateDB(@"Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True");
+            it.populateDB(@"Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True");
 
 
         }
