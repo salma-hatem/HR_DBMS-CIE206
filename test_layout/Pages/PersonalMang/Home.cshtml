@@ -60,7 +60,7 @@
                                                     <a href="#" class="datatable-sorter">Type</a>
                                                 </th>
                                                 <th data-sortable="true" style="width: 40.13490725126476%">
-                                                    <a href="#" class="datatable-sorter">Date</a>
+                                                    <a href="#" class="datatable-sorter">Description</a>
                                                 </th>
                                                 <th data-sortable="true" style="width: 15.177065767284992%">
                                                     <a href="#" class="datatable-sorter">Status</a>
@@ -69,8 +69,12 @@
                                         </thead>
                                         <tbody>
                                             @{
+                                                int c = 0;
                                                 foreach(DataRow dr in Model.Requests.Rows)
                                                 {
+                                                    c++;
+                                                    if (c > 5) break;
+                                                    
                                                     <tr>
                                                         <td><a href="#">#@dr[0]</a></td>
                                                         <td>@dr[1]</td>
