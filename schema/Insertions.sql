@@ -585,3 +585,14 @@ on TD.ID=T.ID
 
 
 select max(Training_EndDate) , from Training_Date
+
+select concat(Fname, ' ', Lname) from Personal where ID =20
+select * from Employee
+
+INSERT INTO Requests(ID ,
+	R_Type ,
+	R_Status,
+	R_Description,
+	EmployeeID,
+	Approved_by)
+VALUES (1,'Day off','Pending' ,'Holiday Request for 5 days',20,7);

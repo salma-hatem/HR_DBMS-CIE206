@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="col-12">
-                    <label for="inputDescription" class="form-label">Description</label>
+                    <label for="inputDescription" class="form-label">Description</label> <span class="text-danger"> *</span>
                     <input type="text" class="form-control" id="inputDescription" aria-describedby="inputGroupPrepend" required placeholder="Enter your request description" asp-for="@Model.request.Description">
                     <span asp-validation-for="request.Description" class="text-danger"></span> 
                         <div class="invalid-feedback">
