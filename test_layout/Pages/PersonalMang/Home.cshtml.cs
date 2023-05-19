@@ -68,7 +68,8 @@ namespace HR_DBMS.Pages.PersonalMang
         [BindProperty(SupportsGet = true)]
         public string ClockIn { set; get; }
 
-
+        [BindProperty(SupportsGet = true)]
+        public DataTable WorkingToday { set; get; }
         public HomeModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
@@ -106,10 +107,8 @@ namespace HR_DBMS.Pages.PersonalMang
             TotalAttendance = 30*Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(EmployeeID) FROM Employee"));
             TotalRequests = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(ID) FROM Requests"));
 
-            //EAttendanceToday = 
-
-            Console.WriteLine("ID is = "+ ID);
-            Console.WriteLine("Attendance = "+ AttendanceCount);
+            // Working today
+            WorkingToday = dBManager.CustomQuery($"SELECT Person_Status,COUNT(Person_Status) FROM Personal, Employee WHERE id=EmployeeID AND PMID ={id} GROUP BY Person_Status ;");
 
         }
         public IActionResult OnPost()

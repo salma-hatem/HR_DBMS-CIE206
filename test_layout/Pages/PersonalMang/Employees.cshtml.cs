@@ -20,6 +20,7 @@ namespace HR_DBMS.Pages.PersonalMang
         public DataTable CurrentEmployee { get; set; }
         public void OnGet(int id)
         {
+            
             int employeeID = id;
             int C_ID = dBManager.getCurrentUser();
 
