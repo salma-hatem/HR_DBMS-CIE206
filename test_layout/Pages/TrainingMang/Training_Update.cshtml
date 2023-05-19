@@ -9,10 +9,10 @@
         <div class="col-xxl-14">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Create a New Training</h5>
+                    <h5 class="card-title">Update Training</h5>
 
                     <!-- Custom Styled Validation -->
-                    <form class="row g-3 needs-validation" novalidate method="post">
+                    <form class="row g-3 "  method="post">
                         <div class="col-xxl-12">
 @*                            //<label for="validationCustom01" class="form-label">Name</label>
 *@                            <input type="text" class="form-control" id="validationCustom01" placeholder="@Model.Train_name"  required asp-for="@Model.Train_name">
@@ -75,5 +75,39 @@
             </div>
 
         </div>
+    </div>
+
+    <div class="text-center">
+        <form method="post">
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Name" asp-for="@Model.Train_name">
+                <span asp-validation-for="@Model.Train_name"> </span> <br />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="text " class="form-control" placeholder="Location" asp-for="@Model.Train_location">
+                <span asp-validation-for="@Model.Train_location"> </span> <br />
+            </div>
+            <br />
+            @*<div class="form-group">
+                <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][3]" asp-for="@Model.UserName">
+                <span asp-validation-for="@Model.UserName"> </span> <br />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][4]" asp-for="@Model.PassWord">
+                <span asp-validation-for="@Model.PassWord"> </span> <br />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][5]" asp-for="@Model.UserType">
+                <span asp-validation-for="@Model.UserType"> </span> <br />
+            </div>
+            <br />*@
+
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
     </div>
 </section>
