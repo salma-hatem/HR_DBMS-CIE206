@@ -3,7 +3,7 @@
 @{
 	Layout = "_LayoutRecruitmentMang";
 }
-<h1>@Model.Employees_table.Rows.Count</h1>
+@*<h1>@Model.Employees_table.Rows.Count</h1>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Search for an Employee</h5>
@@ -46,12 +46,14 @@
     </div>
 
 </div>
+*@
 
-<div class="col-lg-12">
+
+@*<div class="col-lg-12">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Employees Table</h5>
-            <table class="table table-striped">
+            <table class="table datatable">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -87,5 +89,53 @@
                 <button class="btn btn-primary" type="button">Add</button>
             </div>
         </div>
+    </div>*@
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Employees table</h5>
+
+        <!-- Table with stripped rows -->
+        <table class="table datatable">
+            <thead>
+                <tr>
+                    
+                    <th scope="col">Name</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                 
+                     @for (int i = 0; i < Model.Employees_table.Rows.Count; i++)
+                    {
+                        <tr>
+                            
+                            @for (int j = 0; j < 5; j++)
+                            {
+
+
+                                <td>@Model.Employees_table.Rows[i][j]</td>
+
+                            }
+                            <td><a class="btn btn-outline-info" asp-page="/RecruitmentMang/EditEmployee" asp-route-id="@Model.Employees_table.Rows[i][0]"><i class="fas fa-user"></i> Edit</a></td>
+
+                        </tr>
+                    }
+                </tr>
+                
+            </tbody>
+        </table>
+        <!-- End Table with stripped rows -->
+
     </div>
+</div>
+
+        </div>
+      </div>
+    </section>
 
