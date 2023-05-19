@@ -132,8 +132,8 @@ namespace test_layout.Models
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@ID", id);
             cmd.Parameters.AddWithValue("@Training_Time", time);
-            cmd.Parameters.AddWithValue("@Training_StartDate", startdate);
-            cmd.Parameters.AddWithValue("@Training_EndDate", enddate);
+            cmd.Parameters.AddWithValue("@Training_StartDate", startdate );
+            cmd.Parameters.AddWithValue("@Training_EndDate", enddate );
 
             try
             {
@@ -376,6 +376,27 @@ namespace test_layout.Models
         public int ExcuteScalarINT(string tablename, string column, string conditionLHS, string conditionRHS)
         {
             string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
+            SqlCommand cmd = new SqlCommand(query, con);
+            int value = -1;
+            try
+            {
+                con.Open();
+                value = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return value;
+        }
+
+        public int ExcuteTrainingINT( string Condition)
+        {
+            string query = "select " + "Count(*)" + " from " + "Training_Date" + " where " + "Training_EndDate " + Condition+ " GetDate()";
             SqlCommand cmd = new SqlCommand(query, con);
             int value = -1;
             try

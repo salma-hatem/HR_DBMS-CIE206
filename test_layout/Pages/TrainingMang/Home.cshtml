@@ -2,6 +2,7 @@
 @model HR_DBMS.Pages.TrainingMang.HomeModel
 @{
     Layout = "_LayoutTrainingMang";
+
 }
 
 
@@ -97,9 +98,12 @@
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Location</th>
+                            <th scope="col">Time</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">End Date</th>
+                            <th scope="col"> </th>
                             <th scope="col">Actions</th>
+                            <th scope="col"> </th>
 
                         </tr>
                     </thead>
@@ -108,15 +112,18 @@
                         {
 
                             <tr>
+                                <th scope="row">@(i + 1)</th>
 
-                                @for (int j = 0; j < 3; j++)
+                                @for (int j = 1; j < 4; j++)
                                 {
                                     <td>@Model.Trainings.Rows[i][j]</td>
 
                                 }
                                 @for (int j = 0; j < 2; j++)
+
                                 {
-                                    <td>@Model.Training_times.Rows[i][j]</td>
+
+                                    <td>@Model.StartTimes.Rows[i][j]</td>
 
                                 }
                                
@@ -131,7 +138,7 @@
 
                                 <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" asp-route-id="@Model.Trainings.Rows[i][0]"><i class="fas fa-user"></i> View</a></td>
                                 <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Update" asp-route-id="@Model.Trainings.Rows[i][0]"><i class="fas fa-user"></i> Update</a></td>
-                                <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" asp-route-id="@Model.Trainings.Rows[i][0]"><i class="fas fa-user"></i> Delete</a></td>
+                                <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Delete" asp-route-id="@Model.Trainings.Rows[i][0]"><i class="fas fa-user"></i> Delete</a></td>
 
                             </tr>
                         }
