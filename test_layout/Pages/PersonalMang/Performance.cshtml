@@ -1,7 +1,10 @@
 ﻿@page
+@using System.Data
 @model HR_DBMS.Pages.PersonalMang.PerformanceModel
 @{
     Layout = "_LayoutPersonalMang";
+
+
 }
 
 <h1>Employees Performance</h1>
@@ -24,7 +27,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>@Model.TotalEmployees</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
                     </div>
                   </div>
@@ -38,14 +41,14 @@
               <div class="card info-card">
 
                 <div class="card-body">
-                  <h5 class="card-title">Absents <span>| This Month</span></h5>
+                  <h5 class="card-title">Attendance <span>| This Month</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>36</h6>
+                      <h6>@Model.TotalAbsents</h6>
                       <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
                     </div>
                   </div>
@@ -67,7 +70,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$130,244</h6>
+                      <h6>$@Model.TotalSalaries</h6>
                       <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                     </div>
@@ -82,7 +85,7 @@
             <div class="col-12">
               <div class="card">
 
-                <div class="card-body">
+@*                <div class="card-body">
                   <h5 class="card-title">Employees <span>| This year</span></h5>
 
                   <!-- Line Chart -->
@@ -102,7 +105,7 @@
 
                   <!-- End Line Chart -->
 
-                </div>
+                </div>*@
 
               </div>
             </div><!-- End Reports -->
@@ -133,27 +136,24 @@
                                                     <a href="#" class="datatable-sorter">Employees in Project</a>
                                                 </th>
                                                 <th data-sortable="true" style="width: 21.483375959079286%">
-                                                    <a href="#" class="datatable-sorter">Status</a>
+                                                    <a href="#" class="datatable-sorter">Progress</a>
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr data-index="0">
-                                                <td><a href="#">#2457</a></td>
-                                                <td>Sell The Fraud</td>
-                                                <td><a href="#" class="text-primary">12-3-2020</a></td>
-                                                <td>64</td>
-                                                <td><span class="badge bg-success">Working</span></td>
+                                            @{
+                                                foreach(DataRow dr in Model.Projects.Rows)
+                                                {
+                                              <tr >
+                                                <td><a asp-page="Project/View" asp-route-id=@dr[0]>#@dr[0]</a></td>
+                                                <td>@dr[1]</td>
+                                                <td><a href="#" class="text-primary">@dr[2]</a></td>
+                                                <td>@dr[3]</td>
+                                                <td><span>@dr[4]</span></td>
                                             </tr>
-                                            <tr data-index="1">
-                                                <td><a href="#">#2147</a></td>
-                                                <td>Do Not Buy</td>
-                                                <td>
-                                                    <a href="#" class="text-primary">12-3-2021</a>
-                                                </td>
-                                                <td>47</td>
-                                                <td><span class="badge bg-warning">Pending</span></td>
-                                            </tr>
+                                                }
+                                            }
+
                                            
                                         </tbody>
                                     </table>
@@ -184,7 +184,7 @@
                 <div class="activity-item d-flex">
                   <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
                   <div class="activity-content">
-                     Total requests : 12<a href="#" class="fw-bold text-dark"> requests</a>
+                     Total requests : @Model.TotalRequests<a asp-page="Requests" class="fw-bold text-dark"> requests</a>
                   </div>
                 </div><!-- End activity item-->
 
@@ -232,7 +232,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6><a asp-page="Project"></a>@Model.TotalProjects</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
                     </div>
                   </div>
@@ -248,16 +248,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
                                 <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
@@ -267,28 +257,28 @@
                     radar: {
                       // shape: 'circle',
                       indicator: [{
-                          name: 'city',
-                          max: 25000
+                          name: '@Model.Work_Location.Rows[0][1].ToString()',
+                    max: @Model.ints.Sum()
                         },
                         {
-                          name: 'cit2',
-                                        max: 25000
+                    name: '@Model.Work_Location.Rows[1][1].ToString()',
+                    max: @Model.ints.Sum()
                         },
                         {
-                          name: 'city3',
-                                        max: 25000
+                    name: '@Model.Work_Location.Rows[2][1].ToString()',
+                    max: @Model.ints.Sum()
                         },
                         {
-                          name: 'city 4',
-                                        max: 25000
+                          name: '@Model.Work_Location.Rows[3][1].ToString()',
+                    max: @Model.ints.Sum()
                         },
                         {
-                          name: 'city5',
-                                        max: 25000
+                          name: '@Model.Work_Location.Rows[4][1].ToString()',
+                    max: @Model.ints.Sum()
                         },
                         {
                           name: 'others',
-                          max: 25000
+                    max: @Model.ints.Sum()
                         }
                       ]
                     },
@@ -296,7 +286,7 @@
                       name: 'Employees vs Locations',
                       type: 'radar',
                       data: [{
-                          value: [4200, 3000, 20000, 17000, 20000, 18000],
+                    value: [@Model.ints[0], @Model.ints[1], @Model.ints[2], @Model.ints[3], @Model.ints[4], @Model.ints.Sum() -(@Model.ints[0]+ @Model.ints[1]+ @Model.ints[2]+ @Model.ints[3]+ @Model.ints[4]) ],
                         }
 
                       ]

@@ -26,10 +26,13 @@ namespace HR_DBMS.Pages.Employee
         }
         public void OnGet()
         {
-            string q = "select ID, Training_Name, Training_Location, Training_Description from Training where Training_Status = 0 except (select ID, Training_Name, Training_Location, Training_Description from Attend_Training inner join Training on ID = TrainingID\r\nwhere E_ID = " + ID + " )";
-            availableTrainings =dBManager.ReadTablesQuery(q);
-            currentTrainings = dBManager.ReadTablesWithConditon("Attend_Training inner join Training on ID = TrainingID", "ID, Training_Name, Training_Location", "E_ID = " + ID + " And Training_Status", "0");
-            previousTrainings = dBManager.ReadTablesWithConditon("Attend_Training inner join Training on ID = TrainingID", "ID, Training_Name, Training_Location", "E_ID = " + ID + " And Training_Status", "1");
+           // string q = "select ID, Training_Name, Training_Location, Training_Description from Training where Training_Status = 0 except (select ID, Training_Name, Training_Location, Training_Description from Attend_Training inner join Training on ID = TrainingID\r\nwhere E_ID = " + ID + " )";
+            availableTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
+                "TD.ID", "T.ID", "Training_EndDate", "<");
+            currentTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
+                "TD.ID", "T.ID", "Training_EndDate", "<");
+            previousTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
+                "TD.ID", "T.ID", "Training_EndDate", "<");
         }
         public void OnPost()
         {

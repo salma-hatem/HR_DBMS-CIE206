@@ -26,22 +26,23 @@
                 <input type="text" class="form-control" asp-for=p.Description id="validationDefault01" value="@dr[3].ToString()" required="">
             </div>
             <div class="col-md-12">
-                <label class="form-label">Deadlin Date</label>
+                <label class="form-label">Deadline Date</label>
                 <div class="input-group">
                     <span class="input-group-text">dd-mm-yyyy</span>
-                    <input type="datetime" asp-for=p.Deadline class ="form-control" required="">
+                    <input type="datetime" asp-for=p.Deadline class ="form-control" required="" value="@dr[6]">
                 </div>
             </div>
             <div class="col-md-12">
                 <label for="customRange3" class="form-label">Progress range</label>
-                <input type="range" class="form-range" asp-for=p.ProgPercent min="0" max="100" step="1" id="ProgressRange">
+                <input type="range" class="form-range" asp-for=p.ProgPercent min="0" max="100" step="1" id="ProgressRange" value="@dr[8]">
             </div>
+            <input type="hidden" asp-for="@Model.ID" value="@Model.ID" />
             <div class="col-md-12">
                 <label for="validationDefault04" class="form-label">Status</label>
                 <i class="ri-add-line"></i>
                 <select class="form-select" id="validationDefault04" required="" asp-for=p.Status>
 
-                    <option selected="" disabled="" value="">Add...</option>
+                    <option selected="" disabled="" value="@dr[7]">Add...</option>
                     <!--Add code here-->
                     <option>Working</option>
                     <option>Habitus</option>
