@@ -1,4 +1,5 @@
 using System.Data;
+using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using test_layout.Models;
@@ -13,7 +14,7 @@ namespace HR_DBMS.Pages.Emplyee
         [BindProperty (SupportsGet =true)]
         public int ID  { get; set; }
         [BindProperty]
-        public DataTable Holidays { get; set; }
+        public int Holidays { get; set; }
         public int attendance { get; set; }
         [BindProperty]
         public int attendancePercent { get; set; }
@@ -28,11 +29,11 @@ namespace HR_DBMS.Pages.Emplyee
         public void OnGet()
         {
             ID = dBManager.GetCurrentUserID();
-            Holidays = dBManager.ReadTablesWithConditon("Personal", "Holidays", "id", Convert.ToString(ID));
+            Holidays = dBManager.ExcuteScalarINT("Personal", "Holidays", "id", Convert.ToString(ID));
             PenaltiesBonuses = dBManager.ReadTablesWithConditon("PenaltiesBonuses", "Type_, Percentage_Change", "EmployeeID", Convert.ToString(ID));
             Requests = dBManager.ReadTablesWithConditon("Requests", "R_Type, R_Description, R_Status", "EmployeeID", Convert.ToString(ID));
             attendance = dBManager.ExcuteScalarINT("Attendance","count(*)", "Person_ID",ID.ToString());
-            attendancePercent = attendance  * 100/ 30;
+            attendancePercent = (attendance - Holidays) * 100/ 30;
             absent = 30 - attendance;
         }
         public IActionResult OnPost()
