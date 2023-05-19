@@ -7,22 +7,23 @@
 	<div class="card-body pb-0">
 		<h1 class="=card-title">Main Announcments</h1>
 		<div class="Messages">
+			@for (int i = 0; i < Model.Announcments.Rows.Count; i++){
 			<div class="post-item clearfix">
 				<form class="row g-3">
 					<div class="col-md-1">
-						<img src="~/img/messages-1.jpg" height="50" width="50">
+						<img src="@Model.Announcments.Rows[i][0]" height="50" width="50">
 					</div>
 					<div class="col-md-8">
-						<h1 style="font-size:100%" style="font-family:verdana;"><b>sara mike</b></h1>
-						<p>A new Training has been opened</p>
+						<h1 style="font-size:100%" style="font-family:verdana;"><b>@Model.Announcments.Rows[i][1]</b></h1>
+						<p>@Model.Announcments.Rows[i][2]</p>
 					</div>
 					<div class="col-md-2" data-bs-toggle="dropdown">
-						<p>2 hrs.ago</p>
+						<p>@Model.Announcments.Rows[i][3]</p>
 					</div>
 				</form>
 			</div>
-			<br />
-			<div class="post-item clearfix">
+			<br />}
+			@*<div class="post-item clearfix">
 				<form class="row g-3">
 					<div class="col-md-1">
 						<img src="~/img/messages-2.jpg" height="50" width="50">
@@ -53,27 +54,28 @@
 				</form>
 			</div>
 
-			<form class="row g-3">
+			<form class="row g-3" nonvalidate method="post">
 				<div class="col-md-8">
 					<class ="form-label">
 						Write a message</>
 						<input type="text" class="form-control">
 				</div>
+				<form class="row g-3" novalidate method="post">
 				<div class="col-md-1" data-bs-toggle="dropdown">
-					<button class="btn btn-primary" type="button">
+					<button class="btn btn-primary" type="submit" asp-page-handler="Send">
+
 						<div class="icon">
 							<p>
 								Send<i class="ri-send-plane-fill"></i>
 							</p>
+						</div>
 					</button>
 				</div>
+				</form>
 			</form>
-		</div>
+		</div>*@
 
 
 	</div>
 </div>
-
-
-
 

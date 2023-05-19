@@ -674,16 +674,16 @@ namespace test_layout.Models
             }
             return (ID + 1);
         }
-        public void AddRecordPerson(string FName, string LName, int ID, string email,int pass, string status, string team, string Add, int salary, int ssn, string role, string contact, int age, string sex, string img, int holidays)
+        public void AddRecordPerson(string FName, string LName, int ID, string email, int pass, string status, string team, string Add, int salary, int ssn, string role, string contact, int age, string sex, string img, int holidays)
         {
-            
+
             string query = "INSERT INTO Personal VALUES (@id, @SSN,@Team,@Sex,@FName, @LName,@Age, @Email, @Work_Email,@Person_Password, @Person_Address,@Person_Status,@Salary, @Person_Role,@Contact_Num,@Person_IMG, @Holidays )";
             SqlCommand cmd = new SqlCommand(query, con);
 
             cmd.Parameters.AddWithValue("@id", ID);
             cmd.Parameters.AddWithValue("@SSN", ssn);
             cmd.Parameters.AddWithValue("@Team", team);
-            cmd.Parameters.AddWithValue("@Sex",sex);
+            cmd.Parameters.AddWithValue("@Sex", sex);
             cmd.Parameters.AddWithValue("@FName", FName);
             cmd.Parameters.AddWithValue("@LName", LName);
             cmd.Parameters.AddWithValue("@Age", age);
@@ -718,7 +718,7 @@ namespace test_layout.Models
 
         public void AddRecordEmployee(int ID, int RMID, int PMID)
         {
-            
+
             string query = "INSERT INTO Employee VALUES (@EmployeeID, @PMID ,@RMID)";
             SqlCommand cmd = new SqlCommand(query, con);
 
@@ -742,14 +742,14 @@ namespace test_layout.Models
         }
         public string getItemEmployee(int id, string itemname)
         {
-            string var ="";
-            string query = "select "+ itemname+ "from personal where id=" +id ;
-            SqlCommand cmd= new SqlCommand(query, con);
+            string var = "";
+            string query = "select " + itemname + "from personal where id=" + id;
+            SqlCommand cmd = new SqlCommand(query, con);
             try
             {
-               
+
                 con.Open();
-                var= (string)cmd.ExecuteScalar();
+                var = (string)cmd.ExecuteScalar();
 
             }
             catch (SqlException ex)
@@ -762,5 +762,52 @@ namespace test_layout.Models
             }
             return var;
         }
+        public int getAnnouncmentId()
+        {
+
+            string query = "select MAX(ID) from Announcments";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int ID = 0;
+            try
+            {
+                con.Open();
+                ID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return (ID + 1);
+        }
+
+        public void AddAnnouncment(int id, string msg, string date, int MangID)
+        {
+            string query = "INSERT INTO Announcments VALUES (@ID, @Mgs_text ,@Mgs_Date, @M_ID)";
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Mgs_text", msg);
+            cmd.Parameters.AddWithValue("@Mgs_Date", date);
+            cmd.Parameters.AddWithValue("@M_ID", MangID);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+     
     }
+    
 }

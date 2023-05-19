@@ -53,11 +53,10 @@ namespace HR_DBMS.Pages.RecruitmentMang
             Db = db;
             RMangID = Db.GetCurrentUserID();
             EmployeeID = Db.getEmployeeID();
-            FName = Db.getItemEmployee(2, FName);
         }
         public void OnGet()
         {
-           
+            FName = Db.getItemEmployee(2, FName);
         }
         //public IActionResult OnPostSubmit()
         //{
