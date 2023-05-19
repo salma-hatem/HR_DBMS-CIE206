@@ -590,6 +590,28 @@ namespace test_layout.Models
             return table;
         }
 
+        ///////////////// Join 2 Tables no condition /////////////////
+        public DataTable JoinTables(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
         ////////////////////// Custom Execute Reader Queries /////////////////
         public DataTable CustomQuery(string query)
         {
