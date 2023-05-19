@@ -1,6 +1,8 @@
 using HR_DBMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Globalization;
 using test_layout.Models;
 
 namespace HR_DBMS.Pages.PersonalMang.Project
@@ -16,17 +18,17 @@ namespace HR_DBMS.Pages.PersonalMang.Project
             
         }
         public IActionResult OnPost()
-        { 
-            if(ModelState.IsValid)
-            {
-                int pmid = dBManager.getCurrentUser();
-                int id = Int32.Parse(dBManager.CustomScalarQuery("SELECT MAX(ID) FROM Project;")) + 1;
-                dBManager.CustomNonQuery($"INSERT INTO Project VALUES ({id},'{P.Name}','{P.Description}','{P.Goal}','{P.StartDate}','NULL','{P.Deadline}','Just Started',0,{pmid})");
+        {
+            string sd = DateTime.ParseExact(P.StartDate, "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture).ToString();
+            string ed = DateTime.ParseExact(P.Deadline, "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture).ToString();
 
-                return RedirectToPage("../Project");
-            }
+            Console.WriteLine(sd + "  ANDDD  " + ed);
+            int pmid = dBManager.getCurrentUser();
+            int id = Int32.Parse(dBManager.CustomScalarQuery("SELECT MAX(ID) FROM Project;")) + 1;
+            dBManager.CustomNonQuery($"INSERT INTO Project VALUES ({id},'{P.Name}','{P.Description}','{P.Goal}', CONVERT(datetime, '{sd}', 101) ,NULL, CONVERT(datetime, '{ed}', 101),'Just Started',0,{pmid})");
 
-            return Page();
+            return RedirectToPage("../Project");
+
                 
         }
     }
