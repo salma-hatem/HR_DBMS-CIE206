@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,26 +11,35 @@ namespace HR_DBMS.Pages.Employee
         private readonly DBManager dBManager;
         [BindProperty(SupportsGet = true)]
         public int ID { get; set; }
+        //[BindProperty]
+        //public Request request { get; set; }
+        public int RID { get; set; }
+        public int EmployeeID { get; set; }
+        public int ApprovedBy { get; set; }
+        public string Status { get; set; }
         [BindProperty]
-        public Request request { get; set; }
+        public string Type { get; set; }
+        [BindProperty]
+        [Required(ErrorMessage = "Please enter a description")]
+        public string Description { get; set; }
         public RequestModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
         }
         public void OnGet()
         {
-            request = new Request();
+            //request = new Request();
         }
         public IActionResult OnPostSubmit()
         {
-            request.EmployeeID = ID;
-            request.ApprovedBy = dBManager.ExcuteScalarINT("Employee", "PMID", "EmployeeID", Convert.ToString(ID));
-            request.Status = "Pending";
-            request.ID = dBManager.GetMaxID("Requests") + 1;
+            EmployeeID = ID;
+            ApprovedBy = dBManager.ExcuteScalarINT("Employee", "PMID", "EmployeeID", Convert.ToString(ID));
+            Status = "Pending";
+            RID = dBManager.GetMaxID("Requests") + 1;
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             if (ModelState.IsValid) 
             {
-                dBManager.AddRecordRequest(request.ID, request.Type,request.Status, request.Description, request.EmployeeID, request.ApprovedBy);
+                dBManager.AddRecordRequest(RID, Type,Status, Description, EmployeeID, ApprovedBy);
                 return RedirectToPage("/Employee/Home", new { ID = this.ID });
             }
             else
