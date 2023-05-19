@@ -29,10 +29,10 @@ namespace HR_DBMS.Pages.TrainingMang
         public void OnGet()
         {
             
-            CurrTraining_times = (DataTable)DB.JoinTablesWithCondition("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description, Training_Time,Training_StartDate ,Training_EndDate",
-                "TD.ID", "T.ID", "T.Training_Status", "0"); 
-            PrevTraining_times = (DataTable)DB.JoinTablesWithCondition("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description, Training_Time,Training_StartDate ,Training_EndDate",
-                "TD.ID", "T.ID", "T.Training_Status", "1");
+            CurrTraining_times = (DataTable)DB.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description, Training_Time,Training_StartDate ,Training_EndDate",
+                "TD.ID", "T.ID","Training_EndDate",">"); 
+            PrevTraining_times = (DataTable)DB.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description, Training_Time,Training_StartDate ,Training_EndDate",
+                "TD.ID", "T.ID", "Training_EndDate", "<");
 
         }
     }

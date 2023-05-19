@@ -9,7 +9,7 @@ namespace test_layout.Models
         public int ApprovedBy { get; set; }
         public string Status { get; set; }
         public string Type { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a description")]
         public string Description { get; set; }
     }
 }
