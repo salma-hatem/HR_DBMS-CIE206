@@ -8,6 +8,7 @@ namespace test_layout.Models
     {
         static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
 
+
         SqlConnection con = new SqlConnection(constring);
 
 

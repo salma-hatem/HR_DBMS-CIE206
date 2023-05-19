@@ -9,6 +9,9 @@ namespace HR_DBMS.Pages.PersonalMang
     public class HomeModel : PageModel
     {
         private readonly DBManager dBManager;
+
+        [BindProperty]
+        public string message1 { get; set; }
     
         [BindProperty(SupportsGet = true)]
         public int ID { get; set; }
@@ -62,6 +65,9 @@ namespace HR_DBMS.Pages.PersonalMang
         [BindProperty(SupportsGet = true)]
         public int ELeaveBreak { set; get; }
 
+        [BindProperty(SupportsGet = true)]
+        public string ClockIn { set; get; }
+
 
         public HomeModel(DBManager dBManager)
         {
@@ -74,8 +80,9 @@ namespace HR_DBMS.Pages.PersonalMang
             int id = ID;
             AttendanceToday = dBManager.CustomQuery($"SELECT Clock_in FROM Attendance, Personal AS P WHERE Atendance_Date = CAST( GETDATE() AS Date ) AND P.id ={id}");
 
+            ClockIn = dBManager.CustomScalarQuery($"SELECT Atendance_Date FROM Attendance WHERE Atendance_Date= Convert(date, getdate()) AND Person_ID={id};");
             
-            Requests = dBManager.CustomQuery($"SELECT R.ID,P.FName,R_type,R_Status,R.R_Description FROM Requests AS R,Employee AS E, Personal AS P WHERE E.PMID={id} AND R.EmployeeID=E.EmployeeID AND P.id=E.EmployeeID ;\r\n");
+            Requests = dBManager.CustomQuery($"SELECT R.ID,P.FName,R_type,R_Status,R.R_Description FROM Requests AS R,Employee AS E, Personal AS P WHERE E.PMID={id} AND R.EmployeeID=E.EmployeeID AND P.id=E.EmployeeID ;");
 
             ThisWeekAttendance = dBManager.CustomQuery($"SELECT A.* FROM Attendance AS A, Personal AS P WHERE A.Person_ID =P.id AND P.id = {id} AND A.Atendance_Date>(SELECT  DATEADD(DAY, 2 - DATEPART(WEEKDAY, GETDATE()), CAST(GETDATE() AS DATE)) [Week_Start_Date])");
 
@@ -108,6 +115,27 @@ namespace HR_DBMS.Pages.PersonalMang
         public IActionResult OnPost()
         {
             return RedirectToPage("/Employee/Request", new { ID = this.ID });
+        }
+
+        public async Task<IActionResult> OnPostTakeAsync()
+        {
+            Console.WriteLine("Hi");
+            int id = dBManager.getCurrentUser();
+            int maxID = Int32.Parse(dBManager.CustomScalarQuery($"SELECT MAX(ID) From Attendance;")) + 1;
+            string takenAttendance =dBManager.CustomScalarQuery($"SELECT * FROM Attendance WHERE Atendance_Date= Convert(date, getdate()) AND Person_ID={id};");
+            if (string.IsNullOrEmpty(takenAttendance))
+            {
+                
+                dBManager.CustomNonQuery($"INSERT INTO Attendance VALUES ({maxID},GETDATE(),null,null,{id} ) ;");
+            }
+            else
+            {
+                message1 = "Attendance is Taken Already";
+                Console.WriteLine(message1);
+            }
+            
+            return Page();
+
         }
     }
 }
