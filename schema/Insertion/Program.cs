@@ -1,5 +1,7 @@
 ﻿
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 
 namespace HelloWorld
@@ -586,14 +588,30 @@ namespace HelloWorld
                 catch (SqlException ex)
                 {
                     Console.WriteLine("Error in Request Insertion");
-                    Console.WriteLine(ex.ToString());
-                    Console.WriteLine("Id of employee is: " + eid);
                 }
                 finally
                 {
                     con.Close();
                 }
 
+            }
+            // Insert Curren User
+            query = $"INSERT INTO CurrentUser VALUES(-1);";
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error in Current user");
+
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
