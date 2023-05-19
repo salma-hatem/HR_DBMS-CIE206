@@ -1,5 +1,5 @@
 ﻿@page
-@model HR_DBMS.Pages.TrainingMang.Create_TrainingModel
+@model HR_DBMS.Pages.TrainingMang.Update_TrainingModel
 @{
     Layout = "_LayoutTrainingMang";
 }
@@ -12,15 +12,15 @@
                     <h5 class="card-title">Update Training</h5>
 
                     <!-- Custom Styled Validation -->
-                    <form class="row g-3 "  method="post">
+                    <form class="row g-3 " method="post">
                         <div class="col-xxl-12">
-@*                            //<label for="validationCustom01" class="form-label">Name</label>
-*@                            <input type="text" class="form-control" id="validationCustom01" placeholder="@Model.Train_name"  required asp-for="@Model.Train_name">
+                            @*                            //<label for="validationCustom01" class="form-label">Name</label>
+                            *@                            <input type="text" class="form-control" id="validationCustom01" placeholder="@Model.Train_name" required asp-for="@Model.Train_name">
                             @*<div class="valid-feedback">
-                                Looks good!
+                            Looks good!
                             </div>
                             <div class="invalid-feedback">
-                                Please Provide a Name
+                            Please Provide a Name
                             </div>*@
                         </div>
                         <br />
@@ -91,18 +91,18 @@
             </div>
             <br />
             @*<div class="form-group">
-                <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][3]" asp-for="@Model.UserName">
-                <span asp-validation-for="@Model.UserName"> </span> <br />
+            <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][3]" asp-for="@Model.UserName">
+            <span asp-validation-for="@Model.UserName"> </span> <br />
             </div>
             <br />
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][4]" asp-for="@Model.PassWord">
-                <span asp-validation-for="@Model.PassWord"> </span> <br />
+            <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][4]" asp-for="@Model.PassWord">
+            <span asp-validation-for="@Model.PassWord"> </span> <br />
             </div>
             <br />
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][5]" asp-for="@Model.UserType">
-                <span asp-validation-for="@Model.UserType"> </span> <br />
+            <input type="text" class="form-control" placeholder="@Model.dt.Rows[0][5]" asp-for="@Model.UserType">
+            <span asp-validation-for="@Model.UserType"> </span> <br />
             </div>
             <br />*@
 

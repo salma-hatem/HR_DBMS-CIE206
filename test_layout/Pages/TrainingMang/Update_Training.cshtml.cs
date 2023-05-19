@@ -6,7 +6,7 @@ using test_layout.Models;
 using HR_DBMS.Models;
 namespace HR_DBMS.Pages.TrainingMang
 {
-    public class Training_UpdateModel : PageModel
+    public class Update_TrainingModel : PageModel
     {
         public readonly DBManager DB;
 
@@ -34,18 +34,22 @@ namespace HR_DBMS.Pages.TrainingMang
 
         [Required]
         [BindProperty]
+        public DateTime Train_time { get; set; }
+
+        [Required]
+        [BindProperty]
         public DateTime Train_end_date { get; set; }
 
-        public Training_UpdateModel(DBManager db)
+        public Update_TrainingModel(DBManager db)
         {
             DB = db;
-            dt= new DataTable();    
+            dt = new DataTable();
 
         }
         public void OnGet(int id)
         {
             Train_id = id;
-           dt = (DataTable)DB.ReadTablesWithConditon("Training", "Training_Name,Training_Location, Training_Description", "ID", Train_id.ToString());
+            dt = (DataTable)DB.ReadTablesWithConditon("Training", "Training_Name,Training_Location, Training_Description", "ID", Train_id.ToString());
 
             Train_name = (string)dt.Rows[0][0];
             Train_location = (string)dt.Rows[0][1];
