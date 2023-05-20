@@ -33,6 +33,7 @@ namespace HR_DBMS.Pages.TrainingMang
 
         [Required]
         [BindProperty]
+        [Range(typeof(DateTime), "1/1/2020", "1/1/2050", ErrorMessage = "Date is out of Range 1/1/2020 to 1/1/2050")]
 
         public DateTime Train_start_date { get; set; }
 

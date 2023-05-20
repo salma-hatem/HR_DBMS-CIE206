@@ -42,7 +42,7 @@
                             <td>@Model.CurrentTimes.Rows[i][0]</td>
                             <td>@Model.CurrentTimes.Rows[i][1]</td>
                             <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" asp-route-id="@Model.CurrTraining_times.Rows[i][0]"><i class="fas fa-user"></i> View</a></td>
-                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Update" asp-route-id="@Model.CurrTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Update</a></td>
+                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Update_Training" asp-route-id="@Model.CurrTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Update</a></td>
                             <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Delete" asp-route-id="@Model.CurrTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Delete</a></td>
                         </tr>
                     }
@@ -96,7 +96,7 @@
                             <td>@Model.PrevTimes.Rows[i][0]</td>
                             <td>@Model.PrevTimes.Rows[i][1]</td>
                             <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" asp-route-id="@Model.PrevTraining_times.Rows[i][0]"><i class="fas fa-user"></i> View</a></td>
-                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Update" asp-route-id="@Model.PrevTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Update</a></td>
+                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Update_Training" asp-route-id="@Model.PrevTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Update</a></td>
                             <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Delete" asp-route-id="@Model.PrevTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Delete</a></td>
                         </tr>
                     }

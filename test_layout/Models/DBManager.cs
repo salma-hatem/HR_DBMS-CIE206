@@ -126,6 +126,32 @@ namespace test_layout.Models
                 con.Close();
             }
         }
+        public void AlterTraining(string tablename, int id, string name, string location, int created_by, string description)
+        {
+            string query = "UPDATE  " + tablename + " SET Training_Name=@Training_Name,Training_Location=@Training_Location  ,Training_Description=@Training_Description where ID=@ID ";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Training_Name", name);
+            cmd.Parameters.AddWithValue("@Training_Location", location);
+            //cmd.Parameters.AddWithValue("@Created_by", created_by);
+            cmd.Parameters.AddWithValue("@Training_Description", description);
+           // cmd.Parameters.AddWithValue("@Training_Status", 0);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
         public void AddTrainingDate(string tablename, int id, DateTime time, DateTime startdate, DateTime enddate)
         {
@@ -135,6 +161,30 @@ namespace test_layout.Models
             cmd.Parameters.AddWithValue("@Training_Time", time);
             cmd.Parameters.AddWithValue("@Training_StartDate", startdate );
             cmd.Parameters.AddWithValue("@Training_EndDate", enddate );
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void AlterTrainingDate(string tablename, int id, DateTime time, DateTime startdate, DateTime enddate)
+        {
+            string query = "Update  " + tablename + " Set ID=@ID,Training_Time=@Training_Time,Training_StartDate=@Training_StartDate ,Training_EndDate=@Training_EndDate  where ID=@ID";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Training_Time", time);
+            cmd.Parameters.AddWithValue("@Training_StartDate", startdate);
+            cmd.Parameters.AddWithValue("@Training_EndDate", enddate);
 
             try
             {
