@@ -352,8 +352,8 @@ namespace HelloWorld
             // 80 employees
             for (int i = 20; i < 100; i++)
             {
-                int pid = rnd.Next(0, 9);
-                int rid = rnd.Next(10, 14);
+                int pid = rnd.Next(0, 10);
+                int rid = rnd.Next(10, 15);
                 query = $"INSERT INTO Employee (EmployeeID,PMID,RMID) VALUES ({i},{pid},{rid} )";
                 try
                 {
@@ -656,7 +656,7 @@ namespace HelloWorld
 
             // Add your own connection string //
 
-            it.populateDB(@"Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True");
+            it.populateDB(@"Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True; TrustServerCertificate=True");
 
 
         }
