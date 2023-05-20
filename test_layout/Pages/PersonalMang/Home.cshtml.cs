@@ -115,7 +115,7 @@ namespace HR_DBMS.Pages.PersonalMang
             AttendanceCount = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM [dbo].[Attendance] AS A, [dbo].[Employee] AS E WHERE A.Person_ID=E.EmployeeID AND PMID = {id};"));
 
             // Need to Calculate Bonuses And Penalties here//
-            Salaries = 30*Int32.Parse(dBManager.CustomScalarQuery($"SELECT SUM([Salary]) FROM [dbo].[Personal] AS P,[dbo].[Employee] AS E WHERE P.id= E.EmployeeID AND E.PMID ={id};"));
+            
 
 
             // Genral Data //

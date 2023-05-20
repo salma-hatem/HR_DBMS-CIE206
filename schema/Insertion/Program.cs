@@ -352,8 +352,8 @@ namespace HelloWorld
             // 80 employees
             for (int i = 20; i < 100; i++)
             {
-                int pid = rnd.Next(0, 9);
-                int rid = rnd.Next(10, 14);
+                int pid = rnd.Next(0, 10);
+                int rid = rnd.Next(10, 15);
                 query = $"INSERT INTO Employee (EmployeeID,PMID,RMID) VALUES ({i},{pid},{rid} )";
                 try
                 {
