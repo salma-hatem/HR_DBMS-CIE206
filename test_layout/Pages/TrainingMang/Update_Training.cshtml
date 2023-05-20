@@ -1,0 +1,82 @@
+﻿@page
+@model HR_DBMS.Pages.TrainingMang.Update_TrainingModel
+@{
+    Layout = "_LayoutTrainingMang";
+}
+
+<section class="section">
+    <div class="row">
+        <div class="col-xxl-14">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Update Training</h5>
+
+                    <!-- Custom Styled Validation -->
+                    <form class="row g-3 " method="post">
+                        <div class="col-xxl-12">
+                            @*                            //<label for="validationCustom01" class="form-label">Name</label>
+                            *@                            <input type="text" class="form-control" id="validationCustom01" placeholder="Training Name" required asp-for="@Model.Train_name">
+                            @*<div class="valid-feedback">
+                            Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                            Please Provide a Name
+                            </div>*@
+                        </div>
+                        <br />
+                        <div class="col-xxl-12">
+                            <input hidden asp-for="@Model.Train_id" class="form-control" />
+                            <label for="validationCustomUsername" class="form-label">Description</label>
+                            <div class="input-group has-validation">
+                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required asp-for="@Model.Train_description">
+                                <div class="invalid-feedback">
+                                    Please Provide a Description
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col-lg-6">
+                            <label for="validationCustom03" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="validationCustom03" required asp-for="@Model.Train_location">
+                            <div class="invalid-feedback">
+                                Please provide a valid Location.
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="validationCustom05" class="form-label">Time</label>
+                            <input type="time" class="form-control" id="validationCustom05" required  asp-for="@Model.Train_time">
+                            <div class="invalid-feedback">
+                                Please provide a valid time.
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="validationCustom03" class="form-label">Start Date</label>
+                            <input type="date" class="form-control" id="validationCustom03" required asp-for="@Model.Train_start_date">
+                            <div class="invalid-feedback">
+                                Please provide a valid Date.
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label for="validationCustom03" class="form-label">End Date</label>
+                            <input type="date" class="form-control" id="validationCustom03" required asp-for="@Model.Train_end_date">
+                            <div class="invalid-feedback">
+                                Please provide a valid Date.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit" asp-page-handler="Update">Update</button>
+
+                            <button class="btn btn-danger" type="submit" asp-page-handler="Cancel">Cancel</button>
+                        </div>
+                    </form><!-- End Custom Styled Validation -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+   
+</section>

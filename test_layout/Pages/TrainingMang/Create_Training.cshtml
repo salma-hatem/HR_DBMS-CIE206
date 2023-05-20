@@ -51,6 +51,7 @@
                 <div class="col-lg-6">
                   <label for="validationCustom03" class="form-label">Start Date</label>
                   <input type="date" class="form-control" id="validationCustom03" required asp-for="@Model.Train_start_date">
+                  <span asp-validation-for="@Model.Train_start_date"></span>
                   <div class="invalid-feedback">
                     Please provide a valid Date.
                   </div>

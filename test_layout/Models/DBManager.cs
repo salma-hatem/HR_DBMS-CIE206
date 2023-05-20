@@ -6,7 +6,8 @@ namespace test_layout.Models
     public class DBManager
 
     {
-        static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+
+        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
 
 
         SqlConnection con = new SqlConnection(constring);
@@ -126,10 +127,60 @@ namespace test_layout.Models
                 con.Close();
             }
         }
+        public void AlterTraining(string tablename, int id, string name, string location, int created_by, string description)
+        {
+            string query = "UPDATE  " + tablename + " SET Training_Name=@Training_Name,Training_Location=@Training_Location  ,Training_Description=@Training_Description where ID=@ID ";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Training_Name", name);
+            cmd.Parameters.AddWithValue("@Training_Location", location);
+            //cmd.Parameters.AddWithValue("@Created_by", created_by);
+            cmd.Parameters.AddWithValue("@Training_Description", description);
+           // cmd.Parameters.AddWithValue("@Training_Status", 0);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
         public void AddTrainingDate(string tablename, int id, DateTime time, DateTime startdate, DateTime enddate)
         {
             string query = "INSERT INTO " + tablename + " VALUES (@ID,@Training_Time,@Training_StartDate ,@Training_EndDate )";
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Training_Time", time);
+            cmd.Parameters.AddWithValue("@Training_StartDate", startdate );
+            cmd.Parameters.AddWithValue("@Training_EndDate", enddate );
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void AlterTrainingDate(string tablename, int id, DateTime time, DateTime startdate, DateTime enddate)
+        {
+            string query = "Update  " + tablename + " Set ID=@ID,Training_Time=@Training_Time,Training_StartDate=@Training_StartDate ,Training_EndDate=@Training_EndDate  where ID=@ID";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@ID", id);
             cmd.Parameters.AddWithValue("@Training_Time", time);
@@ -169,7 +220,7 @@ namespace test_layout.Models
             {
                 con.Close();
             }
-            return ID+1;
+            return ID + 1;
         }
         public void DeleteRecord(string tablename, int id)
         {
@@ -275,7 +326,27 @@ namespace test_layout.Models
             }
             return ID;
         }
-
+        ///////////////// Get Current User Name /////////////////
+        public string GetCurrentUserName(int id)
+        {
+            string query = "select concat(Fname, ' ', Lname) from Personal where ID = " + id;
+            SqlCommand cmd = new SqlCommand(query, con);
+            string name = " ";
+            try
+            {
+                con.Open();
+                name = (string)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return name;
+        }
         ///////////////// Get Password /////////////////
         public string GetPassword(int id)
         {
@@ -377,6 +448,27 @@ namespace test_layout.Models
         public int ExcuteScalarINT(string tablename, string column, string conditionLHS, string conditionRHS)
         {
             string query = "select " + column + " from " + tablename + " where " + conditionLHS + " = " + conditionRHS;
+            SqlCommand cmd = new SqlCommand(query, con);
+            int value = -1;
+            try
+            {
+                con.Open();
+                value = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return value;
+        }
+
+        public int ExcuteTrainingINT( string Condition)
+        {
+            string query = "select " + "Count(*)" + " from " + "Training_Date" + " where " + "Training_EndDate " + Condition+ " GetDate()";
             SqlCommand cmd = new SqlCommand(query, con);
             int value = -1;
             try
@@ -549,6 +641,28 @@ namespace test_layout.Models
             return table;
         }
 
+        ///////////////// Join 2 Tables no condition /////////////////
+        public DataTable JoinTables(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS)
+        {
+            DataTable table = new DataTable();
+            string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS;
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return table;
+        }
+
         ////////////////////// Custom Execute Reader Queries /////////////////
         public DataTable CustomQuery(string query)
         {
@@ -591,12 +705,12 @@ namespace test_layout.Models
             return result;
         }
 
-        public DataTable getCurrTraining(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS, 
-            string WhereConditionLHS, String WhereConditionRHS, string WhereCondition2LHS,string WhereCondition2RHS)
+        public DataTable getCurrTraining(string tablename1, string tablename2, string column, string OnConditionLHS, string OnConditionRHS,
+            string WhereConditionLHS, String WhereConditionRHS, string WhereCondition2LHS, string WhereCondition2RHS)
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
-                + " Where " + WhereConditionLHS + " = " + WhereConditionRHS + " and " + WhereCondition2LHS + " " +WhereCondition2RHS + "GetDate()";
+                + " Where " + WhereConditionLHS + " = " + WhereConditionRHS + " and " + WhereCondition2LHS + " " + WhereCondition2RHS + "GetDate()";
             try
             {
                 con.Open();
@@ -619,7 +733,7 @@ namespace test_layout.Models
         {
             DataTable table = new DataTable();
             string query = "select " + column + " from " + tablename1 + " join " + tablename2 + " on " + OnConditionLHS + " = " + OnConditionRHS
-                + " Where " +  WhereCondition2LHS + " " + WhereCondition2RHS + "GetDate()";
+                + " Where " + WhereCondition2LHS + " " + WhereCondition2RHS + "GetDate()";
             try
             {
                 con.Open();
@@ -655,6 +769,113 @@ namespace test_layout.Models
                 con.Close();
             }
         }
+        public int getEmployeeID()
+        {
+            string query = "select MAX(id) from Personal";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int ID = 0;
+            try
+            {
+                con.Open();
+                ID = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return (ID + 1);
+        }
+        public void AddRecordPerson(string FName, string LName, int ID, string email,int pass, string status, string team, string Add, int salary, int ssn, string role, string contact, int age, string sex, string img, int holidays)
+        {
+            
+            string query = "INSERT INTO Personal VALUES (@id, @SSN,@Team,@Sex,@FName, @LName,@Age, @Email, @Work_Email,@Person_Password, @Person_Address,@Person_Status,@Salary, @Person_Role,@Contact_Num,@Person_IMG, @Holidays )";
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@id", ID);
+            cmd.Parameters.AddWithValue("@SSN", ssn);
+            cmd.Parameters.AddWithValue("@Team", team);
+            cmd.Parameters.AddWithValue("@Sex",sex);
+            cmd.Parameters.AddWithValue("@FName", FName);
+            cmd.Parameters.AddWithValue("@LName", LName);
+            cmd.Parameters.AddWithValue("@Age", age);
+            cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@Work_Email", email);
+            cmd.Parameters.AddWithValue("@Person_Status", status);
+            cmd.Parameters.AddWithValue("@Person_Address", Add);
+            cmd.Parameters.AddWithValue("@Person_Password", pass);
+            cmd.Parameters.AddWithValue("@Salary", salary);
+            cmd.Parameters.AddWithValue("@Person_Role", role);
+            cmd.Parameters.AddWithValue("@Contact_Num", ID);
+            cmd.Parameters.AddWithValue("@Person_IMG", img);
+            cmd.Parameters.AddWithValue("@Holidays", holidays);
+
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public void AddRecordEmployee(int ID, int RMID, int PMID)
+        {
+            
+            string query = "INSERT INTO Employee VALUES (@EmployeeID, @PMID ,@RMID)";
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@EmployeeID", ID);
+            cmd.Parameters.AddWithValue("@RMID", RMID);
+            cmd.Parameters.AddWithValue("@PMID", PMID);
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+        public string getItemEmployee(int id, string itemname)
+        {
+            string var ="";
+            string query = "select "+ itemname+ " from personal where id=" +id ;
+            SqlCommand cmd= new SqlCommand(query, con);
+            try
+            {
+               
+                con.Open();
+                var= (string)cmd.ExecuteScalar();
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return var;
+        }
     }
 }
-

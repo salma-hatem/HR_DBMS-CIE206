@@ -24,8 +24,8 @@ namespace HR_DBMS.Pages.RecruitmentMang
 
         public void OnGet()
         {
-            Employees_table = (DataTable)DB.JoinTablesWithCondition("Personal as P","Employee as E", "P.FName +' '+ P.Lname, P.id, P.Work_Email, P.Team, Person_Status",
-                "E.EmployeeID", "P.id", "P.Person_Role", "'Employee'");
+            Employees_table = (DataTable)DB.JoinTables("Personal as P","Employee as E", "concat(P.FName ,' ', P.Lname), P.id, P.Work_Email, P.Team, Person_Status",
+                "E.EmployeeID", "P.id");
         }
         public void OnPost()
         {

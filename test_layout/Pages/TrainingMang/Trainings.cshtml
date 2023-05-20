@@ -21,7 +21,9 @@
                         <th scope="col">Time</th>
                         <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
+                        <th scope="col"></th>
                         <th scope="col">Actions</th>
+                        <th scope="col"></th>
 
                     </tr>
                 </thead>
@@ -30,15 +32,18 @@
                     {
                         <tr>
                             <th scope="row">@(i+1)</th>
-                        @for(int j = 1; j < 7; j++)
+                        @for(int j = 1; j < 5; j++)
                         {
                             
                                
                                 <td>@Model.CurrTraining_times.Rows[i][j]</td>
                             
                         }
+                            <td>@Model.CurrentTimes.Rows[i][0]</td>
+                            <td>@Model.CurrentTimes.Rows[i][1]</td>
                             <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" asp-route-id="@Model.CurrTraining_times.Rows[i][0]"><i class="fas fa-user"></i> View</a></td>
-
+                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Update_Training" asp-route-id="@Model.CurrTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Update</a></td>
+                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Delete" asp-route-id="@Model.CurrTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Delete</a></td>
                         </tr>
                     }
                     
@@ -70,7 +75,9 @@
                         <th scope="col">Time</th>
                         <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
+                        <th scope="col"></th>
                         <th scope="col">Actions</th>
+                        <th scope="col"></th>
 
                     </tr>
                 </thead>
@@ -79,15 +86,18 @@
                     {
                         <tr>
                             <th scope="row">@(i + 1)</th>
-                            @for (int j = 1; j < 7; j++)
+                            @for (int j = 1; j < 5; j++)
                             {
 
 
                                 <td>@Model.PrevTraining_times.Rows[i][j]</td>
 
                             }
+                            <td>@Model.PrevTimes.Rows[i][0]</td>
+                            <td>@Model.PrevTimes.Rows[i][1]</td>
                             <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_detail" asp-route-id="@Model.PrevTraining_times.Rows[i][0]"><i class="fas fa-user"></i> View</a></td>
-
+                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Update_Training" asp-route-id="@Model.PrevTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Update</a></td>
+                            <td><a class="btn btn-outline-info" asp-page="/TrainingMang/Training_Delete" asp-route-id="@Model.PrevTraining_times.Rows[i][0]"><i class="fas fa-user"></i> Delete</a></td>
                         </tr>
                     }
                 </tbody>
