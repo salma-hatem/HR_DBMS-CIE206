@@ -807,7 +807,47 @@ namespace test_layout.Models
                 con.Close();
             }
         }
-     
+        public int getEmployeeNum()
+        {
+            string query = "select count(id) from personal where Person_status ='working' and Person_Role='Employee'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int count = 0;
+            try
+            {
+                con.Open();
+                count = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return (count);
+
+        }
+        public int getApplicantNum()
+        {
+            string query = "select count(id) from personal where Person_status ='Applicant'";
+            SqlCommand cmd = new SqlCommand(query, con);
+            int count = 0;
+            try
+            {
+                con.Open();
+                count = (int)cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return (count);
+        }
     }
     
 }
