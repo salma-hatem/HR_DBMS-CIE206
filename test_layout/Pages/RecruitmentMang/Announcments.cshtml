@@ -23,42 +23,12 @@
 				</form>
 			</div>
 			<br />}
-			@*<div class="post-item clearfix">
-				<form class="row g-3">
-					<div class="col-md-1">
-						<img src="~/img/messages-2.jpg" height="50" width="50">
-					</div>
-					<div class="col-md-8">
-						<h1 style="font-size:100%" style="font-family:verdana;"><b>Maria Johnson</b></h1>
-						<p>A new Employee with ID 1215 has been added!</p>
-					</div>
-					<div class="col-md-2" data-bs-toggle="dropdown">
-						<p>4 hrs.ago</p>
-					</div>
-				</form>
-			</div>
-			<br />
-
-			<div class="post-item clearfix">
-				<form class="row g-3">
-					<div class="col-md-1">
-						<img src="~/img/messages-3.jpg" height="50" width="50">
-					</div>
-					<div class="col-md-8">
-						<h1 style="font-size:100%"><b>David Muldon</b></h1>
-						<p>A new Employee with ID 1555 has been added!</p>
-					</div>
-					<div class="col-md-3" data-bs-toggle="dropdown">
-						<p>1 day.ago</p>
-					</div>
-				</form>
-			</div>
-
+			
 			<form class="row g-3" nonvalidate method="post">
 				<div class="col-md-8">
 					<class ="form-label">
 						Write a message</>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" asp-for="@Model.text">
 				</div>
 				<form class="row g-3" novalidate method="post">
 				<div class="col-md-1" data-bs-toggle="dropdown">
@@ -73,7 +43,7 @@
 				</div>
 				</form>
 			</form>
-		</div>*@
+		</div>
 
 
 	</div>

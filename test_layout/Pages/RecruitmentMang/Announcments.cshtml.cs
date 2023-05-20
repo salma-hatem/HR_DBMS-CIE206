@@ -18,11 +18,13 @@ namespace HR_DBMS.Pages.RecruitmentMang
 		public int MID { get; set; }
 		[BindProperty]
 		public DataTable Announcments { get; set; }
+	
 
-        public AnnouncmentsModel(DBManager db)
+		public AnnouncmentsModel(DBManager db)
         {
 			Db = db;
-
+			MID = Db.GetCurrentUserID();
+			Id = Db.getAnnouncmentId();
         }
         public void OnGet()
 		{
@@ -31,7 +33,10 @@ namespace HR_DBMS.Pages.RecruitmentMang
 		}
 		public IActionResult OnPostSend()
 		{
-			return RedirectToPage("/RecruitmentMang/Employees");
+			
+			Db.AddAnnouncment(Id,text,"2-10-2023", MID);
+			return RedirectToPage("/RecruitmentMang/Announcments");
+			
 		}
 	}
 }

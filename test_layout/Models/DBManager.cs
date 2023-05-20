@@ -765,7 +765,7 @@ namespace test_layout.Models
         public int getAnnouncmentId()
         {
 
-            string query = "select MAX(ID) from Announcments";
+            string query = "select MAX(ID) from Announcements";
             SqlCommand cmd = new SqlCommand(query, con);
             int ID = 0;
             try
@@ -786,7 +786,7 @@ namespace test_layout.Models
 
         public void AddAnnouncment(int id, string msg, string date, int MangID)
         {
-            string query = "INSERT INTO Announcments VALUES (@ID, @Mgs_text ,@Mgs_Date, @M_ID)";
+            string query = "INSERT INTO Announcements VALUES (@ID, @Mgs_text ,@Mgs_Date, @M_ID)";
             SqlCommand cmd = new SqlCommand(query, con);
 
             cmd.Parameters.AddWithValue("@ID", id);
