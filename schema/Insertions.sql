@@ -514,10 +514,14 @@ VALUES(258,'09:30:00','04-12-2020 09:30:00','07-25-2020 01:30:00');
 INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
 VALUES(369,'09:30:00','12-30-2020 09:30:00','03-25-2021 01:30:00');
 
-INSERT INTO Works_on(PMID,EID,Time_spent)
+
+INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate)
+VALUES(369,'09:30:00','12-30-2020 09:30:00','03-25-2019 01:30:00');
+
+INSERT INTO Works_on(PID,EID,Time_spent)
 VALUES (1,4,12);
 
-INSERT INTO Works_on(PMID,EID,Time_spent)
+INSERT INTO Works_on(PID,EID,Time_spent)
 VALUES (1, 6, 8);
 
 INSERT INTO Requests(ID ,
@@ -582,6 +586,6 @@ from Training_Date as TD join Training as T
 on TD.ID=T.ID
 
 
+UPDATE  Training set Training_Name='Leader Work' where ID=123
 
 
-select max(Training_EndDate) , from Training_Date

@@ -3,3 +3,11 @@
 @{
     Layout = "_LayoutTrainingMang";
 }
+<p>Do you want to delete</p>
+<p style="color:red"> @Model.Train_Name</p>
+
+<form method="post">
+	<input hidden asp-for="@Model.Train_ID" class="form-control" />
+	<button class="btn btn-danger">Delete</button>
+	<a class="btn btn-secondary" asp-page="/TrainingMang/Trainings">Cancel</a>
+</form>
