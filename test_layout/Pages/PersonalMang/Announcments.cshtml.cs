@@ -35,7 +35,7 @@ namespace HR_DBMS.Pages.PersonalMang
 		{
 
 			Db.AddAnnouncment(Id, text, "2-10-2023", MID);
-			return RedirectToPage("/RecruitmentMang/Announcments");
+			return RedirectToPage("Announcments");
 
 		}
 	}

@@ -25,10 +25,10 @@ namespace HR_DBMS.Pages.Employee
         public void OnGet()
         {
             ID = dBManager.GetCurrentUserID();
-            currentProjects = dBManager.ReadTablesWithConditon("Project inner join Works_On on ID = PID", "ID, PName, Status_", "Status_ != 'Complete' AND EID", ID.ToString());
-            compeletedProjects = dBManager.ReadTablesWithConditon("Project inner join Works_On on ID = PID", "ID, PName, PDescription, PGoal, EndDate", "Status_ = 'Complete' AND EID", ID.ToString());
-            int sum = dBManager.ExcuteScalarINT("Project inner join Works_On on ID = PID", "sum(Progress_Percentage)", "EID", ID.ToString());
-            int c = dBManager.ExcuteScalarINT("Project inner join Works_On on ID = PID", "count(*)", "EID", ID.ToString());
+            currentProjects = dBManager.ReadTablesWithConditon("Project inner join Works_On on ID = PID", "ID, PName, Status_", "Progress_Percentage!=100  AND EID", ID.ToString());
+            compeletedProjects = dBManager.ReadTablesWithConditon("Project inner join Works_On on ID = PID", "ID, PName, PDescription, PGoal, EndDate", "Progress_Percentage=100 AND EID", ID.ToString());
+            int sum = Int32.Parse(dBManager.CustomScalarQuery($"SELECT SUM(Progress_Percentage) FROM Project inner join Works_On on ID = PID WHERE Progress_Percentage<100 AND EID={ID}"));
+            int c = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(*) FROM Project inner join Works_On on ID = PID WHERE Progress_Percentage<100 AND EID={ID}"));
             TotalProgress = sum/c;
         }
     }

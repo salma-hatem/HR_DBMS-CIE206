@@ -1,9 +1,7 @@
 --USE master; --is put ontop of every other create
 --CREATE SCHEMA DataBasePROj ;
 --CREATE DATABASE HR_DBMS
-USE HR_DBMS 
-
-CREATE TABLE Personal (
+USE HR_DBMS CREATE TABLE Personal (
 	id INT PRIMARY KEY,
 	SSN INT UNIQUE,
 	Team nvarchar(100),
@@ -123,11 +121,8 @@ CREATE TABLE Training(
 	FOREIGN KEY (Created_by) REFERENCES Training_Manager
 );
 
-
-
-
 CREATE TABLE Attend_Training(
-	TrainingID INT FOREIGN KEY REFERENCES Training NOT NULL,
+	TrainingID INT FOREIGN KEY REFERENCES Training ON DELETE CASCADE NOT NULL,
 	E_ID INT FOREIGN KEY REFERENCES Employee NOT NULL,
 	Time_Spent INT DEFAULT 0,
 	CONSTRAINT ID PRIMARY KEY (TrainingID, E_ID)
@@ -137,11 +132,10 @@ CREATE TABLE Training_Date(
 	ID int,
 	Training_Time Time NOT NULL,
 	Training_StartDate DATETIME NOT NULL,
-	Training_EndDate DATETIME NOT NULL ,
-	FOREIGN KEY (ID) REFERENCES Training,
-	PRIMARY KEY (ID, Training_StartDate,Training_EndDate),
+	Training_EndDate DATETIME NOT NULL,
+	FOREIGN KEY (ID) REFERENCES Training ON DELETE CASCADE,
+	PRIMARY KEY (ID, Training_StartDate, Training_EndDate),
 	constraint check_dates check (Training_StartDate < Training_EndDate)
-	
 );
 
 CREATE TABLE PenaltiesBonuses (

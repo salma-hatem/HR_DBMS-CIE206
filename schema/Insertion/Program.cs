@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Security.Cryptography;
+
 
 
 namespace HelloWorld
@@ -454,7 +454,7 @@ namespace HelloWorld
                 int per = rnd.Next(100);
                 int pname = rnd.Next(pnames.Length);
                 string s;
-                if (per == 100) s = "Finished";
+                if (per == 100) s = "Completed";
                 if (per > 70) s = "Almost Done";
                 else if (per > 40) s = "Working";
                 else s = "Just Started";
@@ -638,6 +638,7 @@ namespace HelloWorld
             {
                 con.Close();
             }
+
         }
 
         public Insertion()

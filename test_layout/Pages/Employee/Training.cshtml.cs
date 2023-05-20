@@ -1,4 +1,5 @@
 using System.Data;
+using HR_DBMS.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using test_layout.Models;
@@ -26,13 +27,16 @@ namespace HR_DBMS.Pages.Employee
         }
         public void OnGet()
         {
-           // string q = "select ID, Training_Name, Training_Location, Training_Description from Training where Training_Status = 0 except (select ID, Training_Name, Training_Location, Training_Description from Attend_Training inner join Training on ID = TrainingID\r\nwhere E_ID = " + ID + " )";
-            availableTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
-                "TD.ID", "T.ID", "Training_EndDate", "<");
-            currentTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
-                "TD.ID", "T.ID", "Training_EndDate", "<");
-            previousTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
-                "TD.ID", "T.ID", "Training_EndDate", "<");
+            string q = $"SELECT T.ID, T.Training_Name,T.Training_Location FROM Attend_Training AS AT INNER JOIN Training AS T ON ID = TrainingID INNER JOIN Training_Date AS TD ON TD.ID = T.ID WHERE TD.Training_EndDate > GETDATE() except(SELECT T.ID, T.Training_Name, T.Training_Location FROM Attend_Training AS AT INNER JOIN Training AS T ON ID = TrainingID INNER JOIN Training_Date AS TD ON TD.ID = T.ID where E_ID = {ID} )";
+
+            availableTrainings = dBManager.ReadTablesQuery(q);
+
+
+            currentTrainings = dBManager.ReadTablesQuery($"SELECT T.ID, T.Training_Name,T.Training_Location FROM Attend_Training AS AT INNER JOIN Training AS T ON ID=TrainingID INNER JOIN Training_Date AS TD ON TD.ID = T.ID WHERE E_ID = {ID} AND TD.Training_EndDate > GETDATE();");
+            //currentTrainings = (DataTable)dBManager.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description",
+                //"TD.ID", "T.ID", "Training_EndDate", ">");
+            previousTrainings = dBManager.ReadTablesQuery($"SELECT T.ID, T.Training_Name,T.Training_Location FROM Attend_Training AS AT INNER JOIN Training AS T ON ID=TrainingID INNER JOIN Training_Date AS TD ON TD.ID = T.ID WHERE E_ID = {ID} AND TD.Training_EndDate < GETDATE();)");
+ 
         }
         public void OnPost()
         {

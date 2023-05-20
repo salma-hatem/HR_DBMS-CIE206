@@ -924,7 +924,7 @@ namespace test_layout.Models
         }
         public int getEmployeeNum()
         {
-            string query = "select count(id) from personal where Person_status ='working' and Person_Role='Employee'";
+            string query = "select count(id) from personal JOIN employee ON id = EmployeeID WHERE Person_Status='working'";
             SqlCommand cmd = new SqlCommand(query, con);
             int count = 0;
             try

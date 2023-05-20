@@ -160,7 +160,7 @@ namespace HR_DBMS.Pages.PersonalMang
                 
             }
             
-            return Page();
+            return RedirectToPage("Home");
 
         }
     }

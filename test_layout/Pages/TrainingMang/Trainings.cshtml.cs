@@ -48,15 +48,15 @@ namespace HR_DBMS.Pages.TrainingMang
         public void OnGet()
         {
             
-            CurrTraining_times = (DataTable)DB.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description,Training_Time,Training_StartDate ,Training_EndDate",
+            CurrTraining_times = (DataTable)DB.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Time,Training_StartDate ,Training_EndDate",
                 "TD.ID", "T.ID","Training_EndDate",">"); 
-            PrevTraining_times = (DataTable)DB.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Description,Training_Time,Training_StartDate ,Training_EndDate",
+            PrevTraining_times = (DataTable)DB.getPrevTraining("Training_Date as TD", "Training as T", "T.ID,Training_Name,Training_Location,Training_Time,Training_StartDate ,Training_EndDate",
                 "TD.ID", "T.ID", "Training_EndDate", "<");
             for (int i = 0; i <CurrTraining_times.Rows.Count; i++)
             {
 
-                StartDate = (DateTime)CurrTraining_times.Rows[i][5];
-                EndDate = (DateTime)CurrTraining_times.Rows[i][6];
+                StartDate = (DateTime)CurrTraining_times.Rows[i][4];
+                EndDate = (DateTime)CurrTraining_times.Rows[i][5];
 
 
                 DataRow _ravi = CurrentTimes.NewRow();
@@ -71,8 +71,8 @@ namespace HR_DBMS.Pages.TrainingMang
             for (int i = 0; i < PrevTraining_times.Rows.Count; i++)
             {
 
-                StartDate = (DateTime)PrevTraining_times.Rows[i][5];
-                EndDate = (DateTime)PrevTraining_times.Rows[i][6];
+                StartDate = (DateTime)PrevTraining_times.Rows[i][4];
+                EndDate = (DateTime)PrevTraining_times.Rows[i][5];
 
 
                 DataRow _ravi = PrevTimes.NewRow();

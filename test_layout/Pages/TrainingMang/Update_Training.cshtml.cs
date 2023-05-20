@@ -85,7 +85,7 @@ namespace HR_DBMS.Pages.TrainingMang
             {
                 DB.AlterTraining("Training",Train_id,Train_name.ToString(),Train_location.ToString(),Mang_ID,Train_description.ToString());
                 DB.AlterTrainingDate("Training_Date",Train_id,Train_time,Train_start_date,Train_end_date);
-                return RedirectToPage("/TrainingMang/Trainings");
+                return RedirectToPage("Home");
             }
             else
             {
@@ -95,7 +95,7 @@ namespace HR_DBMS.Pages.TrainingMang
 
         public IActionResult OnPostCancel()
         {
-            return RedirectToPage("TrainingMang/Trainings");
+            return RedirectToPage("Home");
         }
     }
 }
