@@ -6,7 +6,7 @@ namespace test_layout.Models
     public class DBManager
 
     {
-        static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
 
 
         SqlConnection con = new SqlConnection(constring);
