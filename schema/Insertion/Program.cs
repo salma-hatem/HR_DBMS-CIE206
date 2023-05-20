@@ -508,14 +508,14 @@ namespace HelloWorld
             string[] docname = { "Birth Certificate", "Educational Transcript" };
             int Did = 0;
 
-/*            // Documents 
-            for (int i = 0; i < 200; i++)
+            // Documents 
+            for (int i = 0; i < 100; i++)
             {
                 query = $"INSERT INTO Documents VALUES ";
                 for (int j = 0; j < 3; j++)
                 {
 
-                    query += $"({Did},'{doctype[i % 4]}','100MB','{docname[i % 2]}',{i})";
+                    query += $"({Did},'{doctype[i % 4]}',100,'{docname[i % 2]}',{i})";
                     Did++;
                     if (j < 2) { query += ','; }
                 }
@@ -536,7 +536,7 @@ namespace HelloWorld
                     con.Close();
                 }
 
-            }*/
+            }
 
             // Bonuses and Penalties //
             for (int i = 0; i < 100; i++)
@@ -595,7 +595,32 @@ namespace HelloWorld
                 }
 
             }
-            // Insert Curren User
+
+            Did = 0;
+            //Training dates
+            for(int i=0;i<5;i++)
+            {
+                    
+                    query = $"INSERT INTO Training_Date(ID,Training_Time,Training_StartDate,Training_EndDate) VALUES({Did},(SELECT dateadd( second, rand(cast(newid() as varbinary)) * 43200, cast('08:00:00' as time) )),(SELECT GETDATE()+{i}),(SELECT GETDATE()+{Did+1}))";
+                    try
+                    {
+
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand(query, con);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine("Error in Training Date");
+                        Console.WriteLine(ex.ToString());
+
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                Did++;
+            }
             query = $"INSERT INTO CurrentUser VALUES(-1);";
             try
             {

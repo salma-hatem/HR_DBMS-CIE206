@@ -28,6 +28,14 @@
                         <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
                     </div>
+                    <br />
+                    <br />
+                    <h4> Give Employee Bonus</h4>
+                    <form method="post">
+                        <label >Quantity (between -50 and 50):</label>
+                        <input type="number" min="-50" max="50" asp-for="@Model.Perc">
+                        <input type="submit" asp-page-handler="Give" asp-route-eid="@edr[0]">
+                    </form>
                 </div>
             </div>
 

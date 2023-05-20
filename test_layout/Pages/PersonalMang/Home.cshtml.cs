@@ -70,6 +70,23 @@ namespace HR_DBMS.Pages.PersonalMang
 
         [BindProperty(SupportsGet = true)]
         public DataTable WorkingToday { set; get; }
+
+
+        // Week Days //
+        [BindProperty(SupportsGet =true)]
+        public int Sunday { set; get; }
+        [BindProperty(SupportsGet = true)]
+        public int Monday { set; get; }
+        [BindProperty(SupportsGet = true)]
+        public int Tuesday { set; get; }
+        [BindProperty(SupportsGet = true)]
+        public int Wednesday { set; get; }
+        [BindProperty(SupportsGet = true)]
+        public int Thursday { set; get; }
+        [BindProperty(SupportsGet = true)]
+        public int Friday { set; get; }
+        [BindProperty(SupportsGet = true)]
+        public int Saturday { set; get; }
         public HomeModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
@@ -109,6 +126,16 @@ namespace HR_DBMS.Pages.PersonalMang
 
             // Working today
             WorkingToday = dBManager.CustomQuery($"SELECT Person_Status,COUNT(Person_Status) FROM Personal, Employee WHERE id=EmployeeID AND PMID ={id} GROUP BY Person_Status ;");
+            // Week Days attendance //
+
+            Sunday = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM Attendance AS A, Employee E WHERE E.EmployeeID = A.Person_ID AND PMID={id} AND A.Atendance_Date=CAST((SELECT DATEADD(dd,1-DATEPART(dw,GETDATE()),GETDATE())) AS DATE)"));
+            Monday = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM Attendance AS A, Employee E WHERE E.EmployeeID = A.Person_ID AND PMID={id} AND A.Atendance_Date=CAST((SELECT DATEADD(dd,1-DATEPART(dw,GETDATE()),GETDATE())+1) AS DATE)"));
+            Tuesday = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM Attendance AS A, Employee E WHERE E.EmployeeID = A.Person_ID AND PMID={id} AND A.Atendance_Date=CAST((SELECT DATEADD(dd,1-DATEPART(dw,GETDATE()),GETDATE())+2) AS DATE)"));
+            Wednesday = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM Attendance AS A, Employee E WHERE E.EmployeeID = A.Person_ID AND PMID={id} AND A.Atendance_Date=CAST((SELECT DATEADD(dd,1-DATEPART(dw,GETDATE()),GETDATE())+3) AS DATE)"));
+            Thursday = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM Attendance AS A, Employee E WHERE E.EmployeeID = A.Person_ID AND PMID={id} AND A.Atendance_Date=CAST((SELECT DATEADD(dd,1-DATEPART(dw,GETDATE()),GETDATE())+4) AS DATE)"));
+            Friday = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM Attendance AS A, Employee E WHERE E.EmployeeID = A.Person_ID AND PMID={id} AND A.Atendance_Date=CAST((SELECT DATEADD(dd,1-DATEPART(dw,GETDATE()),GETDATE())+5) AS DATE)"));
+            Saturday = Int32.Parse(dBManager.CustomScalarQuery($"SELECT COUNT(A.ID) FROM Attendance AS A, Employee E WHERE E.EmployeeID = A.Person_ID AND PMID={id} AND A.Atendance_Date=CAST((SELECT DATEADD(dd,1-DATEPART(dw,GETDATE()),GETDATE())+5) AS DATE)"));
+            
 
         }
         public IActionResult OnPost()
@@ -130,7 +157,7 @@ namespace HR_DBMS.Pages.PersonalMang
             else
             {
                 message1 = "Attendance is Taken Already";
-                Console.WriteLine(message1);
+                
             }
             
             return Page();

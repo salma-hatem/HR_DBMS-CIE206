@@ -104,7 +104,7 @@
                     <div class="card top-selling overflow-auto">
 
                         <div class="card-body pb-0">
-                            <h5 class="card-title">Work Time <span>| This Week</span></h5>
+                            <h5 class="card-title">Employees Attendance this week <span>| This Week</span></h5>
                             <!-- Bar Chart -->
                             <canvas id="barChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 296px; width: 593px;" width="593" height="296"></canvas>
                             <!-- End Bar CHart -->
@@ -224,10 +224,10 @@
         new Chart(document.querySelector('#barChart'), {
             type: 'bar',
             data: {
-                labels: ['Monday', 'Tuesday', 'Thursday', 'Staturday', 'Sunday'],
+                labels: ['Sunday','Monday', 'Tuesday','Wednesday' ,'Thursday', 'Saturday', ],
                 datasets: [{
                     label: 'Bar Chart',
-                    data: [65, 59, 80, 81, 56, 55, 40],
+                    data: [@Model.Sunday, @Model.Monday, @Model.Tuesday, @Model.Wednesday, @Model.Thursday, @Model.Friday, @Model.Saturday],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(255, 159, 64, 0.2)',
@@ -353,10 +353,11 @@
                 labelLine: {
                     show: false
                 },
-                data: [{
- 
-                    value: @Model.WorkingToday.Rows[0][1],
-                    name: '@Model.WorkingToday.Rows[0][0]'
+                data:[
+                {
+                    
+                    value: 40
+                    name: 'Present'
                 },
                 {
                     value: 0,
