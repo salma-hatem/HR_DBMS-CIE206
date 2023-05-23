@@ -1,0 +1,183 @@
+﻿@page
+@model HR_DBMS.Pages.PersonalMang.EmployeesModel
+@using System.Data
+@{
+    Layout = "_LayoutPersonalMang";
+
+   DataRow edr = Model.CurrentEmployee.Rows[0];
+
+}
+
+<h1>Company Employees</h1>
+
+
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-4">
+
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <h2>@edr[3]</h2>
+                    <h3>@edr[5]</h3>
+                    <div class="social-links mt-2">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered" role="tablist">
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview" aria-selected="true" role="tab">Overview</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview" role="tabpanel">
+                            <h5 class="card-title">About</h5>
+                            <p class="small fst-italic">
+                                Sunt est soluta temporibus accusantium neque nam maiores cumque
+                                temporibus. Tempora libero non est unde veniam est qui dolor. Ut
+                                sunt iure rerum quae quisquam autem eveniet perspiciatis odit.
+                                Fuga sequi sed ea saepe at unde.
+                            </p>
+
+                            <h5 class="card-title">Profile Details</h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">ID</div>
+                                <div class="col-lg-9 col-md-8">@edr[0]</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">SSN</div>
+                                <div class="col-lg-9 col-md-8">@edr[1]</div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Sex</div>
+                                <div class="col-lg-9 col-md-8">@edr[3]</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Full Name</div>
+                                <div class="col-lg-9 col-md-8">@edr[2]</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Job</div>
+                                <div class="col-lg-9 col-md-8">@edr[4]</div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-lg-9 col-md-8">@edr[5]</div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Phone</div>
+                                <div class="col-lg-9 col-md-8">(+20) @edr[6]</div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Salary</div>
+                                <div class="col-lg-9 col-md-8">@edr[7]</div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Address</div>
+                            <div class="col-lg-9 col-md-8">@edr[8]</div>
+                        </div>
+
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit" role="tabpanel">
+
+                    </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="row align-items-top">
+        <h2>(@Model.Employees.Rows.Count) Records Found</h2>
+        <div class="card">
+            <div class="card-header">Employees Record</div>
+            <div class="card-body">
+
+                <!--Data-->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    </div>
+                    <div class="datatable-container">
+                        <table class="table datatable datatable-table">
+                            <thead>
+                                <tr>
+                                    <th data-sortable="true" style="width: 9.25925925925926%">
+                                        <a href="#" class="datatable-sorter">#</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 26.234567901234566%">
+                                        <a href="#" class="datatable-sorter">Name</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 29.938271604938272%">
+                                        <a href="#" class="datatable-sorter">Email</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 15.432098765432098%">
+                                        <a href="#" class="datatable-sorter">Job</a>
+                                    </th>
+                                    <th data-sortable="true" style="width: 19.1358024691358%">
+                                        <a href="#" class="datatable-sorter">Actions</a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @{
+                                int c = 0;
+                                foreach(DataRow dr in Model.Employees.Rows)
+                                {
+                                    <tr>
+                                    
+                                    <td>@dr[0]</td>
+                                    <td>@dr[1]</td>
+                                    <td>@dr[2]</td>
+                                    <td>@dr[3]</td>
+                                    <td><a asp-page="Employees" asp-route-id=@dr[0]>View</a></td>
+                                    
+                                </tr>
+                                }
+                            }
+                        </table>
+
+                    </div>
+             </div>
+             </div>
+             </div>
+
+
+
+</section>
+
+
+
+

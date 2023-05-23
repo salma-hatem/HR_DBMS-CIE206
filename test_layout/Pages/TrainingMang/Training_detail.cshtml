@@ -1,0 +1,71 @@
+﻿@page
+@model HR_DBMS.Pages.TrainingMang.Training_detailModel
+@{
+    Layout = "_LayoutTrainingMang";
+
+}
+
+<div class="pagetitle">
+    <h1>@Model.Training_Details.Rows[0][0] </h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/TrainingMang/Trainings">Home</a></li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section">
+    <div class="row align-items-top">
+        <div class="col-xxl-12">
+            <!-- Card with header and footer -->
+            <div class="card">
+                <div class="card-header">@Model.Training_Details.Rows[0][0]</div>
+                <div class="card-body">
+                    <h5 class="card-title">Description</h5>
+                    @Model.Training_Details.Rows[0][1]
+                </div>
+                
+            </div><!-- End Card with header and footer -->
+        </div>
+       @* <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Employees Attending</h5>
+
+                <!-- List group Numbered -->
+                <ol class="list-group list-group-numbered">
+                    @for(int i=0;i<Model.Attendees.Rows.Count;i++){
+                        
+                    <li class="list-group-item">@Model.Attendees.Rows[i][0] @Model.Attendees.Rows[i][1] </li>}
+                </ol><!-- End List group Numbered -->
+                </div>
+            </div>
+        </div>*@
+        
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Start Date</h3>
+                    @for(int i=0;i<Model.Training_times.Rows.Count;i++){
+                    <p>@Model.Training_times.Rows[i][0]</p>}
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">End Date</h3>
+                    @for (int i = 0; i < Model.Training_times.Rows.Count; i++)
+                    {
+                        <p>@Model.Training_times.Rows[i][1]</p>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+
+</section>

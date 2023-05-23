@@ -1,0 +1,170 @@
+﻿@page
+@model HR_DBMS.Pages.Emplyee.HomeModel
+@{
+	Layout = "_LayoutEmployee";
+}
+
+<section class="section dashboard">
+    <div class="row">
+
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Attendance</h5>
+
+                        <!-- Radial Bar Chart -->
+                        <div id="radialBarChart"></div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                new ApexCharts(document.querySelector("#radialBarChart"), {
+                                    series: [@Model.attendancePercent],
+                                    chart: {
+                                        height: 350,
+                                        type: 'radialBar',
+                                        toolbar: {
+                                            show: true
+                                        }
+                                    },
+                                    plotOptions: {
+                                        radialBar: {
+                                            dataLabels: {
+                                                name: {
+                                                    fontSize: '22px',
+                                                },
+                                                value: {
+                                                    fontSize: '16px',
+                                                },
+                                                total: {
+                                                    show: true,
+                                                    label: 'Total',
+                                                    formatter: function (w) {
+                                                        // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                                                        return @Model.attendancePercent
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    labels: ['Attendence'],
+                                }).render();
+                            });
+                        </script>
+                        <!-- End Radial Bar Chart -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="col-xxl-12">
+                <div class="card info-card sales-card">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Absent Days <span>| This Month</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-person-dash"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@Model.absent</h6>
+                                <span class="text-muted small pt-2 ps-1">Days</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- End Absent Card -->
+
+            <div class="col-xxl-12">
+                <div class="card info-card revenue-card">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Holidays Taken <span>| This Month</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cloud-sun"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>@Model.Holidays </h6>
+                                <span class="text-muted small pt-2 ps-1">Days</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- End Revenue Card -->
+        </div>
+
+        <div class="col-lg-4 col-xxl-4">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Penalties and Bonuses</h5>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Amount (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.PenaltiesBonuses.Rows.Count; i++)
+                            {
+                                <tr>
+                                    @for (int j = 0; j < Model.PenaltiesBonuses.Columns.Count; j++)
+                                    {
+                                        <td>@Model.PenaltiesBonuses.Rows[i][j]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+   
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Requests</h5>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Requests.Rows.Count; i++)
+                        {
+                            <tr>
+                                @for (int j = 0; j < Model.Requests.Columns.Count; j++)
+                                {
+                                    <td>@Model.Requests.Rows[i][j]</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <form method="post">
+                <button class="btn btn-outline-primary float-end m-3">Add Request</button>
+            </form>
+        </div>
+    </div>
+
+    
+
+</section>

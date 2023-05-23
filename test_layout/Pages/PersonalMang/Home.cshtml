@@ -1,0 +1,389 @@
+﻿@page
+@model HR_DBMS.Pages.PersonalMang.HomeModel
+@using System.Data;
+@{
+    Layout = "_LayoutPersonalMang";
+
+}
+
+
+
+
+<section class="section dashboard">
+    <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+            <div class="row">
+
+                <!-- Clock Card Card -->
+                <div class="col-xxl-4 col-md-6">
+                    <div class="card info-card sales-card">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Time at work <span>| Today</span></h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="ri-time-line"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>Clock in: @Model.ClockIn</h6>
+                                    <span class="text-success small pt-1 fw-bold">Welcome</span> <span class="text-muted small pt-2 ps-1">Time worked</span>
+                                    <form method="post"><span>Take <button asp-page-handler="Take" type ="sumbit" class="btn btn-outline-primary btn-sm">Attendance</button></span></form>
+                                    <span class="text-danger">@Model.message1</span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Requests -->
+                <div class="col-12">
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">Requests <a href="/PersonalMang/Requests" class="small"> View All</a></h5>
+
+                            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                                <div class="datatable-container">
+                                    <table class="table table-borderless datatable datatable-table">
+                                        <thead>
+                                            <tr>
+                                                <th data-sortable="true" style="width: 10.961214165261383%">
+                                                    <a href="#" class="datatable-sorter">#</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 23.946037099494095%">
+                                                    <a href="#" class="datatable-sorter">Employee</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 9.780775716694773%">
+                                                    <a href="#" class="datatable-sorter">Type</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 40.13490725126476%">
+                                                    <a href="#" class="datatable-sorter">Description</a>
+                                                </th>
+                                                <th data-sortable="true" style="width: 15.177065767284992%">
+                                                    <a href="#" class="datatable-sorter">Status</a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{
+                                                int c = 0;
+                                                foreach(DataRow dr in Model.Requests.Rows)
+                                                {
+                                                    c++;
+                                                    if (c > 5) break;
+                                                    
+                                                    <tr>
+                                                        <td><a href="#">#@dr[0]</a></td>
+                                                        <td>@dr[1]</td>
+                                                        <td><a href="#" class="text-primary">@dr[2]</a></td>
+                                                        <td>@dr[4]</td>
+                                                        <td><span class="badge bg-success">@dr[3]</span></td>
+                                                    </tr>
+                                                }
+                                            }
+                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="datatable-bottom">
+                                    <div class="datatable-info">Showing 1 to 5 of 5 entries</div>
+                                    <nav class="datatable-pagination"><ul class="datatable-pagination-list"></ul></nav>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Recent Activities -->
+                <!-- Top Selling -->
+                <div class="col-12">
+                    <div class="card top-selling overflow-auto">
+
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Work Time <span>| This Week</span></h5>
+                            <!-- Bar Chart -->
+                            <canvas id="barChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 296px; width: 593px;" width="593" height="296"></canvas>
+                            <!-- End Bar CHart -->
+                        </div>
+
+                    </div>
+                </div><!-- End Work time -->
+
+            </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+
+            <!-- Recent Activity -->
+            <div class="card">
+
+                <div class="card-body">
+                    <h5 class="card-title">Jump to Activity <span>| Head start</span></h5>
+
+                    <div class="activity">
+
+                        <div class="activity-item d-flex">
+                            <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
+                            <div class="activity-content">
+                                Check Recent  <a href="Requests" class="fw-bold text-dark">Requests</a> now
+                            </div>
+                        </div><!-- End activity item-->
+                        <div class="activity">
+
+                            <div class="activity-item d-flex">
+                                <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
+                                <div class="activity-content">
+                                    Check All  <a href="/PersonalMang/Project" class="fw-bold text-dark">Projects</a> now
+                                </div>
+                            </div><!-- End activity item-->
+                            <div class="activity">
+
+                                <div class="activity-item d-flex">
+                                    <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
+                                    <div class="activity-content">
+                                        Jump to  <a href="/PersonalMang/Performance" class="fw-bold text-dark">Performance</a> now
+                                    </div>
+                                </div>
+                                <!-- End activity item-->
+                    </div>
+
+                </div>
+            </div><!-- End Recent Activity -->
+            <!-- Budget Report -->
+            <div class="card">
+
+                <div class="card-body pb-0">
+                    
+                    <h5 class="card-title">Employee Report <span>| This Month</span></h5>
+                    <!--Right Chart #1-->
+                <div id="budgetChart" style="min-height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class="echart" _echarts_instance_="ec_1684188699587">
+                   <div style="position: relative; width: 760px; height: 400px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">
+                      <canvas data-zr-dom-id="zr_0" width="760" height="400" style="position: absolute; left: 0px; top: 0px; width: 760px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: 0px auto auto 0px !important;"></div>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: 0px 0px auto auto !important;"></div>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: auto auto 0px 0px !important;"></div>
+                      <div style="position: absolute !important; visibility: hidden !important; padding: 0px !important; margin: 0px !important; border-width: 0px !important; user-select: none !important; width: 0px !important; height: 0px !important; inset: auto 0px 0px auto !important;"></div>
+                   </div>
+                </div>
+                </div>
+            </div><!-- End Employee Report -->
+            <!-- Website Traffic -->
+            <div class="card">
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today</a></li>
+                        <li><a class="dropdown-item" href="#">This Month</a></li>
+                        <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+
+                <div class="card-body pb-0">
+                    <h5 class="card-title">Employees Working<span>| Today</span></h5>
+
+                    <div id="trafficChart" style="min-height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;" class="echart" _echarts_instance_="ec_1683290360460"><div style="position: relative; width: 593px; height: 400px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="593" height="400" style="position: absolute; left: 0px; top: 0px; width: 593px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+
+
+                </div>
+            </div><!-- End Employee -->
+
+                </div>
+            </div><!-- End News & Updates -->
+
+        </div><!-- End Right side columns -->
+
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--This week work char-->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        new Chart(document.querySelector('#barChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Thursday', 'Staturday', 'Sunday'],
+                datasets: [{
+                    label: 'Bar Chart',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
+            legend: {
+                data: ["This Month", "Last Month"]
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '11',
+                    fontWeight: 'bold'
+                }
+            },
+            radar: {
+                shape: 'circle',
+                indicator: [{
+                    name: 'Projects',
+                    max: @Model.TotalProjects
+                },
+                {
+                    name: 'Attendance',
+                    max: @Model.TotalAttendance
+                },
+                {
+                    name: 'Trainings',
+                    max: @Model.TotalTrainings
+                },
+                {
+                    name: 'Requests',
+                    max: 38000
+                },
+                {
+                    name: 'Salaries',
+                    max: 52000
+                },
+                {
+                    name: 'Bonuses',
+                    max: 25000
+                }
+                ]
+            },
+            series: [{
+                name: 'This Month vs Last Month',
+                type: 'radar',
+                data: [{
+                    value: [@Model.ProjectCount, @Model.AttendanceCount, @Model.TrainingsCount, @Model.RequestsCount, @Model.Salaries, 18000],
+                    name: 'This Month'
+                },
+                {
+                    value: [5000, 14000, 28000, 26000, 42000, 21000],
+                    name: 'Last Month'
+                }
+                ]
+            }]
+        });
+    });
+</script>
+
+
+
+
+<!--Employees Attendance-->
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        echarts.init(document.querySelector("#trafficChart")).setOption({
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                top: '5%',
+                left: 'center'
+            },
+            series: [{
+                name: 'Access From',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '18',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [{
+                    value: 1048,
+                    name: 'Working'
+                },
+                {
+                    value: 735,
+                    name: 'Absent'
+                },
+                {
+                    value: 580,
+                    name: 'Leave Breaks'
+                },
+                ]
+            }]
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

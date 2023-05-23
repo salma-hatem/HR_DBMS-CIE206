@@ -1,0 +1,151 @@
+﻿@page
+@model HR_DBMS.Pages.Employee.ProjectModel
+@{
+	Layout = "_LayoutEmployee";
+}
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Current Projects</h5>
+                    
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    @if (Model.currentProjects.Rows.Count == 0)
+                                    {
+                                        <tr>
+                                            <td class="datatable-empty" colspan="5">
+                                                No Enteries Found
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        @for (int i = 0; i < Model.currentProjects.Rows.Count; i++)
+                                        {
+                                            <tr>
+                                                @for (int j = 1; j < Model.currentProjects.Columns.Count; j++)
+                                                {
+                                                    <td>@Model.currentProjects.Rows[i][j]</td>
+                                                }
+                                                <td>
+                                                    <a class="btn btn-outline-secondary" asp-page="/Employee/ProjectDetails" asp-route-id="@Model.currentProjects.Rows[i][0]">view</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Project Completed</h5>
+
+                            <!-- Radial Bar Chart -->
+                            <div id="radialBarChart"></div>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    new ApexCharts(document.querySelector("#radialBarChart"), {
+                                        series: [@Model.TotalProgress],
+                                        chart: {
+                                            height: 350,
+                                            type: 'radialBar',
+                                            toolbar: {
+                                                show: true
+                                            }
+                                        },
+                                        plotOptions: {
+                                            radialBar: {
+                                                dataLabels: {
+                                                    name: {
+                                                        fontSize: '22px',
+                                                    },
+                                                    value: {
+                                                        fontSize: '16px',
+                                                    },
+                                                    total: {
+                                                        show: true,
+                                                        label: 'Total',
+                                                        formatter: function (w) {
+                                                            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                                                            return @Model.TotalProgress
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        labels: ['Project Completed'],
+                                    }).render();
+                                });
+                            </script>
+                            <!-- End Radial Bar Chart -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Completed Projects</h5>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Goal</th>
+                                    <th>End Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.compeletedProjects.Rows.Count == 0)
+                                {
+                                    <tr>
+                                        <td class="datatable-empty" colspan="5">
+                                            No Enteries Found
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @for (int i = 0; i < Model.compeletedProjects.Rows.Count; i++)
+                                    {
+                                        <tr>
+                                            @for (int j = 1; j < Model.compeletedProjects.Columns.Count; j++)
+                                            {
+                                                <td>@Model.compeletedProjects.Rows[i][j]</td>
+                                            }
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

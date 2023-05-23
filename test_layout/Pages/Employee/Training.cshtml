@@ -1,0 +1,214 @@
+﻿@page
+@model HR_DBMS.Pages.Employee.TrainingModel
+@{
+	Layout = "_LayoutEmployee";
+}
+
+<section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Avaliable Trainings</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Description</th>
+                                <th ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.availableTrainings.Rows.Count == 0)
+                            {
+                                <tr>
+                                    <td class="datatable-empty" colspan="5">
+                                        No Enteries Found
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @for (int i = 0; i < Model.availableTrainings.Rows.Count; i++)
+                                {
+                                    <tr>
+                                        <th scope="row">@(i + 1)</th>
+                                        @for (int j = 1; j < Model.availableTrainings.Columns.Count; j++)
+                                        {
+
+                                            <td>@Model.availableTrainings.Rows[i][j]</td>
+                                        }
+                                        <td>
+                                            <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.availableTrainings.Rows[i][0]">View</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @*<button class="btn btn-outline-info" asp-for>Join</button>*@
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+                </div>
+            </div>
+
+         @* <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Available Trainings</h5>
+              <div class="header float-end col-5">
+                  <div class="datatable-top">
+              <div class=" datatable-search">
+                <form class="search-form d-flex align-items-center" method="POST" action="#">
+                    <input type="search" class="datatable-input" name="query" placeholder="Search" title="Enter search keyword">
+                    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                </form>
+              </div></div>
+              </div>
+
+              <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Description</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.availableTrainings.Rows.Count == 0)
+                            {
+                                <tr>
+                                    <td class="datatable-empty" colspan="5">
+                                        No Enteries Found
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @for (int i = 0; i < Model.availableTrainings.Rows.Count; i++)
+                                {
+                                    <tr>
+                                        @for (int j = 1; j < Model.availableTrainings.Columns.Count; j++)
+                                        {
+                                            
+                                            <td>@Model.availableTrainings.Rows[i][j]</td>
+                                        }
+                                        <td>
+                                            <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.availableTrainings.Rows[i][0]">View</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            @*<button class="btn btn-outline-info" asp-for>Join</button>
+                        </tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>*@
+
+
+        <div class="col-lg-12">
+            
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Current Trainings</h5>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Location</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.currentTrainings.Rows.Count == 0)
+                                        {
+                                            <tr>
+                                                <td class="datatable-empty" colspan="5">
+                                                    No Enteries Found
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            @for (int i = 0; i < Model.currentTrainings.Rows.Count; i++)
+                                            {
+                                                <tr>
+                                                    @for (int j = 1; j < Model.currentTrainings.Columns.Count; j++)
+                                                    {
+                                                        <td>@Model.currentTrainings.Rows[i][j]</td>
+                                                    }
+                                                    <td>
+                                                        <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.currentTrainings.Rows[i][0]">View</a>
+                                                    </td>
+                                                </tr>
+
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Previous Trainings</h5>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Location</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.previousTrainings.Rows.Count == 0)
+                                    {
+                                        <tr>
+                                            <td class="datatable-empty" colspan="5">
+                                                No Enteries Found
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        @for (int i = 0; i < Model.previousTrainings.Rows.Count; i++)
+                                        {
+                                            <tr>
+                                                @for (int j = 1; j < Model.previousTrainings.Columns.Count; j++)
+                                                {
+                                                    <td>@Model.previousTrainings.Rows[i][j]</td>
+                                                }
+                                                <td>
+                                                    <a class="btn btn-outline-secondary" asp-page="/Employee/Training_detail" asp-route-id="@Model.previousTrainings.Rows[i][0]">View</a>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                    
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</section>
+
