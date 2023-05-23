@@ -7,7 +7,7 @@ namespace test_layout.Models
 
     {
 
-        static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
 
 
         SqlConnection con = new SqlConnection(constring);

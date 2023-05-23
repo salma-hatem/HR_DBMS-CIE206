@@ -20,6 +20,9 @@ namespace HR_DBMS.Pages.Emplyee
         public int attendancePercent { get; set; }
         [BindProperty]
         public int absent { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string message { get; set; }
+        public DataTable attendenceToday { get; set; }
         public HomeModel(DBManager dBManager)
         {
             this.dBManager = dBManager;
@@ -39,6 +42,29 @@ namespace HR_DBMS.Pages.Emplyee
         public IActionResult OnPost()
         {
             return RedirectToPage("/Employee/Request", new { ID = this.ID });
+        }
+        public IActionResult OnPostAttendance()
+        {
+            int id = dBManager.getCurrentUser();
+            string q = "select * from Attendance where Person_ID = " + id + " and Atendance_Date = cast(GETDATE() as  Date);";
+            attendenceToday = dBManager.CustomQuery(q);
+            if (attendenceToday.Rows.Count == 0)
+            {
+                int MaxID = dBManager.GetMaxID("Attendance")+1;
+                string qInsert = "insert into Attendance (ID, Atendance_Date, Person_ID) values ( " + MaxID +", cast(GETDATE() as  Date), " + id +")";
+                dBManager.CustomNonQuery(qInsert);
+                string m = "Attendance Taken!";
+                return RedirectToPage("/Employee/Home", new { message = m});
+                //return Page();
+            }
+            else
+            {
+
+                string m = "Attendance Already Taken";
+                return RedirectToPage("/Employee/Home", new { message = m });
+                //return Page();
+            }
+
         }
     }
 }
