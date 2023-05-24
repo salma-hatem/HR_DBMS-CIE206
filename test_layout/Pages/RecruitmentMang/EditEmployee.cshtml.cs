@@ -83,7 +83,7 @@ namespace HR_DBMS.Pages.RecruitmentMang
             Holidays = Request.Form["Holidays"];
 
             Db.UpdateRecordPerson(EmployeeID,FName.ToString(), LName.ToString(), email.ToString(), Status.ToString(),
-                Team.ToString(), Address.ToString(), Salary, 123, Role.ToString(), Contact.ToString(),
+                Team.ToString(), Address.ToString(), Salary, SSN, Role.ToString(), Contact.ToString(),
                 Age,  img.ToString(), Holidays);
             
 
