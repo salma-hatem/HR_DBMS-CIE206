@@ -656,7 +656,7 @@ namespace HelloWorld
 
             // Add your own connection string //
 
-            it.populateDB(@"Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True; TrustServerCertificate=True");
+            it.populateDB(@"Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True; TrustServerCertificate=True");
 
 
         }

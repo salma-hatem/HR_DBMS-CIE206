@@ -7,7 +7,7 @@ namespace test_layout.Models
 
     {
 
-        static string constring = "Data Source=DESKTOP-QNMEQCE;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
 
 
         SqlConnection con = new SqlConnection(constring);
@@ -946,7 +946,7 @@ namespace test_layout.Models
         }
         public int getEmployeeNum()
         {
-            string query = "select count(id) from personal where Person_status ='working' and Person_Role='Employee'";
+            string query = "select count(id) from personal where Person_status ='working'";
             SqlCommand cmd = new SqlCommand(query, con);
             int count = 0;
             try
