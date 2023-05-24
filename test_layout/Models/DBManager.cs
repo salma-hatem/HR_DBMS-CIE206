@@ -7,7 +7,7 @@ namespace test_layout.Models
 
     {
 
-        static string constring = "Data Source=OPTIPLEX;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
+        static string constring = "Data Source=DESKTOP-LK2PB8N;Initial Catalog=HR_DBMS;Integrated Security=True;TrustServerCertificate=True";
 
 
         SqlConnection con = new SqlConnection(constring);
@@ -830,6 +830,28 @@ namespace test_layout.Models
             }
 
         }
+        public void UpdateRecordPerson(int ID, string FName, string LName,  string email, string status, string team, string Add, string salary, int ssn, string role, string contact, string age, string img, string holidays)
+        {
+            string query = "Update Personal set FName= '"+FName+"',LName= '"+LName+"',Email= '"+email+"',Team= '"+team+"',Person_Address= '"+Add+"', Salary= "+salary+",SSN= "+ssn+",Person_Role= '"+role+"',Contact_Num= '"+contact+"',Age= "+age+",Person_IMG= '"+img+"' where id= "+ID+"";
+   
+            SqlCommand cmd = new SqlCommand(query, con);
+
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
         public void AddRecordEmployee(int ID, int RMID, int PMID)
         {
@@ -962,6 +984,10 @@ namespace test_layout.Models
                 con.Close();
             }
             return (count);
+        }
+        public void updateEmployee()
+        {
+
         }
     }
     
