@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="validationCustom01" value="@Model.EmployeeRecord.Rows[0][0]" required asp-for="@Model.EmployeeRecord.Rows[0][0]">
+                <input type="text" class="form-control" name="FName" id="validationCustom01" value="@Model.EmployeeRecord.Rows[0][0]" required asp-for="@Model.EmployeeRecord.Rows[0][0]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][1]">
+                <input type="text" class="form-control" name="LName" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][1]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -36,194 +36,186 @@
             </div>
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">email</label>
-                <input type="email" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][3]">
+                <input type="email" class="form-control" name="Email" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][3]">
                 <div class="valid-feedback">
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
                     Please Provide an email
                 </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Status</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][5]">
-                <div class="valid-feedback">
-                    Looks good!
                 </div>
-                <div class="invalid-feedback">
-                    Please Add a Status
-                </div>
-            </div>
 
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Team</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][4]">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Enter a team name
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label"> Address</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Address">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please provide your address
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Salary</label>
-                <input type="number" class="form-control" id="validationCustom01" required asp-for="@Model.Salary">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Provide a Salary
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">SSN</label>
-                <input type="number" class="form-control" id="validationCustom01" required asp-for="@Model.SSN">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Enter the SSN
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Role</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Role">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Provide a Role
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Contact</label>
-                <input type="text" class="form-control" id="validationCustom01" required asp-for="@Model.Contact">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Provide a Contact
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Age</label>
-                <input type="number" class="form-control" id="validationCustom01" required asp-for="@Model.Age">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Enter your age
-                </div>
-            </div>
-            <div class="col-md-4">
-                <td>Profile Photo</td>
-                <td>
-
-                    <input class="form-control" type="file" id="formFile" asp-for="@Model.img">
-
-                </td>
-            </div>
-
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Sex</label>
-
-                <select class="form-select" required asp-for="@Model.Sex">
-                    <option value="1" selected>Male</option>
-                    <option value="2">Female</option>
-
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Status</label>
+                    <input type="text" class="form-control" name="Status" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][5]">
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        Please Enter your age
+                        Please Add a Status
                     </div>
-                </select>
+                </div>
 
-            </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Team</label>
+                    <input type="text" class="form-control" name="Team" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][4]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter a team name
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label"> Address</label>
+                    <input type="text" class="form-control" name="Add" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][6]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide your address
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Salary</label>
+                    <input type="number" class="form-control" name="Salary" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][7]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Provide a Salary
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">SSN</label>
+                    <input type="number" class="form-control" name="SSN" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][8]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Enter the SSN
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Role</label>
+                    <input type="text" class="form-control" name="Role" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][9]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Provide a Role
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Contact</label>
+                    <input type="text" class="form-control" name="Contact" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][10]">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    </div>
+                    <div class="invalid-feedback">
+                        Please Provide a Contact
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationCustom01" class="form-label">Holidays</label>
+                        <input type="text" class="form-control" name="Holidays" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][10]">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please Provide a Contact
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationCustom01" class="form-label">Age</label>
+                        <input type="number" class="form-control" name="Age" id="validationCustom01" required asp-for="@Model.EmployeeRecord.Rows[0][11]">
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please Enter your age
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <td>Profile Photo</td>
+                        <td>
+
+                            <input class="form-control" type="file" name="img" id="formFile" asp-for="@Model.EmployeeRecord.Rows[0][12]">
+
+                        </td>
+                    </div>
+
+                   
 
 
 
 
-            <br />
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Documents</h5>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Path</th>
-                                    <td>Action</td>
+                    <br />
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Documents</h5>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Type</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Path</th>
+                                            <td>Action</td>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
 
-                                    <td>Birth Certificate</td>
-                                    <td>12345</td>
-                                    <td>
-                                        <div class="col-sm-10">
-                                            <input type="date" class="form-control" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" type="file" id="formFile">
-                                        </div>
-                                    </td>
-                                    <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
+                                            <td>Birth Certificate</td>
+                                            <td>12345</td>
+                                            <td>
+                                                <div class="col-sm-10">
+                                                    <input type="date" class="form-control" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="file" id="formFile">
+                                                </div>
+                                            </td>
+                                            <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
 
 
-                                </tr>
-                                <tr>
-                                    <td>College Certificate</td>
-                                    <td>12345</td>
-                                    <td>
-                                        <div class="col-sm-10">
-                                            <input type="date" class="form-control" />
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" type="file" id="formFile">
-                                        </div>
-                                    </td>
-                                    <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
-                                </tr>
+                                        </tr>
+                                        <tr>
+                                            <td>College Certificate</td>
+                                            <td>12345</td>
+                                            <td>
+                                                <div class="col-sm-10">
+                                                    <input type="date" class="form-control" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="file" id="formFile">
+                                                </div>
+                                            </td>
+                                            <td><a data-bs-toggle="collapse" data-bs-target="#collapseOne">Delete</a> </td>
+                                        </tr>
 
-                            </tbody>
-                        </table>
-                        <div class="col-2">
-                            <button class="btn btn-primary" type="submit" asp-page-handler="Submit">Submit</button>
+                                    </tbody>
+                                </table>
+                                <div class="col-2">
+                                    <input type="hidden" value="@Model.EmployeeID" name="ID" />
+                                    <button class="btn btn-primary" type="submit" asp-page-handler="Submit">Submit</button>
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
-
-            </div>
-            <br />
-            <form class="row g-3" novalidate method="post">
-
-                <div class="col-1">
-                    <button class="btn btn-primary" type="reset">Reset</button>
-                </div>
-            </form>
         </form>
+
 
     </div>
 </div>

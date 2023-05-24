@@ -46,7 +46,9 @@ namespace HR_DBMS.Pages.RecruitmentMang
         public int RMangID { get; set; }
         [BindProperty]
         public int Holidays { get; set; }
-        
+
+        [BindProperty]
+        public int PMID { get; set; }
 
         public Add_EmployeeModel(DBManager db)
         {
@@ -62,7 +64,7 @@ namespace HR_DBMS.Pages.RecruitmentMang
         {
             Db.AddRecordPerson(FName.ToString(), LName.ToString(), EmployeeID, email.ToString(),Password, Status.ToString(),
                 Team.ToString(), Address.ToString(), Salary, SSN, Role.ToString(), Contact.ToString(), Age, Sex.ToString(),img.ToString(),Holidays );
-            Db.AddRecordEmployee(EmployeeID, RMangID, 1);
+            Db.AddRecordEmployee(EmployeeID, RMangID, PMID);
             return RedirectToPage("/RecruitmentMang/Employees");
         }
     }

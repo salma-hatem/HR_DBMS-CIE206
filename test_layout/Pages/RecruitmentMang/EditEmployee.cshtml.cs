@@ -5,6 +5,7 @@ using System.Data;
 using test_layout.Models;
 using Azure;
 using System.Runtime.Intrinsics.X86;
+using System.Reflection;
 
 namespace HR_DBMS.Pages.RecruitmentMang
 {
@@ -19,7 +20,7 @@ namespace HR_DBMS.Pages.RecruitmentMang
         [BindProperty]
         public string email { get; set; }
         [BindProperty]
-        public int Password { get; set; }
+        public string Password { get; set; }
         [BindProperty]
         public string Status { get; set; }
         [BindProperty]
@@ -27,7 +28,7 @@ namespace HR_DBMS.Pages.RecruitmentMang
         [BindProperty]
         public string Address { get; set; }
         [BindProperty]
-        public int Salary { get; set; }
+        public string Salary { get; set; }
         [BindProperty]
         public int SSN { get; set; }
         [BindProperty]
@@ -35,17 +36,18 @@ namespace HR_DBMS.Pages.RecruitmentMang
         [BindProperty]
         public string Contact { get; set; }
         [BindProperty]
-        public int Age { get; set; }
+        public string Age { get; set; }
         [BindProperty]
         public string img { get; set; }
-        [BindProperty]
-        public string Sex { get; set; }
+ 
         [BindProperty]
         public int EmployeeID { get; set; }
         [BindProperty]
         public int RMangID { get; set; }
+        //[BindProperty]
+        //public string PMangID { get; set; }
         [BindProperty]
-        public int Holidays { get; set; }
+        public string Holidays { get; set; }
         [BindProperty]
         public DataTable EmployeeRecord { get; set; }
 
@@ -53,19 +55,39 @@ namespace HR_DBMS.Pages.RecruitmentMang
         {
             Db = db;
             RMangID = Db.GetCurrentUserID();
-            EmployeeID = Db.getEmployeeID();
+            
         }
         public void OnGet(int id)
         {
             EmployeeID = id;
-            EmployeeRecord = Db.ReadTablesWithConditon("Personal as P join Employee as E on E.EmployeeID = P.id", " P.FName, P.Lname, P.id, P.Work_Email, P.Team, P.Person_Status", "id", EmployeeID.ToString());
+
+            EmployeeRecord = Db.ReadTablesWithConditon("Personal as P join Employee as E on E.EmployeeID = P.id", " P.FName, P.Lname, P.id, P.Work_Email, P.Team, P.Person_Status, P.Person_Address," +
+                " P.Salary,P.SSN, P.Person_Role,P.Contact_Num, P.Age, P.Person_IMG ", "id", EmployeeID.ToString());
         }
-        //public IActionResult OnPostSubmit()
-        //{
-        //    Db.AddRecordPerson(FName.ToString(), LName.ToString(), EmployeeID, email.ToString(), Password, Status.ToString(),
-        //        Team.ToString(), Address.ToString(), Salary, SSN, Role.ToString(), Contact.ToString(), Age, Sex.ToString(), img.ToString(), Holidays);
-        //    Db.AddRecordEmployee(EmployeeID, RMangID, 1);
-        //    return RedirectToPage("/RecruitmentMang/Employees");
-        //}
+        public IActionResult OnPostSubmit(int ID)
+        {
+            EmployeeID = ID;
+            FName= Request.Form["FName"];
+            LName = Request.Form["LName"];
+            email = Request.Form["Email"];
+            Role = Request.Form["Role"];
+            Age = Request.Form["Age"];
+            Status = Request.Form["Status"];
+            Team= Request.Form["Team"];
+            Address = Request.Form["Add"];
+            Salary = Request.Form["Salary"];
+            Contact = Request.Form["Contact"];
+            img = Request.Form["img"];
+
+           // PMangID = Request.Form["PMangID"];
+            Holidays = Request.Form["Holidays"];
+
+            Db.UpdateRecordPerson(EmployeeID,FName.ToString(), LName.ToString(), email.ToString(), Status.ToString(),
+                Team.ToString(), Address.ToString(), Salary, 123, Role.ToString(), Contact.ToString(),
+                Age,  img.ToString(), Holidays);
+            
+
+            return RedirectToPage("/RecruitmentMang/Employees");
+        }
     }
 }
